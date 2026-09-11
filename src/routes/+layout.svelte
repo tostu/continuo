@@ -7,7 +7,6 @@
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import { reducedMotion } from '$lib/motion/gsap';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 
 	let { children } = $props();
 
@@ -24,7 +23,12 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	<link rel="icon" href="/favicon.ico" sizes="32x32" />
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="mask-icon" href="/mask-icon.svg" color="#17a37c" />
+	<link rel="manifest" href="/manifest.webmanifest" />
+	<meta name="theme-color" content="#0f0f0f" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
