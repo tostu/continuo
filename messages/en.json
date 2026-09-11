@@ -4,7 +4,7 @@
 	"works_summary": "works, {required} essential",
 	"mode_label": "Group timeline",
 	"mode_saga": "Saga",
-	"mode_chronology": "Historical order",
+	"mode_chronology": "Historical",
 	"now_playing": "now showing",
 	"legend": "large = essential · dashed = optional",
 	"required": "essential",

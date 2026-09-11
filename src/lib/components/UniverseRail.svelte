@@ -6,7 +6,7 @@
 	import Icon from './Icon.svelte';
 	import { layoutRail, type RailMode, type RailNode } from '$lib/universe/rail-layout';
 	import { toneVar, year } from '$lib/universe/derive';
-	import type { Tone, Universe } from '$lib/universe/types';
+	import type { Tone, Universe, Work } from '$lib/universe/types';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
@@ -27,6 +27,8 @@
 	const link = linkVertical();
 
 	const edgeColor = (tone: Tone) => (tone === 'neutral' ? 'var(--color-neutral)' : toneVar(tone));
+	/** Chronology-Modus zeigt das Datum der Handlung, sonst das Erscheinungsjahr. */
+	const dateLabel = (work: Work) => (mode === 'chronology' ? work.loreDate : year(work));
 	/** Svelte-Transitions respektieren reduced motion nicht von selbst. */
 	const motion = (params: { delay?: number; duration: number }) =>
 		reducedMotion() ? { duration: 0 } : params;
@@ -250,7 +252,7 @@
 					>
 						<p class="font-semibold">{work.title}</p>
 						<p class="mt-0.5 text-muted">
-							{year(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()} ·
+							{dateLabel(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()} ·
 							{work.required ? m.required() : m.optional()}
 						</p>
 					</Tooltip.Content>
@@ -279,7 +281,7 @@
 					{:else}
 						<span class="block text-[14px] font-semibold text-ink">{work.short}</span>
 						<span class="block text-[11.5px] text-muted">
-							{year(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
+							{dateLabel(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
 						</span>
 					{/if}
 				</span>

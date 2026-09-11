@@ -17,6 +17,8 @@ export interface Work {
 	released: string;
 	/** Position in der In-Universe-Chronologie (nicht das Erscheinungsdatum), bestimmt die historische Reihenfolge. */
 	chronology: number;
+	/** Anzeige-Datum der Handlung selbst (z.B. „19 BBY" oder „1994"), statt Erscheinungsjahr. */
+	loreDate: string;
 	sagaId: string;
 	required: boolean;
 	/** Einheit der werkinternen Achse: Filmminute oder Folge. */
