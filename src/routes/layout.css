@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* static: alle Tokens ausgeben – Arc-Farben werden per var() aus Daten gesetzt, nicht nur über Klassen. */
+@theme static {
+	--color-ground: #0f0f0f;
+	--color-surface: #1a1a1a;
+	--color-card: #151515;
+	--color-raised: #242424;
+	--color-hairline: #2c2c2c;
+	--color-ink: #f4f1ea;
+	--color-muted: #9a968d;
+	--color-neutral: #5c5953;
+
+	/* Story-Arc-Farben: satt, je eine pro Strang */
+	--color-arc-1: #5b4cc4;
+	--color-arc-2: #0f7a5f;
+	--color-arc-3: #a8431f;
+
+	--font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+	--font-serif: 'Fraunces', ui-serif, Georgia, serif;
+}
+
+@layer base {
+	:root {
+		color-scheme: dark;
+	}
+
+	html {
+		background: var(--color-ground);
+		color: var(--color-ink);
+		font-family: var(--font-display);
+		-webkit-font-smoothing: antialiased;
+	}
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation: none !important;
+	}
+}
