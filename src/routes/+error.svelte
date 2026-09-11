@@ -15,6 +15,6 @@
 		href={href('/')}
 		class="mt-8 inline-flex h-11 w-fit items-center rounded-full bg-arc-1 px-5 text-[14px] font-semibold text-white"
 	>
-		{m.back_home()}
+		{m.all_universes()}
 	</Button.Root>
 </section>

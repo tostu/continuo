@@ -1,5 +1,14 @@
 {
 	"files.associations": {
 		"*.css": "tailwindcss"
-	}
+	},
+	"json.schemas": [
+		{
+			"fileMatch": [
+				"/src/lib/continuo-data/*.json",
+				"!/src/lib/continuo-data/universe.schema.json"
+			],
+			"url": "./src/lib/continuo-data/universe.schema.json"
+		}
+	]
 }

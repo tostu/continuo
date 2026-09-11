@@ -1,4 +1,5 @@
-import { env } from '$env/dynamic/private';
+// Statisch, weil $env/dynamic beim Prerendern nicht lesbar ist – TMDb wird nur zur Build-Zeit abgefragt.
+import * as env from '$env/static/private';
 import type { Character, Work } from '$lib/universe/types';
 
 const API_BASE = 'https://api.themoviedb.org/3';

@@ -7,6 +7,12 @@
 			"runtimeArgs": ["run", "dev"],
 			"port": 5174,
 			"autoPort": true
+		},
+		{
+			"name": "continuo-preview",
+			"runtimeExecutable": "bun",
+			"runtimeArgs": ["run", "preview"],
+			"port": 4173
 		}
 	]
 }

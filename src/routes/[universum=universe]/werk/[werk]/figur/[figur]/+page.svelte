@@ -5,7 +5,6 @@
 	import PlotTimeline from '$lib/components/PlotTimeline.svelte';
 	import PlotCard from '$lib/components/PlotCard.svelte';
 	import Icon from '$lib/components/Icon.svelte';
-	import { starWars as universe } from '$lib/universe/star-wars';
 	import { arcShares, arcsFor, dominantArc, plotPointsFor, toneVar } from '$lib/universe/derive';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
@@ -13,6 +12,7 @@
 
 	let { data } = $props();
 
+	const universe = $derived(data.universe);
 	const work = $derived(data.work);
 	const character = $derived(data.character);
 	const arcs = $derived(arcsFor(universe, work.slug));
@@ -51,7 +51,7 @@
 
 <header class="pt-6">
 	<Button.Root
-		href={href(`/werk/${work.slug}`)}
+		href={href(`/${data.slug}/werk/${work.slug}`)}
 		class="-ml-2 inline-flex h-10 items-center gap-1 rounded-full pr-3 pl-1.5 text-[14px] font-semibold text-muted transition-colors hover:text-ink"
 	>
 		<Icon name="back" size={20} />{work.short}

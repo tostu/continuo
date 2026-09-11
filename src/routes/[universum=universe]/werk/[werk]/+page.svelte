@@ -5,7 +5,6 @@
 	import ArcFilter from '$lib/components/ArcFilter.svelte';
 	import SearchField from '$lib/components/SearchField.svelte';
 	import Icon from '$lib/components/Icon.svelte';
-	import { starWars as universe } from '$lib/universe/star-wars';
 	import {
 		arcShares,
 		arcsFor,
@@ -21,6 +20,7 @@
 
 	let { data } = $props();
 
+	const universe = $derived(data.universe);
 	const work = $derived(data.work);
 	const saga = $derived(sagaOf(universe, work));
 	const arcs = $derived(arcsFor(universe, work.slug));
@@ -92,7 +92,7 @@
 
 <header class="pt-6">
 	<Button.Root
-		href={href('/')}
+		href={href(`/${data.slug}`)}
 		class="-ml-2 inline-flex h-10 items-center gap-1 rounded-full pr-3 pl-1.5 text-[14px] font-semibold text-muted transition-colors hover:text-ink"
 	>
 		<Icon name="back" size={20} />{m.universe_title()}
@@ -128,7 +128,7 @@
 	<div class="mt-10 rounded-[20px] bg-card p-6 ring-1 ring-hairline">
 		<p class="font-serif text-[20px] leading-snug">{m.no_characters()}</p>
 		<Button.Root
-			href={href('/')}
+			href={href(`/${data.slug}`)}
 			class="mt-5 inline-flex h-11 items-center rounded-full bg-arc-1 px-5 text-[14px] font-semibold text-white"
 		>
 			{m.back_home()}
@@ -160,7 +160,7 @@
 		{#each visible as { character, photoUrl, shares, count }, i (character.id)}
 			<li data-flip-id={character.id}>
 				<a
-					href={href(`/werk/${work.slug}/figur/${character.id}`)}
+					href={href(`/${data.slug}/werk/${work.slug}/figur/${character.id}`)}
 					class="group flex flex-col items-center gap-2 rounded-2xl text-center focus-visible:ring-2 focus-visible:ring-ink focus-visible:outline-none"
 				>
 					<span class="transition-[scale] duration-200 group-hover:scale-105">

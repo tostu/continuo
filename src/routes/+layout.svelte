@@ -34,7 +34,7 @@
 </svelte:head>
 
 <Tooltip.Provider delayDuration={250}>
-	<div class="mx-auto min-h-dvh w-full max-w-[420px] px-5">
+	<div class="mx-auto min-h-dvh w-full max-w-[420px] px-5 sm:max-w-2xl lg:max-w-4xl">
 		{@render children()}
 	</div>
 </Tooltip.Provider>

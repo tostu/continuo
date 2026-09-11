@@ -29,6 +29,8 @@ export interface Work {
 	unit: 'Min.' | 'Folge';
 	range: [number, number];
 	nowPlaying?: boolean;
+	/** Poster- bzw. Cover-Bild für Teaser und Zeitstrahl. */
+	cover?: string;
 }
 
 /** Handlungsstrang innerhalb eines Werks. */

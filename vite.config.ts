@@ -14,18 +14,15 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter(),
-			typescript: {
-				config: (config) => {
-					config.include.push('../drizzle.config.ts');
-				}
-			}
+			adapter: adapter()
 		}),
 
 		paraglideVitePlugin({
 			project: './project.inlang',
 			outdir: './src/lib/paraglide',
-			emitTsDeclarations: true
+			emitTsDeclarations: true,
+			// Vorgerenderte Seiten kennen keine Cookies – Sprache muss aus der URL (/en/…) kommen.
+			strategy: ['url', 'cookie', 'baseLocale']
 		})
 	],
 	test: {

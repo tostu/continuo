@@ -11,7 +11,12 @@
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
 
-	let { universe, mode }: { universe: Universe; mode: RailMode } = $props();
+	let {
+		universe,
+		slug,
+		mode
+	}: { universe: Universe; /** URL-Segment des Universums. */ slug: string; mode: RailMode } =
+		$props();
 
 	let width = $state(335);
 	let root: HTMLDivElement;
@@ -197,22 +202,44 @@
 						<a
 							{...props}
 							data-node-body
-							href={href(`/werk/${work.slug}`)}
+							href={href(`/${slug}/werk/${work.slug}`)}
 							aria-label={work.title}
-							class="absolute grid place-items-center rounded-full transition-[scale] duration-200 hover:scale-110 focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-ground focus-visible:outline-none"
+							class="absolute grid place-items-center overflow-hidden rounded-full transition-[scale] duration-200 hover:scale-110 focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-ground focus-visible:outline-none"
 							class:border-2={node.optional}
 							class:border-dashed={node.optional}
-							class:bg-ground={node.optional}
+							class:bg-ground={node.optional && !work.cover}
 							class:text-white={!node.optional}
 							style:width="{node.r * 2}px"
 							style:height="{node.r * 2}px"
 							style:left="{-node.r}px"
 							style:top="{-node.r}px"
-							style:background-color={node.optional ? undefined : toneVar(node.tone)}
+							style:background-color={node.optional || work.cover ? undefined : toneVar(node.tone)}
 							style:border-color={node.optional ? toneVar(node.tone) : undefined}
 							style:color={node.optional ? toneVar(node.tone) : undefined}
 						>
-							<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={node.optional ? 13 : 20} />
+							{#if work.cover}
+								<img
+									src={work.cover}
+									alt=""
+									class="h-full w-full object-cover"
+									class:opacity-60={node.optional}
+									loading="lazy"
+								/>
+								<span
+									class="pointer-events-none absolute right-0 bottom-0 grid place-items-center rounded-full ring-2 ring-ground"
+									style:width="{Math.max(node.r * 0.62, 14)}px"
+									style:height="{Math.max(node.r * 0.62, 14)}px"
+									style:background-color={toneVar(node.tone)}
+									style:color="white"
+								>
+									<Icon
+										name={work.kind === 'film' ? 'film' : 'tv'}
+										size={Math.max(node.r * 0.34, 9)}
+									/>
+								</span>
+							{:else}
+								<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={node.optional ? 13 : 20} />
+							{/if}
 						</a>
 					{/snippet}
 				</Tooltip.Trigger>
