@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { groupWorks, layoutRail, type RailMode } from './rail-layout';
 import { starWars } from './star-wars';
 
-const modes: RailMode[] = ['saga', 'strang', 'pflicht'];
+const modes: RailMode[] = ['saga', 'chronology'];
 
 describe('layoutRail', () => {
 	it.each(modes)('places every work exactly once (%s)', (mode) => {
@@ -29,16 +29,22 @@ describe('layoutRail', () => {
 		expect(pathEdges.some((e) => branched.has(e.from) || branched.has(e.to))).toBe(false);
 	});
 
-	it('keeps all essential works above optional ones in pflicht mode', () => {
-		const { nodes } = layoutRail(starWars, 'pflicht', 360);
-		const lowestRequired = Math.max(...nodes.filter((n) => !n.optional).map((n) => n.y));
-		const highestOptional = Math.min(...nodes.filter((n) => n.optional).map((n) => n.y));
-		expect(lowestRequired).toBeLessThan(highestOptional);
+	it('orders by in-universe chronology instead of release date in chronology mode', () => {
+		const { nodes } = layoutRail(starWars, 'chronology', 360);
+		const episodeI = nodes.find((n) => n.slug === 'episode-i')!;
+		const episodeIV = nodes.find((n) => n.slug === 'episode-iv')!;
+		// Episode I released 1999, after Episode IV (1977), but comes first in-universe.
+		expect(episodeI.y).toBeLessThan(episodeIV.y);
 	});
 
-	it.each(modes)('puts each banner above the first work of its group (%s)', (mode) => {
-		const { nodes, banners } = layoutRail(starWars, mode, 360);
-		const groups = groupWorks(starWars, mode);
+	it('has no group banners in chronology mode', () => {
+		const { banners } = layoutRail(starWars, 'chronology', 360);
+		expect(banners).toHaveLength(0);
+	});
+
+	it('puts each banner above the first work of its group in saga mode', () => {
+		const { nodes, banners } = layoutRail(starWars, 'saga', 360);
+		const groups = groupWorks(starWars, 'saga');
 		expect(banners).toHaveLength(groups.length);
 		groups.forEach((group, i) => {
 			const first = nodes.find((n) => n.slug === group.works[0].slug)!;

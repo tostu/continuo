@@ -17,23 +17,6 @@
       "tone": "arc-3"
     }
   ],
-  "strands": [
-    {
-      "id": "skywalker",
-      "name": "Skywalker-Saga",
-      "tone": "arc-1"
-    },
-    {
-      "id": "rebellion",
-      "name": "Rebellion",
-      "tone": "arc-2"
-    },
-    {
-      "id": "mandoverse",
-      "name": "Mandoverse",
-      "tone": "arc-3"
-    }
-  ],
   "works": [
     {
       "slug": "episode-iv",
@@ -41,8 +24,8 @@
       "short": "Episode IV",
       "kind": "film",
       "released": "1977-05-25",
+      "chronology": 70,
       "sagaId": "original",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -57,8 +40,8 @@
       "short": "Episode V",
       "kind": "film",
       "released": "1980-05-21",
+      "chronology": 80,
       "sagaId": "original",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -73,8 +56,8 @@
       "short": "Episode VI",
       "kind": "film",
       "released": "1983-05-25",
+      "chronology": 90,
       "sagaId": "original",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -89,8 +72,8 @@
       "short": "Episode I",
       "kind": "film",
       "released": "1999-05-19",
+      "chronology": 10,
       "sagaId": "prequel",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -105,8 +88,8 @@
       "short": "Episode II",
       "kind": "film",
       "released": "2002-05-16",
+      "chronology": 20,
       "sagaId": "prequel",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -121,8 +104,8 @@
       "short": "Episode III",
       "kind": "film",
       "released": "2005-05-19",
+      "chronology": 30,
       "sagaId": "prequel",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -137,8 +120,8 @@
       "short": "Clone Wars",
       "kind": "serie",
       "released": "2008-10-03",
+      "chronology": 25,
       "sagaId": "prequel",
-      "strandId": "mandoverse",
       "required": false,
       "unit": "Folge",
       "range": [
@@ -153,8 +136,8 @@
       "short": "Episode VII",
       "kind": "film",
       "released": "2015-12-17",
+      "chronology": 130,
       "sagaId": "neu",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -169,8 +152,8 @@
       "short": "Rogue One",
       "kind": "film",
       "released": "2016-12-15",
+      "chronology": 60,
       "sagaId": "neu",
-      "strandId": "rebellion",
       "required": false,
       "unit": "Min.",
       "range": [
@@ -185,8 +168,8 @@
       "short": "Episode VIII",
       "kind": "film",
       "released": "2017-12-14",
+      "chronology": 140,
       "sagaId": "neu",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -201,8 +184,8 @@
       "short": "Solo",
       "kind": "film",
       "released": "2018-05-24",
+      "chronology": 40,
       "sagaId": "neu",
-      "strandId": "rebellion",
       "required": false,
       "unit": "Min.",
       "range": [
@@ -217,8 +200,8 @@
       "short": "The Mandalorian",
       "kind": "serie",
       "released": "2019-11-12",
+      "chronology": 100,
       "sagaId": "neu",
-      "strandId": "mandoverse",
       "required": true,
       "unit": "Folge",
       "range": [
@@ -233,8 +216,8 @@
       "short": "Episode IX",
       "kind": "film",
       "released": "2019-12-18",
+      "chronology": 150,
       "sagaId": "neu",
-      "strandId": "skywalker",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -249,8 +232,8 @@
       "short": "Andor",
       "kind": "serie",
       "released": "2022-09-21",
+      "chronology": 50,
       "sagaId": "neu",
-      "strandId": "rebellion",
       "required": false,
       "unit": "Folge",
       "range": [
@@ -265,8 +248,8 @@
       "short": "Ahsoka",
       "kind": "serie",
       "released": "2023-08-22",
+      "chronology": 110,
       "sagaId": "neu",
-      "strandId": "mandoverse",
       "required": false,
       "unit": "Folge",
       "range": [
@@ -281,8 +264,8 @@
       "short": "Mandalorian & Grogu",
       "kind": "film",
       "released": "2026-05-22",
+      "chronology": 120,
       "sagaId": "neu",
-      "strandId": "mandoverse",
       "required": true,
       "unit": "Min.",
       "range": [

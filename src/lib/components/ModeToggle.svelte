@@ -13,7 +13,7 @@
 	type="single"
 	bind:value={() => value, (v) => v && (value = v as T)}
 	aria-label={label}
-	class="grid grid-cols-3 gap-1 rounded-full bg-surface p-1 ring-1 ring-hairline"
+	class="grid grid-cols-2 gap-1 rounded-full bg-surface p-1 ring-1 ring-hairline"
 >
 	{#each options as option (option.value)}
 		<ToggleGroup.Item

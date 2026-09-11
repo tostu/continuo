@@ -13,7 +13,6 @@ it('hat eindeutige Universums-Slugs', () => {
 describe.each(universes.map((u) => [u.name, u] as const))('%s', (_, u) => {
 	it('hat eindeutige IDs', () => {
 		expect(duplicates(u.sagas.map((s) => s.id))).toEqual([]);
-		expect(duplicates(u.strands.map((s) => s.id))).toEqual([]);
 		expect(duplicates(u.works.map((w) => w.slug))).toEqual([]);
 		expect(duplicates(u.arcs.map((a) => a.id))).toEqual([]);
 		// Figuren-URLs sind /[universum]/werk/[werk]/figur/[figur] – eindeutig je Werk reicht.
@@ -23,7 +22,6 @@ describe.each(universes.map((u) => [u.name, u] as const))('%s', (_, u) => {
 
 	it('verweist nur auf existierende Einträge', () => {
 		const sagas = new Set(u.sagas.map((s) => s.id));
-		const strands = new Set(u.strands.map((s) => s.id));
 		const works = new Map(u.works.map((w) => [w.slug, w]));
 		const arcs = new Map(u.arcs.map((a) => [a.id, a]));
 		const characters = new Set(u.characters.map((c) => `${c.workSlug}/${c.id}`));
@@ -31,7 +29,6 @@ describe.each(universes.map((u) => [u.name, u] as const))('%s', (_, u) => {
 
 		for (const w of u.works) {
 			if (!sagas.has(w.sagaId)) broken.push(`Werk ${w.slug}: sagaId ${w.sagaId}`);
-			if (!strands.has(w.strandId)) broken.push(`Werk ${w.slug}: strandId ${w.strandId}`);
 		}
 		for (const a of u.arcs) {
 			if (!works.has(a.workSlug)) broken.push(`Arc ${a.id}: workSlug ${a.workSlug}`);

@@ -42,48 +42,6 @@
       "tone": "neutral"
     }
   ],
-  "strands": [
-    {
-      "id": "strand-fuyuki-route",
-      "name": "Fuyuki 5. Gralkrieg: Routen-Strang",
-      "tone": "arc-1"
-    },
-    {
-      "id": "strand-zero-war",
-      "name": "Vierter Gralkrieg (1994)",
-      "tone": "arc-2"
-    },
-    {
-      "id": "strand-tokyo-grail-war",
-      "name": "Tokio Heiliger Gralkrieg (1991/1999)",
-      "tone": "neutral"
-    },
-    {
-      "id": "strand-magical-girl",
-      "name": "Prisma-Illya Magical-Girl-Strang",
-      "tone": "arc-1"
-    },
-    {
-      "id": "strand-great-war",
-      "name": "Großer Gralkrieg (Rumänien)",
-      "tone": "neutral"
-    },
-    {
-      "id": "strand-chaldea-singularity",
-      "name": "Chaldeas Singularitäten",
-      "tone": "arc-3"
-    },
-    {
-      "id": "strand-chaldea-lostbelt",
-      "name": "Menschheitsgeschichte Beschneidung (Lostbelts)",
-      "tone": "arc-3"
-    },
-    {
-      "id": "strand-fuyuki-comedy",
-      "name": "Parodien & Alltag",
-      "tone": "neutral"
-    }
-  ],
   "works": [
     {
       "slug": "fate-stay-night-2006",
@@ -91,11 +49,14 @@
       "short": "stay night",
       "kind": "serie",
       "released": "2006-01-07",
+      "chronology": 30,
       "sagaId": "saga-stay-night",
-      "strandId": "strand-fuyuki-route",
       "required": true,
       "unit": "Folge",
-      "range": [1, 24]
+      "range": [
+        1,
+        24
+      ]
     },
     {
       "slug": "fate-zero",
@@ -103,11 +64,14 @@
       "short": "Zero",
       "kind": "serie",
       "released": "2011-10-01",
+      "chronology": 20,
       "sagaId": "saga-zero",
-      "strandId": "strand-zero-war",
       "required": true,
       "unit": "Folge",
-      "range": [1, 25]
+      "range": [
+        1,
+        25
+      ]
     },
     {
       "slug": "fate-prototype",
@@ -115,11 +79,14 @@
       "short": "Prototype",
       "kind": "film",
       "released": "2011-12-31",
+      "chronology": 10,
       "sagaId": "saga-prototype",
-      "strandId": "strand-tokyo-grail-war",
       "required": false,
       "unit": "Min.",
-      "range": [0, 12]
+      "range": [
+        0,
+        12
+      ]
     },
     {
       "slug": "fate-kaleid-liner-prisma-illya",
@@ -127,11 +94,14 @@
       "short": "Prisma Illya",
       "kind": "serie",
       "released": "2013-07-13",
+      "chronology": 90,
       "sagaId": "saga-kaleid-parallel",
-      "strandId": "strand-magical-girl",
       "required": true,
       "unit": "Folge",
-      "range": [1, 10]
+      "range": [
+        1,
+        10
+      ]
     },
     {
       "slug": "fate-stay-night-unlimited-blade-works",
@@ -139,11 +109,14 @@
       "short": "UBW",
       "kind": "serie",
       "released": "2014-10-04",
+      "chronology": 40,
       "sagaId": "saga-stay-night",
-      "strandId": "strand-fuyuki-route",
       "required": true,
       "unit": "Folge",
-      "range": [1, 25]
+      "range": [
+        1,
+        25
+      ]
     },
     {
       "slug": "fate-apocrypha",
@@ -151,11 +124,14 @@
       "short": "Apocrypha",
       "kind": "serie",
       "released": "2017-07-02",
+      "chronology": 110,
       "sagaId": "saga-apocrypha",
-      "strandId": "strand-great-war",
       "required": true,
       "unit": "Folge",
-      "range": [1, 25]
+      "range": [
+        1,
+        25
+      ]
     },
     {
       "slug": "fate-kaleid-liner-prisma-illya-oath-under-snow",
@@ -163,11 +139,14 @@
       "short": "Prisma Movie 1",
       "kind": "film",
       "released": "2017-08-26",
+      "chronology": 100,
       "sagaId": "saga-kaleid-parallel",
-      "strandId": "strand-magical-girl",
       "required": false,
       "unit": "Min.",
-      "range": [0, 90]
+      "range": [
+        0,
+        90
+      ]
     },
     {
       "slug": "fate-heavens-feel-1-presage-flower",
@@ -175,11 +154,14 @@
       "short": "Heaven's Feel I",
       "kind": "film",
       "released": "2017-10-14",
+      "chronology": 50,
       "sagaId": "saga-stay-night",
-      "strandId": "strand-fuyuki-route",
       "required": true,
       "unit": "Min.",
-      "range": [0, 120]
+      "range": [
+        0,
+        120
+      ]
     },
     {
       "slug": "fate-grand-order-moonlight-lostroom",
@@ -187,11 +169,14 @@
       "short": "Lostroom OVA",
       "kind": "film",
       "released": "2017-12-31",
+      "chronology": 120,
       "sagaId": "saga-grand-order-lostbelt",
-      "strandId": "strand-chaldea-lostbelt",
       "required": true,
       "unit": "Min.",
-      "range": [0, 32]
+      "range": [
+        0,
+        32
+      ]
     },
     {
       "slug": "todays-menu-for-the-emiya-family",
@@ -199,11 +184,14 @@
       "short": "Emiya Gohan",
       "kind": "serie",
       "released": "2018-01-25",
+      "chronology": 80,
       "sagaId": "saga-fifth-war",
-      "strandId": "strand-fuyuki-comedy",
       "required": false,
       "unit": "Folge",
-      "range": [1, 13]
+      "range": [
+        1,
+        13
+      ]
     },
     {
       "slug": "fate-heavens-feel-2-lost-butterfly",
@@ -211,11 +199,14 @@
       "short": "Heaven's Feel II",
       "kind": "film",
       "released": "2019-01-12",
+      "chronology": 60,
       "sagaId": "saga-stay-night",
-      "strandId": "strand-fuyuki-route",
       "required": true,
       "unit": "Min.",
-      "range": [0, 117]
+      "range": [
+        0,
+        117
+      ]
     },
     {
       "slug": "fate-grand-order-babylonia",
@@ -223,11 +214,14 @@
       "short": "Babylonia",
       "kind": "serie",
       "released": "2019-10-05",
+      "chronology": 140,
       "sagaId": "saga-grand-order-babylonia",
-      "strandId": "strand-chaldea-singularity",
       "required": true,
       "unit": "Folge",
-      "range": [1, 21]
+      "range": [
+        1,
+        21
+      ]
     },
     {
       "slug": "fate-heavens-feel-3-spring-song",
@@ -235,11 +229,14 @@
       "short": "Heaven's Feel III",
       "kind": "film",
       "released": "2020-08-15",
+      "chronology": 70,
       "sagaId": "saga-stay-night",
-      "strandId": "strand-fuyuki-route",
       "required": true,
       "unit": "Min.",
-      "range": [0, 122]
+      "range": [
+        0,
+        122
+      ]
     },
     {
       "slug": "fate-grand-order-camelot",
@@ -247,11 +244,14 @@
       "short": "Camelot",
       "kind": "film",
       "released": "2020-12-05",
+      "chronology": 130,
       "sagaId": "saga-grand-order-babylonia",
-      "strandId": "strand-chaldea-singularity",
       "required": false,
       "unit": "Min.",
-      "range": [0, 89]
+      "range": [
+        0,
+        89
+      ]
     }
   ],
   "arcs": [

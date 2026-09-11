@@ -7,23 +7,17 @@ export interface Saga {
 	tone: Tone;
 }
 
-/** Erzählstrang über mehrere Werke hinweg (Grundlage für den Modus „Story-Arc"). */
-export interface Strand {
-	id: string;
-	name: string;
-	tone: Tone;
-}
-
 export interface Work {
 	slug: string;
 	title: string;
 	/** Kurzname für den Zeitstrahl. */
 	short: string;
 	kind: 'film' | 'serie';
-	/** ISO-Datum der Erstveröffentlichung, bestimmt die Reihenfolge. */
+	/** ISO-Datum der Erstveröffentlichung. */
 	released: string;
+	/** Position in der In-Universe-Chronologie (nicht das Erscheinungsdatum), bestimmt die historische Reihenfolge. */
+	chronology: number;
 	sagaId: string;
-	strandId: string;
 	required: boolean;
 	/** Einheit der werkinternen Achse: Filmminute oder Folge. */
 	unit: 'Min.' | 'Folge';
@@ -61,7 +55,6 @@ export interface PlotPoint {
 export interface Universe {
 	name: string;
 	sagas: Saga[];
-	strands: Strand[];
 	works: Work[];
 	arcs: Arc[];
 	characters: Character[];

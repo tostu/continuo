@@ -16,8 +16,7 @@
 
 	const modes: { value: RailMode; label: string }[] = [
 		{ value: 'saga', label: m.mode_saga() },
-		{ value: 'strang', label: m.mode_strand() },
-		{ value: 'pflicht', label: m.mode_required() }
+		{ value: 'chronology', label: m.mode_chronology() }
 	];
 </script>
 

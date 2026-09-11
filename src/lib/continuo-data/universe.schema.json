@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://continuo.app/schema/universe.schema.json",
   "title": "Universe",
-  "description": "Datenmodell fuer einen Franchise-Zeitstrahl (siehe src/lib/universe/types.ts). Fuellen mit realen Werken, Sagas/Strands, Handlungsstraengen, Figuren und Plot-Points. Alle IDs innerhalb einer Universe muessen eindeutig und intern konsistent referenziert sein (siehe 'x-references' Hinweise pro Feld).",
+  "description": "Datenmodell fuer einen Franchise-Zeitstrahl (siehe src/lib/universe/types.ts). Fuellen mit realen Werken, Sagas, Handlungsstraengen, Figuren und Plot-Points. Alle IDs innerhalb einer Universe muessen eindeutig und intern konsistent referenziert sein (siehe 'x-references' Hinweise pro Feld).",
   "type": "object",
-  "required": ["name", "sagas", "strands", "works", "arcs", "characters", "plotPoints"],
+  "required": ["name", "sagas", "works", "arcs", "characters", "plotPoints"],
   "additionalProperties": false,
   "properties": {
     "name": {
@@ -17,15 +17,9 @@
       "items": { "$ref": "#/$defs/Saga" },
       "minItems": 1
     },
-    "strands": {
-      "type": "array",
-      "description": "Erzaehlstraenge ueber mehrere Werke hinweg (Grundlage fuer Modus 'Story-Arc').",
-      "items": { "$ref": "#/$defs/Strand" },
-      "minItems": 1
-    },
     "works": {
       "type": "array",
-      "description": "Filme/Serien des Universums in beliebiger Reihenfolge (Sortierung erfolgt ueber 'released').",
+      "description": "Filme/Serien des Universums in beliebiger Reihenfolge (Sortierung erfolgt ueber 'released' bzw. 'chronology').",
       "items": { "$ref": "#/$defs/Work" },
       "minItems": 1
     },
@@ -61,19 +55,9 @@
         "tone": { "$ref": "#/$defs/Tone" }
       }
     },
-    "Strand": {
-      "type": "object",
-      "required": ["id", "name", "tone"],
-      "additionalProperties": false,
-      "properties": {
-        "id": { "type": "string", "description": "Eindeutige Strand-ID, z.B. 'skywalker'." },
-        "name": { "type": "string", "description": "Anzeigename, z.B. 'Skywalker-Saga'." },
-        "tone": { "$ref": "#/$defs/Tone" }
-      }
-    },
     "Work": {
       "type": "object",
-      "required": ["slug", "title", "short", "kind", "released", "sagaId", "strandId", "required", "unit", "range"],
+      "required": ["slug", "title", "short", "kind", "released", "chronology", "sagaId", "required", "unit", "range"],
       "additionalProperties": false,
       "properties": {
         "slug": { "type": "string", "description": "Eindeutiger URL-Slug, z.B. 'episode-iv'." },
@@ -83,10 +67,13 @@
         "released": {
           "type": "string",
           "format": "date",
-          "description": "ISO-Datum (YYYY-MM-DD) der Erstveroeffentlichung, bestimmt die Reihenfolge."
+          "description": "ISO-Datum (YYYY-MM-DD) der Erstveroeffentlichung."
+        },
+        "chronology": {
+          "type": "number",
+          "description": "Position in der In-Universe-Chronologie (Erzaehlzeit, nicht Erscheinungsdatum), bestimmt die historische Reihenfolge. Aufsteigend, Luecken erlaubt."
         },
         "sagaId": { "type": "string", "description": "Muss einer 'id' aus sagas[] entsprechen." },
-        "strandId": { "type": "string", "description": "Muss einer 'id' aus strands[] entsprechen." },
         "required": { "type": "boolean", "description": "Ob das Werk zur Pflicht-Chronologie gehoert (vs. optionales Spin-off)." },
         "unit": {
           "type": "string",

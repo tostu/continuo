@@ -1,6 +1,6 @@
 import type { Tone, Universe, Work } from './types';
 
-export type RailMode = 'saga' | 'strang' | 'pflicht';
+export type RailMode = 'saga' | 'chronology';
 
 export interface RailNode {
 	slug: string;
@@ -59,46 +59,34 @@ const BRANCH_STACK = 56;
 const WAVE = [1, 0.78, 0.95, 0.66, 0.88];
 
 const byRelease = (a: Work, b: Work) => a.released.localeCompare(b.released);
+const byChronology = (a: Work, b: Work) => a.chronology - b.chronology;
 
-export function groupWorks(
-	u: Pick<Universe, 'works' | 'sagas' | 'strands'>,
-	mode: RailMode
-): RailGroup[] {
-	const ordered = [...u.works].sort(byRelease);
-	if (mode === 'pflicht') {
-		const groups: RailGroup[] = [
+export function groupWorks(u: Pick<Universe, 'works' | 'sagas'>, mode: RailMode): RailGroup[] {
+	if (mode === 'chronology') {
+		return [
 			{
-				id: 'pflicht',
-				label: 'Pflicht',
+				id: 'chronology',
+				label: '',
 				tone: 'neutral',
 				colorNodes: false,
-				works: ordered.filter((w) => w.required)
-			},
-			{
-				id: 'optional',
-				label: 'Optional',
-				tone: 'neutral',
-				colorNodes: false,
-				works: ordered.filter((w) => !w.required)
+				works: [...u.works].sort(byChronology)
 			}
 		];
-		return groups.filter((g) => g.works.length > 0);
 	}
-	const source = mode === 'saga' ? u.sagas : u.strands;
-	const key = mode === 'saga' ? 'sagaId' : 'strandId';
-	return source
+	const ordered = [...u.works].sort(byRelease);
+	return u.sagas
 		.map((s) => ({
 			id: s.id,
 			label: s.name,
 			tone: s.tone,
 			colorNodes: true,
-			works: ordered.filter((w) => w[key] === s.id)
+			works: ordered.filter((w) => w.sagaId === s.id)
 		}))
 		.filter((g) => g.works.length > 0);
 }
 
 export function layoutRail(
-	u: Pick<Universe, 'works' | 'sagas' | 'strands'>,
+	u: Pick<Universe, 'works' | 'sagas'>,
 	mode: RailMode,
 	width: number
 ): RailLayout {
@@ -114,14 +102,16 @@ export function layoutRail(
 	let previousOnPath: { node: RailNode; groupId: string } | null = null;
 
 	for (const group of groupWorks(u, mode)) {
-		banners.push({
-			id: `${mode}-${group.id}`,
-			label: group.label,
-			tone: group.tone,
-			x: cx,
-			y: cursor + 16
-		});
-		cursor += BANNER_GAP;
+		if (mode !== 'chronology') {
+			banners.push({
+				id: `${mode}-${group.id}`,
+				label: group.label,
+				tone: group.tone,
+				x: cx,
+				y: cursor + 16
+			});
+			cursor += BANNER_GAP;
+		}
 
 		let anchor: RailNode | null = null;
 		let lastBranch: RailNode | null = null;
