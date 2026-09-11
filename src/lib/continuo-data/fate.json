@@ -1,0 +1,543 @@
+{
+  "name": "Fate",
+  "sagas": [
+    {
+      "id": "saga-stay-night",
+      "name": "Fate/stay night Routen-Ära",
+      "tone": "arc-1"
+    },
+    {
+      "id": "saga-zero",
+      "name": "Vierter Heiliger Gralkrieg (Fate/Zero)",
+      "tone": "arc-2"
+    },
+    {
+      "id": "saga-prototype",
+      "name": "Fate/Prototype Universum",
+      "tone": "neutral"
+    },
+    {
+      "id": "saga-kaleid-parallel",
+      "name": "Kaleid-Parallelwelt (Prisma Illya)",
+      "tone": "arc-1"
+    },
+    {
+      "id": "saga-apocrypha",
+      "name": "Großer Gralkrieg (Apocrypha)",
+      "tone": "neutral"
+    },
+    {
+      "id": "saga-grand-order-babylonia",
+      "name": "Grand Order: Singularitäten",
+      "tone": "arc-3"
+    },
+    {
+      "id": "saga-grand-order-lostbelt",
+      "name": "Grand Order / Cosmos in the Lostbelt",
+      "tone": "arc-3"
+    },
+    {
+      "id": "saga-fifth-war",
+      "name": "Nach dem fünften Gralkrieg",
+      "tone": "neutral"
+    }
+  ],
+  "strands": [
+    {
+      "id": "strand-fuyuki-route",
+      "name": "Fuyuki 5. Gralkrieg: Routen-Strang",
+      "tone": "arc-1"
+    },
+    {
+      "id": "strand-zero-war",
+      "name": "Vierter Gralkrieg (1994)",
+      "tone": "arc-2"
+    },
+    {
+      "id": "strand-tokyo-grail-war",
+      "name": "Tokio Heiliger Gralkrieg (1991/1999)",
+      "tone": "neutral"
+    },
+    {
+      "id": "strand-magical-girl",
+      "name": "Prisma-Illya Magical-Girl-Strang",
+      "tone": "arc-1"
+    },
+    {
+      "id": "strand-great-war",
+      "name": "Großer Gralkrieg (Rumänien)",
+      "tone": "neutral"
+    },
+    {
+      "id": "strand-chaldea-singularity",
+      "name": "Chaldeas Singularitäten",
+      "tone": "arc-3"
+    },
+    {
+      "id": "strand-chaldea-lostbelt",
+      "name": "Menschheitsgeschichte Beschneidung (Lostbelts)",
+      "tone": "arc-3"
+    },
+    {
+      "id": "strand-fuyuki-comedy",
+      "name": "Parodien & Alltag",
+      "tone": "neutral"
+    }
+  ],
+  "works": [
+    {
+      "slug": "fate-stay-night-2006",
+      "title": "Fate/stay night",
+      "short": "stay night",
+      "kind": "serie",
+      "released": "2006-01-07",
+      "sagaId": "saga-stay-night",
+      "strandId": "strand-fuyuki-route",
+      "required": true,
+      "unit": "Folge",
+      "range": [1, 24]
+    },
+    {
+      "slug": "fate-zero",
+      "title": "Fate/Zero",
+      "short": "Zero",
+      "kind": "serie",
+      "released": "2011-10-01",
+      "sagaId": "saga-zero",
+      "strandId": "strand-zero-war",
+      "required": true,
+      "unit": "Folge",
+      "range": [1, 25]
+    },
+    {
+      "slug": "fate-prototype",
+      "title": "Fate/Prototype",
+      "short": "Prototype",
+      "kind": "film",
+      "released": "2011-12-31",
+      "sagaId": "saga-prototype",
+      "strandId": "strand-tokyo-grail-war",
+      "required": false,
+      "unit": "Min.",
+      "range": [0, 12]
+    },
+    {
+      "slug": "fate-kaleid-liner-prisma-illya",
+      "title": "Fate/kaleid liner PRISMA☆ILLYA",
+      "short": "Prisma Illya",
+      "kind": "serie",
+      "released": "2013-07-13",
+      "sagaId": "saga-kaleid-parallel",
+      "strandId": "strand-magical-girl",
+      "required": true,
+      "unit": "Folge",
+      "range": [1, 10]
+    },
+    {
+      "slug": "fate-stay-night-unlimited-blade-works",
+      "title": "Fate/stay night: Unlimited Blade Works",
+      "short": "UBW",
+      "kind": "serie",
+      "released": "2014-10-04",
+      "sagaId": "saga-stay-night",
+      "strandId": "strand-fuyuki-route",
+      "required": true,
+      "unit": "Folge",
+      "range": [1, 25]
+    },
+    {
+      "slug": "fate-apocrypha",
+      "title": "Fate/Apocrypha",
+      "short": "Apocrypha",
+      "kind": "serie",
+      "released": "2017-07-02",
+      "sagaId": "saga-apocrypha",
+      "strandId": "strand-great-war",
+      "required": true,
+      "unit": "Folge",
+      "range": [1, 25]
+    },
+    {
+      "slug": "fate-kaleid-liner-prisma-illya-oath-under-snow",
+      "title": "Fate/kaleid liner PRISMA ILLYA: Oath Under Snow",
+      "short": "Prisma Movie 1",
+      "kind": "film",
+      "released": "2017-08-26",
+      "sagaId": "saga-kaleid-parallel",
+      "strandId": "strand-magical-girl",
+      "required": false,
+      "unit": "Min.",
+      "range": [0, 90]
+    },
+    {
+      "slug": "fate-heavens-feel-1-presage-flower",
+      "title": "Fate/stay night: Heaven's Feel I. presage flower",
+      "short": "Heaven's Feel I",
+      "kind": "film",
+      "released": "2017-10-14",
+      "sagaId": "saga-stay-night",
+      "strandId": "strand-fuyuki-route",
+      "required": true,
+      "unit": "Min.",
+      "range": [0, 120]
+    },
+    {
+      "slug": "fate-grand-order-moonlight-lostroom",
+      "title": "Fate/Grand Order -MOONLIGHT/LOSTROOM-",
+      "short": "Lostroom OVA",
+      "kind": "film",
+      "released": "2017-12-31",
+      "sagaId": "saga-grand-order-lostbelt",
+      "strandId": "strand-chaldea-lostbelt",
+      "required": true,
+      "unit": "Min.",
+      "range": [0, 32]
+    },
+    {
+      "slug": "todays-menu-for-the-emiya-family",
+      "title": "Today's Menu for the Emiya Family",
+      "short": "Emiya Gohan",
+      "kind": "serie",
+      "released": "2018-01-25",
+      "sagaId": "saga-fifth-war",
+      "strandId": "strand-fuyuki-comedy",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 13]
+    },
+    {
+      "slug": "fate-heavens-feel-2-lost-butterfly",
+      "title": "Fate/stay night: Heaven's Feel II. lost butterfly",
+      "short": "Heaven's Feel II",
+      "kind": "film",
+      "released": "2019-01-12",
+      "sagaId": "saga-stay-night",
+      "strandId": "strand-fuyuki-route",
+      "required": true,
+      "unit": "Min.",
+      "range": [0, 117]
+    },
+    {
+      "slug": "fate-grand-order-babylonia",
+      "title": "Fate/Grand Order -Absolute Demonic Front: Babylonia-",
+      "short": "Babylonia",
+      "kind": "serie",
+      "released": "2019-10-05",
+      "sagaId": "saga-grand-order-babylonia",
+      "strandId": "strand-chaldea-singularity",
+      "required": true,
+      "unit": "Folge",
+      "range": [1, 21]
+    },
+    {
+      "slug": "fate-heavens-feel-3-spring-song",
+      "title": "Fate/stay night: Heaven's Feel III. spring song",
+      "short": "Heaven's Feel III",
+      "kind": "film",
+      "released": "2020-08-15",
+      "sagaId": "saga-stay-night",
+      "strandId": "strand-fuyuki-route",
+      "required": true,
+      "unit": "Min.",
+      "range": [0, 122]
+    },
+    {
+      "slug": "fate-grand-order-camelot",
+      "title": "Fate/Grand Order THE MOVIE: Divine Realm of the Round Table -Camelot- Wandering; Agateram",
+      "short": "Camelot",
+      "kind": "film",
+      "released": "2020-12-05",
+      "sagaId": "saga-grand-order-babylonia",
+      "strandId": "strand-chaldea-singularity",
+      "required": false,
+      "unit": "Min.",
+      "range": [0, 89]
+    }
+  ],
+  "arcs": [
+    {
+      "id": "stay-night-fate-route",
+      "workSlug": "fate-stay-night-2006",
+      "name": "Der Fate-Pfad: Shirous erster Gralkrieg",
+      "tone": "arc-1"
+    },
+    {
+      "id": "zero-fourth-war",
+      "workSlug": "fate-zero",
+      "name": "Der Vierte Heilige Gralkrieg",
+      "tone": "arc-2"
+    },
+    {
+      "id": "proto-tokyo-1991",
+      "workSlug": "fate-prototype",
+      "name": "Erster Tokio Gralkrieg (1991)",
+      "tone": "neutral"
+    },
+    {
+      "id": "prisma-illya-transformation",
+      "workSlug": "fate-kaleid-liner-prisma-illya",
+      "name": "Illyas Verwandlung zur Kaleidscope-Kriegerin",
+      "tone": "arc-1"
+    },
+    {
+      "id": "ubw-route",
+      "workSlug": "fate-stay-night-unlimited-blade-works",
+      "name": "Der UBW-Pfad: Rins Route und Archer",
+      "tone": "arc-1"
+    },
+    {
+      "id": "apocrypha-great-war",
+      "workSlug": "fate-apocrypha",
+      "name": "Schwarze und Rote Fraktion im Großen Gralkrieg",
+      "tone": "neutral"
+    },
+    {
+      "id": "prisma-oath-shirou",
+      "workSlug": "fate-kaleid-liner-prisma-illya-oath-under-snow",
+      "name": "Shirous Gralkrieg in der sterbenden Welt",
+      "tone": "arc-1"
+    },
+    {
+      "id": "hf-1-shadow",
+      "workSlug": "fate-heavens-feel-1-presage-flower",
+      "name": "Sakuras Schatten erwacht",
+      "tone": "arc-1"
+    },
+    {
+      "id": "fgo-lostbelt-prologue",
+      "workSlug": "fate-grand-order-moonlight-lostroom",
+      "name": "Schatten der ausgelöschten Zukunft",
+      "tone": "arc-3"
+    },
+    {
+      "id": "gohan-alltag",
+      "workSlug": "todays-menu-for-the-emiya-family",
+      "name": "Emiya-Haushalt Kochalltag",
+      "tone": "neutral"
+    },
+    {
+      "id": "hf-2-corruption",
+      "workSlug": "fate-heavens-feel-2-lost-butterfly",
+      "name": "Der Fall in die Verderbnis",
+      "tone": "arc-1"
+    },
+    {
+      "id": "babylonia-singularity",
+      "workSlug": "fate-grand-order-babylonia",
+      "name": "Die erste Singularität: Uruk",
+      "tone": "arc-3"
+    },
+    {
+      "id": "hf-3-finale",
+      "workSlug": "fate-heavens-feel-3-spring-song",
+      "name": "Das letzte Gefecht um Sakura",
+      "tone": "arc-1"
+    },
+    {
+      "id": "camelot-round-table",
+      "workSlug": "fate-grand-order-camelot",
+      "name": "Der Runde Tisch von Camelot",
+      "tone": "arc-3"
+    }
+  ],
+  "characters": [
+    {
+      "id": "shirou-emiya-fsn",
+      "workSlug": "fate-stay-night-2006",
+      "name": "Shirou Emiya",
+      "initials": "SE"
+    },
+    {
+      "id": "kiritsugu-emiya",
+      "workSlug": "fate-zero",
+      "name": "Kiritsugu Emiya",
+      "initials": "KE"
+    },
+    {
+      "id": "arthur-pendragon-proto",
+      "workSlug": "fate-prototype",
+      "name": "Saber (Arthur Pendragon Prototype)",
+      "initials": "AP"
+    },
+    {
+      "id": "illya-kaleid",
+      "workSlug": "fate-kaleid-liner-prisma-illya",
+      "name": "Illyasviel von Einzbern",
+      "initials": "IE"
+    },
+    {
+      "id": "rin-tohsaka",
+      "workSlug": "fate-stay-night-unlimited-blade-works",
+      "name": "Rin Tohsaka",
+      "initials": "RT"
+    },
+    {
+      "id": "sieg-apocrypha",
+      "workSlug": "fate-apocrypha",
+      "name": "Sieg",
+      "initials": "SI"
+    },
+    {
+      "id": "miyu-edelfelt-oath",
+      "workSlug": "fate-kaleid-liner-prisma-illya-oath-under-snow",
+      "name": "Miyu Edelfelt",
+      "initials": "ME"
+    },
+    {
+      "id": "sakura-matou-hf",
+      "workSlug": "fate-heavens-feel-1-presage-flower",
+      "name": "Sakura Matou",
+      "initials": "SM"
+    },
+    {
+      "id": "ritsuka-fujimaru",
+      "workSlug": "fate-grand-order-moonlight-lostroom",
+      "name": "Ritsuka Fujimaru",
+      "initials": "RF"
+    },
+    {
+      "id": "shirou-emiya-gohan",
+      "workSlug": "todays-menu-for-the-emiya-family",
+      "name": "Shirou Emiya",
+      "initials": "SE"
+    },
+    {
+      "id": "shirou-emiya-hf",
+      "workSlug": "fate-heavens-feel-2-lost-butterfly",
+      "name": "Shirou Emiya",
+      "initials": "SE"
+    },
+    {
+      "id": "mash-kyrielight",
+      "workSlug": "fate-grand-order-babylonia",
+      "name": "Mash Kyrielight",
+      "initials": "MK"
+    },
+    {
+      "id": "illyasviel-hf",
+      "workSlug": "fate-heavens-feel-3-spring-song",
+      "name": "Illyasviel von Einzbern",
+      "initials": "IE"
+    },
+    {
+      "id": "lancelot-camelot",
+      "workSlug": "fate-grand-order-camelot",
+      "name": "Lancelot",
+      "initials": "LA"
+    }
+  ],
+  "plotPoints": [
+    {
+      "id": "pp-stay-night-1",
+      "workSlug": "fate-stay-night-2006",
+      "characterId": "shirou-emiya-fsn",
+      "arcId": "stay-night-fate-route",
+      "at": 1,
+      "text": "Shirou Emiya wird ungewollt in den fünften Heiligen Gralkrieg gezogen und beschwört Saber."
+    },
+    {
+      "id": "pp-zero-1",
+      "workSlug": "fate-zero",
+      "characterId": "kiritsugu-emiya",
+      "arcId": "zero-fourth-war",
+      "at": 1,
+      "text": "Kiritsugu Emiya kämpft als Meister von Saber im vierten Heiligen Gralkrieg um den Gral."
+    },
+    {
+      "id": "pp-proto-1",
+      "workSlug": "fate-prototype",
+      "characterId": "arthur-pendragon-proto",
+      "arcId": "proto-tokyo-1991",
+      "at": 1,
+      "text": "Arthur Pendragon kämpft im Tokio-Gralkrieg von 1991 an der Seite von Manaka Sajyou."
+    },
+    {
+      "id": "pp-prisma-illya-1",
+      "workSlug": "fate-kaleid-liner-prisma-illya",
+      "characterId": "illya-kaleid",
+      "arcId": "prisma-illya-transformation",
+      "at": 1,
+      "text": "Illyasviel wird von Magical Ruby zur Kaleidscope-Magical-Girl gemacht und muss Klassenkarten sammeln."
+    },
+    {
+      "id": "pp-ubw-1",
+      "workSlug": "fate-stay-night-unlimited-blade-works",
+      "characterId": "rin-tohsaka",
+      "arcId": "ubw-route",
+      "at": 1,
+      "text": "Rin Tohsaka führt Shirou durch ihre Route des Gralkriegs und stellt ihn Archer gegenüber."
+    },
+    {
+      "id": "pp-apocrypha-1",
+      "workSlug": "fate-apocrypha",
+      "characterId": "sieg-apocrypha",
+      "arcId": "apocrypha-great-war",
+      "at": 1,
+      "text": "Der Homunculus Sieg entkommt als Ersatz-Servant der Roten Fraktion und sucht seinen eigenen Weg."
+    },
+    {
+      "id": "pp-oath-1",
+      "workSlug": "fate-kaleid-liner-prisma-illya-oath-under-snow",
+      "characterId": "miyu-edelfelt-oath",
+      "arcId": "prisma-oath-shirou",
+      "at": 45,
+      "text": "Shirou Emiya gewinnt den Ainsworth-Gralkrieg in einer einzigen Nacht, um Miyu in eine andere Welt zu retten."
+    },
+    {
+      "id": "pp-hf1-1",
+      "workSlug": "fate-heavens-feel-1-presage-flower",
+      "characterId": "sakura-matou-hf",
+      "arcId": "hf-1-shadow",
+      "at": 10,
+      "text": "Sakura Matous dunkles Geheimnis beginnt Shirous Welt zu erschüttern."
+    },
+    {
+      "id": "pp-lostroom-1",
+      "workSlug": "fate-grand-order-moonlight-lostroom",
+      "characterId": "ritsuka-fujimaru",
+      "arcId": "fgo-lostbelt-prologue",
+      "at": 5,
+      "text": "Ritsuka Fujimaru und Mash Kyrielight entdecken zu Weihnachten Chaldeas verborgenen 'Lost Room'."
+    },
+    {
+      "id": "pp-gohan-1",
+      "workSlug": "todays-menu-for-the-emiya-family",
+      "characterId": "shirou-emiya-gohan",
+      "arcId": "gohan-alltag",
+      "at": 1,
+      "text": "Shirou kocht ein saisonales Gericht und bringt Rin, Sakura und Taiga an einen gemeinsamen Tisch."
+    },
+    {
+      "id": "pp-hf2-1",
+      "workSlug": "fate-heavens-feel-2-lost-butterfly",
+      "characterId": "shirou-emiya-hf",
+      "arcId": "hf-2-corruption",
+      "at": 60,
+      "text": "Shirou nimmt Angra Mainyus Makel in sich auf, um Sakura zu retten."
+    },
+    {
+      "id": "pp-babylonia-1",
+      "workSlug": "fate-grand-order-babylonia",
+      "characterId": "mash-kyrielight",
+      "arcId": "babylonia-singularity",
+      "at": 3,
+      "text": "Mash Kyrielight begleitet den Meister ins alte Uruk, die erste verlorene Singularität."
+    },
+    {
+      "id": "pp-hf3-1",
+      "workSlug": "fate-heavens-feel-3-spring-song",
+      "characterId": "illyasviel-hf",
+      "arcId": "hf-3-finale",
+      "at": 90,
+      "text": "Illyasviel von Einzbern opfert sich im finalen Kampf um Sakuras Erlösung."
+    },
+    {
+      "id": "pp-camelot-1",
+      "workSlug": "fate-grand-order-camelot",
+      "characterId": "lancelot-camelot",
+      "arcId": "camelot-round-table",
+      "at": 30,
+      "text": "Lancelot verteidigt als Wahnsinniger Ritter die Tafelrunde gegen Chaldeas Meister."
+    }
+  ]
+}

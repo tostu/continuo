@@ -1,3 +1,0 @@
-[submodule "src/lib/continuo-data"]
-	path = src/lib/continuo-data
-	url = https://github.com/tostu/continuo-data.git

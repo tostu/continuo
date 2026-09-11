@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://continuo.app/schema/universe.schema.json",
+  "title": "Universe",
+  "description": "Datenmodell fuer einen Franchise-Zeitstrahl (siehe src/lib/universe/types.ts). Fuellen mit realen Werken, Sagas/Strands, Handlungsstraengen, Figuren und Plot-Points. Alle IDs innerhalb einer Universe muessen eindeutig und intern konsistent referenziert sein (siehe 'x-references' Hinweise pro Feld).",
+  "type": "object",
+  "required": ["name", "sagas", "strands", "works", "arcs", "characters", "plotPoints"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name des Franchise/Universums, z.B. 'Star Wars'."
+    },
+    "sagas": {
+      "type": "array",
+      "description": "Uebergeordnete Aeren/Trilogien-Gruppierung der Werke.",
+      "items": { "$ref": "#/$defs/Saga" },
+      "minItems": 1
+    },
+    "strands": {
+      "type": "array",
+      "description": "Erzaehlstraenge ueber mehrere Werke hinweg (Grundlage fuer Modus 'Story-Arc').",
+      "items": { "$ref": "#/$defs/Strand" },
+      "minItems": 1
+    },
+    "works": {
+      "type": "array",
+      "description": "Filme/Serien des Universums in beliebiger Reihenfolge (Sortierung erfolgt ueber 'released').",
+      "items": { "$ref": "#/$defs/Work" },
+      "minItems": 1
+    },
+    "arcs": {
+      "type": "array",
+      "description": "Handlungsstraenge innerhalb einzelner Werke (z.B. Figuren-Perspektiven).",
+      "items": { "$ref": "#/$defs/Arc" }
+    },
+    "characters": {
+      "type": "array",
+      "description": "Figuren, jeweils einem Werk zugeordnet.",
+      "items": { "$ref": "#/$defs/Character" }
+    },
+    "plotPoints": {
+      "type": "array",
+      "description": "Einzelne Handlungsmomente auf der Werk-internen Zeitachse.",
+      "items": { "$ref": "#/$defs/PlotPoint" }
+    }
+  },
+  "$defs": {
+    "Tone": {
+      "type": "string",
+      "description": "Farbton aus dem Design-System; 'neutral' fuer gruppenuebergreifende Elemente.",
+      "enum": ["arc-1", "arc-2", "arc-3", "neutral"]
+    },
+    "Saga": {
+      "type": "object",
+      "required": ["id", "name", "tone"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Eindeutige Saga-ID, z.B. 'original'." },
+        "name": { "type": "string", "description": "Anzeigename, z.B. 'Original-Trilogie'." },
+        "tone": { "$ref": "#/$defs/Tone" }
+      }
+    },
+    "Strand": {
+      "type": "object",
+      "required": ["id", "name", "tone"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Eindeutige Strand-ID, z.B. 'skywalker'." },
+        "name": { "type": "string", "description": "Anzeigename, z.B. 'Skywalker-Saga'." },
+        "tone": { "$ref": "#/$defs/Tone" }
+      }
+    },
+    "Work": {
+      "type": "object",
+      "required": ["slug", "title", "short", "kind", "released", "sagaId", "strandId", "required", "unit", "range"],
+      "additionalProperties": false,
+      "properties": {
+        "slug": { "type": "string", "description": "Eindeutiger URL-Slug, z.B. 'episode-iv'." },
+        "title": { "type": "string", "description": "Vollstaendiger Titel." },
+        "short": { "type": "string", "description": "Kurzname fuer den Zeitstrahl." },
+        "kind": { "type": "string", "enum": ["film", "serie"] },
+        "released": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO-Datum (YYYY-MM-DD) der Erstveroeffentlichung, bestimmt die Reihenfolge."
+        },
+        "sagaId": { "type": "string", "description": "Muss einer 'id' aus sagas[] entsprechen." },
+        "strandId": { "type": "string", "description": "Muss einer 'id' aus strands[] entsprechen." },
+        "required": { "type": "boolean", "description": "Ob das Werk zur Pflicht-Chronologie gehoert (vs. optionales Spin-off)." },
+        "unit": {
+          "type": "string",
+          "enum": ["Min.", "Folge"],
+          "description": "Einheit der werkinternen Achse: Filmminute oder Folge."
+        },
+        "range": {
+          "type": "array",
+          "description": "Werte-Bereich der werkinternen Achse [min, max], z.B. [0, 121] Minuten oder [1, 8] Folgen.",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "nowPlaying": { "type": "boolean", "description": "Optional: aktuell im Kino/Release." },
+        "cover": { "type": "string", "description": "Optional: Poster-/Cover-Bild-URL." }
+      }
+    },
+    "Arc": {
+      "type": "object",
+      "required": ["id", "workSlug", "name", "tone"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Eindeutige Arc-ID, ueblich als '<workSlug-kurz>-<thema>', z.B. 'iv-held'." },
+        "workSlug": { "type": "string", "description": "Muss einem 'slug' aus works[] entsprechen." },
+        "name": { "type": "string", "description": "Anzeigename, z.B. 'Heldenreise'." },
+        "tone": { "$ref": "#/$defs/Tone" }
+      }
+    },
+    "Character": {
+      "type": "object",
+      "required": ["id", "workSlug", "name", "initials"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Eindeutige Figuren-ID, z.B. 'luke'." },
+        "workSlug": { "type": "string", "description": "Muss einem 'slug' aus works[] entsprechen." },
+        "name": { "type": "string", "description": "Voller Anzeigename, z.B. 'Luke Skywalker'." },
+        "initials": { "type": "string", "description": "Kuerzel fuer Avatare, z.B. 'LS'." }
+      }
+    },
+    "PlotPoint": {
+      "type": "object",
+      "required": ["id", "workSlug", "characterId", "arcId", "at", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Eindeutige PlotPoint-ID." },
+        "workSlug": { "type": "string", "description": "Muss einem 'slug' aus works[] entsprechen." },
+        "characterId": { "type": "string", "description": "Muss einer 'id' aus characters[] (gleiches Werk) entsprechen." },
+        "arcId": { "type": "string", "description": "Muss einer 'id' aus arcs[] (gleiches Werk) entsprechen." },
+        "at": { "type": "number", "description": "Position auf der Werkachse (Minute oder Folgennummer), innerhalb von work.range." },
+        "text": { "type": "string", "description": "Kurzbeschreibung des Handlungsmoments (ein Satz)." }
+      }
+    }
+  }
+}
