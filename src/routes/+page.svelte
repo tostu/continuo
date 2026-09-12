@@ -119,13 +119,13 @@
 					</div>
 
 					<!-- Mini-Chronologie: jedes Werk ein Punkt, x = Erscheinungsdatum. -->
-					<div class="relative mx-1.5 mt-8 h-4" aria-hidden="true">
-						<span class="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-neutral"></span>
+					<div class="relative mx-1.5 mt-8 h-5" aria-hidden="true">
+						<span class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-neutral"></span>
 						{#each row.dots as dot (dot.slug)}
 							<span
 								class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full {dot.required
-									? 'size-3 ring-2 ring-ground group-hover:ring-card'
-									: 'size-2.5 border-2 bg-ground group-hover:bg-card'}"
+									? 'size-4 ring-2 ring-ground group-hover:ring-card'
+									: 'size-3.5 border-2 bg-ground group-hover:bg-card'}"
 								style:left="{dot.x * 100}%"
 								style:background-color={dot.required ? toneVar(dot.tone) : undefined}
 								style:border-color={dot.required ? undefined : toneVar(dot.tone)}

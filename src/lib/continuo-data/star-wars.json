@@ -2,8 +2,8 @@
   "name": "Star Wars",
   "sagas": [
     {
-      "id": "original",
-      "name": "Original-Trilogie",
+      "id": "high-republic",
+      "name": "High Republic Era",
       "tone": "arc-1"
     },
     {
@@ -12,12 +12,233 @@
       "tone": "arc-2"
     },
     {
-      "id": "neu",
-      "name": "Neue Ära",
+      "id": "fall-of-the-jedi",
+      "name": "Fall of the Jedi",
+      "tone": "arc-3"
+    },
+    {
+      "id": "original",
+      "name": "Original-Trilogie",
+      "tone": "arc-1"
+    },
+    {
+      "id": "new-republic",
+      "name": "New Republic Era",
+      "tone": "arc-2"
+    },
+    {
+      "id": "rise-of-the-first-order",
+      "name": "Rise of the First Order",
       "tone": "arc-3"
     }
   ],
   "works": [
+    {
+      "slug": "young-jedi-adventures",
+      "title": "Star Wars: Young Jedi Adventures",
+      "short": "Young Jedi Adventures",
+      "kind": "serie",
+      "released": "2023-05-04",
+      "chronology": 1,
+      "loreDate": "200 BBY",
+      "sagaId": "high-republic",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 10]
+    },
+    {
+      "slug": "the-acolyte",
+      "title": "The Acolyte",
+      "short": "The Acolyte",
+      "kind": "serie",
+      "released": "2024-06-04",
+      "chronology": 5,
+      "loreDate": "132 BBY",
+      "sagaId": "high-republic",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 8]
+    },
+    {
+      "slug": "episode-i",
+      "title": "Episode I – Die dunkle Bedrohung",
+      "short": "Episode I",
+      "kind": "film",
+      "released": "1999-05-19",
+      "chronology": 10,
+      "loreDate": "32 BBY",
+      "sagaId": "prequel",
+      "required": true,
+      "unit": "Min.",
+      "range": [
+        0,
+        136
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg"
+    },
+    {
+      "slug": "episode-ii",
+      "title": "Episode II – Angriff der Klonkrieger",
+      "short": "Episode II",
+      "kind": "film",
+      "released": "2002-05-16",
+      "chronology": 20,
+      "loreDate": "22 BBY",
+      "sagaId": "prequel",
+      "required": true,
+      "unit": "Min.",
+      "range": [
+        0,
+        142
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg"
+    },
+    {
+      "slug": "the-clone-wars",
+      "title": "The Clone Wars",
+      "short": "Clone Wars",
+      "kind": "serie",
+      "released": "2008-10-03",
+      "chronology": 25,
+      "loreDate": "22–19 BBY",
+      "sagaId": "prequel",
+      "required": false,
+      "unit": "Folge",
+      "range": [
+        1,
+        22
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/7/72/Star_wars_the_clone_wars.jpg"
+    },
+    {
+      "slug": "episode-iii",
+      "title": "Episode III – Die Rache der Sith",
+      "short": "Episode III",
+      "kind": "film",
+      "released": "2005-05-19",
+      "chronology": 30,
+      "loreDate": "19 BBY",
+      "sagaId": "prequel",
+      "required": true,
+      "unit": "Min.",
+      "range": [
+        0,
+        140
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg"
+    },
+    {
+      "slug": "bad-batch",
+      "title": "Star Wars: The Bad Batch",
+      "short": "The Bad Batch",
+      "kind": "serie",
+      "released": "2021-05-04",
+      "chronology": 33,
+      "loreDate": "19 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 16]
+    },
+    {
+      "slug": "tales-of-the-empire",
+      "title": "Tales of the Empire",
+      "short": "Tales of the Empire",
+      "kind": "serie",
+      "released": "2024-05-04",
+      "chronology": 36,
+      "loreDate": "19–9 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 6]
+    },
+    {
+      "slug": "obi-wan-kenobi",
+      "title": "Obi-Wan Kenobi",
+      "short": "Obi-Wan Kenobi",
+      "kind": "serie",
+      "released": "2022-05-27",
+      "chronology": 38,
+      "loreDate": "9 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 6]
+    },
+    {
+      "slug": "solo",
+      "title": "Solo",
+      "short": "Solo",
+      "kind": "film",
+      "released": "2018-05-24",
+      "chronology": 40,
+      "loreDate": "13 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Min.",
+      "range": [
+        0,
+        135
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/5/54/Solo_A_Star_Wars_Story_poster.jpg"
+    },
+    {
+      "slug": "star-wars-rebels",
+      "title": "Star Wars Rebels",
+      "short": "Star Wars Rebels",
+      "kind": "serie",
+      "released": "2014-10-03",
+      "chronology": 55,
+      "loreDate": "5–0 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 15]
+    },
+    {
+      "slug": "andor",
+      "title": "Andor",
+      "short": "Andor",
+      "kind": "serie",
+      "released": "2022-09-21",
+      "chronology": 58,
+      "loreDate": "5–1 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 12]
+    },
+    {
+      "slug": "rogue-one",
+      "title": "Rogue One",
+      "short": "Rogue One",
+      "kind": "film",
+      "released": "2016-12-15",
+      "chronology": 60,
+      "loreDate": "0 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Min.",
+      "range": [
+        0,
+        133
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d4/Rogue_One%2C_A_Star_Wars_Story_poster.png"
+    },
+    {
+      "slug": "tales-of-the-underworld",
+      "title": "Tales of the Underworld",
+      "short": "Tales of the Underworld",
+      "kind": "serie",
+      "released": "2025-05-04",
+      "chronology": 62,
+      "loreDate": "0 BBY",
+      "sagaId": "fall-of-the-jedi",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 6]
+    },
     {
       "slug": "episode-iv",
       "title": "Episode IV – Eine neue Hoffnung",
@@ -70,142 +291,6 @@
       "cover": "https://upload.wikimedia.org/wikipedia/en/b/b2/ReturnOfTheJediPoster1983.jpg"
     },
     {
-      "slug": "episode-i",
-      "title": "Episode I – Die dunkle Bedrohung",
-      "short": "Episode I",
-      "kind": "film",
-      "released": "1999-05-19",
-      "chronology": 10,
-      "loreDate": "32 BBY",
-      "sagaId": "prequel",
-      "required": true,
-      "unit": "Min.",
-      "range": [
-        0,
-        136
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg"
-    },
-    {
-      "slug": "episode-ii",
-      "title": "Episode II – Angriff der Klonkrieger",
-      "short": "Episode II",
-      "kind": "film",
-      "released": "2002-05-16",
-      "chronology": 20,
-      "loreDate": "22 BBY",
-      "sagaId": "prequel",
-      "required": true,
-      "unit": "Min.",
-      "range": [
-        0,
-        142
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg"
-    },
-    {
-      "slug": "episode-iii",
-      "title": "Episode III – Die Rache der Sith",
-      "short": "Episode III",
-      "kind": "film",
-      "released": "2005-05-19",
-      "chronology": 30,
-      "loreDate": "19 BBY",
-      "sagaId": "prequel",
-      "required": true,
-      "unit": "Min.",
-      "range": [
-        0,
-        140
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg"
-    },
-    {
-      "slug": "the-clone-wars",
-      "title": "The Clone Wars",
-      "short": "Clone Wars",
-      "kind": "serie",
-      "released": "2008-10-03",
-      "chronology": 25,
-      "loreDate": "22–19 BBY",
-      "sagaId": "prequel",
-      "required": false,
-      "unit": "Folge",
-      "range": [
-        1,
-        22
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/72/Star_wars_the_clone_wars.jpg"
-    },
-    {
-      "slug": "episode-vii",
-      "title": "Episode VII – Das Erwachen der Macht",
-      "short": "Episode VII",
-      "kind": "film",
-      "released": "2015-12-17",
-      "chronology": 130,
-      "loreDate": "34 ABY",
-      "sagaId": "neu",
-      "required": true,
-      "unit": "Min.",
-      "range": [
-        0,
-        138
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a2/Star_Wars_The_Force_Awakens_Theatrical_Poster.jpg"
-    },
-    {
-      "slug": "rogue-one",
-      "title": "Rogue One",
-      "short": "Rogue One",
-      "kind": "film",
-      "released": "2016-12-15",
-      "chronology": 60,
-      "loreDate": "0 BBY",
-      "sagaId": "neu",
-      "required": false,
-      "unit": "Min.",
-      "range": [
-        0,
-        133
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/d/d4/Rogue_One%2C_A_Star_Wars_Story_poster.png"
-    },
-    {
-      "slug": "episode-viii",
-      "title": "Episode VIII – Die letzten Jedi",
-      "short": "Episode VIII",
-      "kind": "film",
-      "released": "2017-12-14",
-      "chronology": 140,
-      "loreDate": "34 ABY",
-      "sagaId": "neu",
-      "required": true,
-      "unit": "Min.",
-      "range": [
-        0,
-        152
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7f/Star_Wars_The_Last_Jedi.jpg"
-    },
-    {
-      "slug": "solo",
-      "title": "Solo",
-      "short": "Solo",
-      "kind": "film",
-      "released": "2018-05-24",
-      "chronology": 40,
-      "loreDate": "13 BBY",
-      "sagaId": "neu",
-      "required": false,
-      "unit": "Min.",
-      "range": [
-        0,
-        135
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/5/54/Solo_A_Star_Wars_Story_poster.jpg"
-    },
-    {
       "slug": "the-mandalorian",
       "title": "The Mandalorian – Staffel 1",
       "short": "The Mandalorian",
@@ -213,7 +298,7 @@
       "released": "2019-11-12",
       "chronology": 100,
       "loreDate": "9 ABY",
-      "sagaId": "neu",
+      "sagaId": "new-republic",
       "required": true,
       "unit": "Folge",
       "range": [
@@ -223,38 +308,30 @@
       "cover": "https://upload.wikimedia.org/wikipedia/commons/9/96/The_Mandalorian.svg"
     },
     {
-      "slug": "episode-ix",
-      "title": "Episode IX – Der Aufstieg Skywalkers",
-      "short": "Episode IX",
-      "kind": "film",
-      "released": "2019-12-18",
-      "chronology": 150,
-      "loreDate": "35 ABY",
-      "sagaId": "neu",
-      "required": true,
-      "unit": "Min.",
-      "range": [
-        0,
-        142
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/en/a/af/Star_Wars_The_Rise_of_Skywalker_poster.jpg"
-    },
-    {
-      "slug": "andor",
-      "title": "Andor",
-      "short": "Andor",
+      "slug": "book-of-boba-fett",
+      "title": "The Book of Boba Fett",
+      "short": "Book of Boba Fett",
       "kind": "serie",
-      "released": "2022-09-21",
-      "chronology": 50,
-      "loreDate": "5–1 BBY",
-      "sagaId": "neu",
+      "released": "2021-12-29",
+      "chronology": 104,
+      "loreDate": "9 ABY",
+      "sagaId": "new-republic",
       "required": false,
       "unit": "Folge",
-      "range": [
-        1,
-        12
-      ],
-      "cover": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Andor.svg"
+      "range": [1, 7]
+    },
+    {
+      "slug": "skeleton-crew",
+      "title": "Star Wars: Skeleton Crew",
+      "short": "Skeleton Crew",
+      "kind": "serie",
+      "released": "2024-12-02",
+      "chronology": 107,
+      "loreDate": "3 ABY",
+      "sagaId": "new-republic",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 8]
     },
     {
       "slug": "ahsoka",
@@ -264,7 +341,7 @@
       "released": "2023-08-22",
       "chronology": 110,
       "loreDate": "9 ABY",
-      "sagaId": "neu",
+      "sagaId": "new-republic",
       "required": false,
       "unit": "Folge",
       "range": [
@@ -274,6 +351,19 @@
       "cover": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ahsoka.svg"
     },
     {
+      "slug": "maul-shadow-lord",
+      "title": "Maul: Shadow Lord",
+      "short": "Maul: Shadow Lord",
+      "kind": "serie",
+      "released": "2026-04-06",
+      "chronology": 115,
+      "loreDate": "9 ABY",
+      "sagaId": "new-republic",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 8]
+    },
+    {
       "slug": "mandalorian-und-grogu",
       "title": "The Mandalorian & Grogu",
       "short": "Mandalorian & Grogu",
@@ -281,7 +371,7 @@
       "released": "2026-05-22",
       "chronology": 120,
       "loreDate": "10 ABY",
-      "sagaId": "neu",
+      "sagaId": "new-republic",
       "required": true,
       "unit": "Min.",
       "range": [
@@ -290,9 +380,103 @@
       ],
       "nowPlaying": true,
       "cover": "https://upload.wikimedia.org/wikipedia/en/4/4c/The_Mandalorian_and_Grogu_poster.jpg"
+    },
+    {
+      "slug": "star-wars-resistance",
+      "title": "Star Wars Resistance",
+      "short": "Star Wars Resistance",
+      "kind": "serie",
+      "released": "2018-10-07",
+      "chronology": 125,
+      "loreDate": "28–29 ABY",
+      "sagaId": "rise-of-the-first-order",
+      "required": false,
+      "unit": "Folge",
+      "range": [1, 21]
+    },
+    {
+      "slug": "episode-vii",
+      "title": "Episode VII – Das Erwachen der Macht",
+      "short": "Episode VII",
+      "kind": "film",
+      "released": "2015-12-17",
+      "chronology": 130,
+      "loreDate": "34 ABY",
+      "sagaId": "rise-of-the-first-order",
+      "required": true,
+      "unit": "Min.",
+      "range": [
+        0,
+        138
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a2/Star_Wars_The_Force_Awakens_Theatrical_Poster.jpg"
+    },
+    {
+      "slug": "episode-viii",
+      "title": "Episode VIII – Die letzten Jedi",
+      "short": "Episode VIII",
+      "kind": "film",
+      "released": "2017-12-14",
+      "chronology": 140,
+      "loreDate": "34 ABY",
+      "sagaId": "rise-of-the-first-order",
+      "required": true,
+      "unit": "Min.",
+      "range": [
+        0,
+        152
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/7/7f/Star_Wars_The_Last_Jedi.jpg"
+    },
+    {
+      "slug": "episode-ix",
+      "title": "Episode IX – Der Aufstieg Skywalkers",
+      "short": "Episode IX",
+      "kind": "film",
+      "released": "2019-12-18",
+      "chronology": 150,
+      "loreDate": "35 ABY",
+      "sagaId": "rise-of-the-first-order",
+      "required": true,
+      "unit": "Min.",
+      "range": [
+        0,
+        142
+      ],
+      "cover": "https://upload.wikimedia.org/wikipedia/en/a/af/Star_Wars_The_Rise_of_Skywalker_poster.jpg"
     }
   ],
   "arcs": [
+    {
+      "id": "yja-tempel",
+      "workSlug": "young-jedi-adventures",
+      "name": "Der Tempel",
+      "tone": "arc-1"
+    },
+    {
+      "id": "yja-freundschaft",
+      "workSlug": "young-jedi-adventures",
+      "name": "Freundschaft",
+      "tone": "arc-2"
+    },
+    {
+      "id": "acolyte-schwestern",
+      "workSlug": "the-acolyte",
+      "name": "Die Schwestern",
+      "tone": "arc-1"
+    },
+    {
+      "id": "acolyte-jedi",
+      "workSlug": "the-acolyte",
+      "name": "Die Jedi",
+      "tone": "arc-2"
+    },
+    {
+      "id": "acolyte-schatten",
+      "workSlug": "the-acolyte",
+      "name": "Der Schatten",
+      "tone": "arc-3"
+    },
     {
       "id": "iv-held",
       "workSlug": "episode-iv",
@@ -312,6 +496,96 @@
       "tone": "arc-3"
     },
     {
+      "id": "batch-batch",
+      "workSlug": "bad-batch",
+      "name": "Die Überlebenden",
+      "tone": "arc-1"
+    },
+    {
+      "id": "batch-rat",
+      "workSlug": "bad-batch",
+      "name": "Der Rat der Macht",
+      "tone": "arc-2"
+    },
+    {
+      "id": "batch-imperium",
+      "workSlug": "bad-batch",
+      "name": "Das Imperium",
+      "tone": "arc-3"
+    },
+    {
+      "id": "tote-inquisitorin",
+      "workSlug": "tales-of-the-empire",
+      "name": "Die Inquisitorin",
+      "tone": "arc-1"
+    },
+    {
+      "id": "tote-dathomir",
+      "workSlug": "tales-of-the-empire",
+      "name": "Dathomir",
+      "tone": "arc-2"
+    },
+    {
+      "id": "kenobi-obi-wan",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Der verlorene Meister",
+      "tone": "arc-1"
+    },
+    {
+      "id": "kenobi-anakin",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Der gefallene Schüler",
+      "tone": "arc-2"
+    },
+    {
+      "id": "kenobi-vader",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Die Konfrontation",
+      "tone": "arc-3"
+    },
+    {
+      "id": "rebels-ghost",
+      "workSlug": "star-wars-rebels",
+      "name": "Die Crew der Ghost",
+      "tone": "arc-1"
+    },
+    {
+      "id": "rebels-erwachen",
+      "workSlug": "star-wars-rebels",
+      "name": "Das Erwachen der Rebellion",
+      "tone": "arc-2"
+    },
+    {
+      "id": "rebels-imperium",
+      "workSlug": "star-wars-rebels",
+      "name": "Das Imperium",
+      "tone": "arc-3"
+    },
+    {
+      "id": "andor-cassian",
+      "workSlug": "andor",
+      "name": "Cassians Weg",
+      "tone": "arc-1"
+    },
+    {
+      "id": "andor-rebellion",
+      "workSlug": "andor",
+      "name": "Die Rebellion",
+      "tone": "arc-2"
+    },
+    {
+      "id": "andor-imperium",
+      "workSlug": "andor",
+      "name": "Das Imperium",
+      "tone": "arc-3"
+    },
+    {
+      "id": "totu-unterwelt",
+      "workSlug": "tales-of-the-underworld",
+      "name": "Die Unterwelt",
+      "tone": "arc-3"
+    },
+    {
       "id": "m-kind",
       "workSlug": "the-mandalorian",
       "name": "Das Kind",
@@ -328,9 +602,129 @@
       "workSlug": "the-mandalorian",
       "name": "Moff Gideon",
       "tone": "arc-3"
+    },
+    {
+      "id": "boba-thron",
+      "workSlug": "book-of-boba-fett",
+      "name": "Der Thron",
+      "tone": "arc-1"
+    },
+    {
+      "id": "boba-vergangenheit",
+      "workSlug": "book-of-boba-fett",
+      "name": "Die Vergangenheit",
+      "tone": "arc-2"
+    },
+    {
+      "id": "boba-tatooine",
+      "workSlug": "book-of-boba-fett",
+      "name": "Tatooine",
+      "tone": "arc-3"
+    },
+    {
+      "id": "sc-kinder",
+      "workSlug": "skeleton-crew",
+      "name": "Die Kinder",
+      "tone": "arc-1"
+    },
+    {
+      "id": "sc-jod",
+      "workSlug": "skeleton-crew",
+      "name": "Jod Na Nawood",
+      "tone": "arc-2"
+    },
+    {
+      "id": "sc-galaxis",
+      "workSlug": "skeleton-crew",
+      "name": "Die Galaxis",
+      "tone": "arc-3"
+    },
+    {
+      "id": "ahsoka-ahsoka",
+      "workSlug": "ahsoka",
+      "name": "Die Rückkehr der Jedi",
+      "tone": "arc-1"
+    },
+    {
+      "id": "ahsoka-din-djarin",
+      "workSlug": "ahsoka",
+      "name": "Die Bande des Großen Geheimnisses",
+      "tone": "arc-2"
+    },
+    {
+      "id": "ahsoka-empire",
+      "workSlug": "ahsoka",
+      "name": "Das neue Imperium",
+      "tone": "arc-3"
+    },
+    {
+      "id": "maul-schatten",
+      "workSlug": "maul-shadow-lord",
+      "name": "Der Schattenlord",
+      "tone": "arc-1"
+    },
+    {
+      "id": "maul-rache",
+      "workSlug": "maul-shadow-lord",
+      "name": "Rache",
+      "tone": "arc-3"
+    },
+    {
+      "id": "resistance-kaz",
+      "workSlug": "star-wars-resistance",
+      "name": "Kazuda Xiono",
+      "tone": "arc-1"
+    },
+    {
+      "id": "resistance-erste-ordnung",
+      "workSlug": "star-wars-resistance",
+      "name": "Die Erste Ordnung",
+      "tone": "arc-3"
     }
   ],
   "characters": [
+    {
+      "id": "kai-brightstar",
+      "workSlug": "young-jedi-adventures",
+      "name": "Kai Brightstar",
+      "initials": "KB"
+    },
+    {
+      "id": "lys-solay",
+      "workSlug": "young-jedi-adventures",
+      "name": "Lys Solay",
+      "initials": "LS"
+    },
+    {
+      "id": "nubs",
+      "workSlug": "young-jedi-adventures",
+      "name": "Nubs",
+      "initials": "NU"
+    },
+    {
+      "id": "osha",
+      "workSlug": "the-acolyte",
+      "name": "Osha Aniseya",
+      "initials": "OA"
+    },
+    {
+      "id": "mae",
+      "workSlug": "the-acolyte",
+      "name": "Mae Aniseya",
+      "initials": "MA"
+    },
+    {
+      "id": "sol",
+      "workSlug": "the-acolyte",
+      "name": "Meister Sol",
+      "initials": "MS"
+    },
+    {
+      "id": "qimir",
+      "workSlug": "the-acolyte",
+      "name": "Qimir",
+      "initials": "QI"
+    },
     {
       "id": "luke",
       "workSlug": "episode-iv",
@@ -386,6 +780,126 @@
       "initials": "CH"
     },
     {
+      "id": "hunter",
+      "workSlug": "bad-batch",
+      "name": "Hunter",
+      "initials": "HU"
+    },
+    {
+      "id": "omega",
+      "workSlug": "bad-batch",
+      "name": "Omega",
+      "initials": "OM"
+    },
+    {
+      "id": "crosshair",
+      "workSlug": "bad-batch",
+      "name": "Crosshair",
+      "initials": "CH"
+    },
+    {
+      "id": "nala-se",
+      "workSlug": "bad-batch",
+      "name": "Nala Se",
+      "initials": "NS"
+    },
+    {
+      "id": "morgan-elsbeth",
+      "workSlug": "tales-of-the-empire",
+      "name": "Morgan Elsbeth",
+      "initials": "ME"
+    },
+    {
+      "id": "barriss",
+      "workSlug": "tales-of-the-empire",
+      "name": "Barriss Offee",
+      "initials": "BO"
+    },
+    {
+      "id": "obi-wan",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Obi-Wan Kenobi",
+      "initials": "OK"
+    },
+    {
+      "id": "leia-organa",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Leia Organa",
+      "initials": "LO"
+    },
+    {
+      "id": "vader",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Darth Vader",
+      "initials": "DV"
+    },
+    {
+      "id": "reva",
+      "workSlug": "obi-wan-kenobi",
+      "name": "Reva Sevander",
+      "initials": "RS"
+    },
+    {
+      "id": "ezra",
+      "workSlug": "star-wars-rebels",
+      "name": "Ezra Bridger",
+      "initials": "EB"
+    },
+    {
+      "id": "kanan",
+      "workSlug": "star-wars-rebels",
+      "name": "Kanan Jarrus",
+      "initials": "KJ"
+    },
+    {
+      "id": "hera",
+      "workSlug": "star-wars-rebels",
+      "name": "Hera Syndulla",
+      "initials": "HS"
+    },
+    {
+      "id": "thrawn",
+      "workSlug": "star-wars-rebels",
+      "name": "Großadmiral Thrawn",
+      "initials": "GT"
+    },
+    {
+      "id": "cassian",
+      "workSlug": "andor",
+      "name": "Cassian Andor",
+      "initials": "CA"
+    },
+    {
+      "id": "mon-mothma",
+      "workSlug": "andor",
+      "name": "Mon Mothma",
+      "initials": "MM"
+    },
+    {
+      "id": "bix",
+      "workSlug": "andor",
+      "name": "Bix Caleen",
+      "initials": "BC"
+    },
+    {
+      "id": "syril",
+      "workSlug": "andor",
+      "name": "Syril Karn",
+      "initials": "SK"
+    },
+    {
+      "id": "ventress",
+      "workSlug": "tales-of-the-underworld",
+      "name": "Asajj Ventress",
+      "initials": "AV"
+    },
+    {
+      "id": "boba",
+      "workSlug": "tales-of-the-underworld",
+      "name": "Boba Fett",
+      "initials": "BF"
+    },
+    {
       "id": "din",
       "workSlug": "the-mandalorian",
       "name": "Din Djarin",
@@ -426,9 +940,183 @@
       "workSlug": "the-mandalorian",
       "name": "Kuiil",
       "initials": "KU"
+    },
+    {
+      "id": "boba",
+      "workSlug": "book-of-boba-fett",
+      "name": "Boba Fett",
+      "initials": "BF"
+    },
+    {
+      "id": "fennec",
+      "workSlug": "book-of-boba-fett",
+      "name": "Fennec Shand",
+      "initials": "FS"
+    },
+    {
+      "id": "din",
+      "workSlug": "book-of-boba-fett",
+      "name": "Din Djarin",
+      "initials": "DD"
+    },
+    {
+      "id": "cad-bane",
+      "workSlug": "book-of-boba-fett",
+      "name": "Cad Bane",
+      "initials": "CB"
+    },
+    {
+      "id": "wim",
+      "workSlug": "skeleton-crew",
+      "name": "Wim",
+      "initials": "WI"
+    },
+    {
+      "id": "fern",
+      "workSlug": "skeleton-crew",
+      "name": "Fern",
+      "initials": "FE"
+    },
+    {
+      "id": "jod",
+      "workSlug": "skeleton-crew",
+      "name": "Jod Na Nawood",
+      "initials": "JN"
+    },
+    {
+      "id": "sm-33",
+      "workSlug": "skeleton-crew",
+      "name": "SM-33",
+      "initials": "SM"
+    },
+    {
+      "id": "ahsoka-tano",
+      "workSlug": "ahsoka",
+      "name": "Ahsoka Tano",
+      "initials": "AT"
+    },
+    {
+      "id": "sabine",
+      "workSlug": "ahsoka",
+      "name": "Sabine Wren",
+      "initials": "SW"
+    },
+    {
+      "id": "din-ahsoka",
+      "workSlug": "ahsoka",
+      "name": "Din Djarin",
+      "initials": "DD"
+    },
+    {
+      "id": "thrawn-ahsoka",
+      "workSlug": "ahsoka",
+      "name": "Großadmiral Thrawn",
+      "initials": "GT"
+    },
+    {
+      "id": "maul",
+      "workSlug": "maul-shadow-lord",
+      "name": "Darth Maul",
+      "initials": "DM"
+    },
+    {
+      "id": "ochi",
+      "workSlug": "maul-shadow-lord",
+      "name": "Ochi von Bestoon",
+      "initials": "OB"
+    },
+    {
+      "id": "kaz",
+      "workSlug": "star-wars-resistance",
+      "name": "Kazuda Xiono",
+      "initials": "KX"
+    },
+    {
+      "id": "poe",
+      "workSlug": "star-wars-resistance",
+      "name": "Poe Dameron",
+      "initials": "PD"
+    },
+    {
+      "id": "torra",
+      "workSlug": "star-wars-resistance",
+      "name": "Torra Doza",
+      "initials": "TD"
     }
   ],
   "plotPoints": [
+    {
+      "id": "yja-0",
+      "workSlug": "young-jedi-adventures",
+      "characterId": "kai-brightstar",
+      "arcId": "yja-tempel",
+      "at": 1,
+      "text": "Beginnt seine Ausbildung im Jedi-Tempel des Hochrepublik-Zeitalters."
+    },
+    {
+      "id": "yja-1",
+      "workSlug": "young-jedi-adventures",
+      "characterId": "kai-brightstar",
+      "arcId": "yja-freundschaft",
+      "at": 5,
+      "text": "Lernt, dass wahre Jedi-Stärke aus Zusammenhalt statt Alleingang kommt."
+    },
+    {
+      "id": "yja-2",
+      "workSlug": "young-jedi-adventures",
+      "characterId": "lys-solay",
+      "arcId": "yja-freundschaft",
+      "at": 3,
+      "text": "Hilft einem verängstigten Wesen, sich der Gruppe anzuschließen."
+    },
+    {
+      "id": "yja-3",
+      "workSlug": "young-jedi-adventures",
+      "characterId": "nubs",
+      "arcId": "yja-tempel",
+      "at": 2,
+      "text": "Sorgt trotz fehlender Worte für den Zusammenhalt der jungen Padawane."
+    },
+    {
+      "id": "acolyte-0",
+      "workSlug": "the-acolyte",
+      "characterId": "mae",
+      "arcId": "acolyte-schwestern",
+      "at": 1,
+      "text": "Beginnt eine Mordserie an den Jedi, die einst ihr Zuhause zerstörten."
+    },
+    {
+      "id": "acolyte-1",
+      "workSlug": "the-acolyte",
+      "characterId": "osha",
+      "arcId": "acolyte-schwestern",
+      "at": 3,
+      "text": "Wird fälschlich der Verbrechen ihrer verschollen geglaubten Zwillingsschwester verdächtigt."
+    },
+    {
+      "id": "acolyte-2",
+      "workSlug": "the-acolyte",
+      "characterId": "sol",
+      "arcId": "acolyte-jedi",
+      "at": 6,
+      "text": "Gesteht Osha, was auf Brendok wirklich geschah."
+    },
+    {
+      "id": "acolyte-3",
+      "workSlug": "the-acolyte",
+      "characterId": "qimir",
+      "arcId": "acolyte-schatten",
+      "at": 7,
+      "text": "Enttarnt sich als heimlicher Sith-Lehrer im Hintergrund."
+    },
+    {
+      "id": "acolyte-4",
+      "workSlug": "the-acolyte",
+      "characterId": "osha",
+      "arcId": "acolyte-schatten",
+      "at": 8,
+      "text": "Wendet sich nach dem Verlust ihrer Schwester der dunklen Seite zu."
+    },
     {
       "id": "episode-iv-0",
       "workSlug": "episode-iv",
@@ -646,6 +1334,318 @@
       "text": "Spielt den Gefangenen, um in den Zellenblock zu kommen."
     },
     {
+      "id": "batch-0",
+      "workSlug": "bad-batch",
+      "characterId": "hunter",
+      "arcId": "batch-batch",
+      "at": 1,
+      "text": "Übernimmt nach Order 66 das Kommando über die desorientierte Truppe."
+    },
+    {
+      "id": "batch-1",
+      "workSlug": "bad-batch",
+      "characterId": "hunter",
+      "arcId": "batch-imperium",
+      "at": 3,
+      "text": "Lehnt die Umrüstung auf Kontroll-Chips ab und flieht mit dem Team."
+    },
+    {
+      "id": "batch-2",
+      "workSlug": "bad-batch",
+      "characterId": "omega",
+      "arcId": "batch-batch",
+      "at": 1,
+      "text": "Schließt sich der Truppe als heimliches Klon-Mädchen an."
+    },
+    {
+      "id": "batch-3",
+      "workSlug": "bad-batch",
+      "characterId": "omega",
+      "arcId": "batch-rat",
+      "at": 8,
+      "text": "Wird von Nala Se als genetisch besonders wertvoll identifiziert."
+    },
+    {
+      "id": "batch-4",
+      "workSlug": "bad-batch",
+      "characterId": "crosshair",
+      "arcId": "batch-imperium",
+      "at": 1,
+      "text": "Bleibt dem Imperium treu und wird zum Gegenspieler seines eigenen Teams."
+    },
+    {
+      "id": "batch-5",
+      "workSlug": "bad-batch",
+      "characterId": "crosshair",
+      "arcId": "batch-imperium",
+      "at": 16,
+      "text": "Bricht endgültig mit dem Imperium, nachdem er selbst zur Wegwerfware wird."
+    },
+    {
+      "id": "batch-6",
+      "workSlug": "bad-batch",
+      "characterId": "nala-se",
+      "arcId": "batch-rat",
+      "at": 3,
+      "text": "Versucht, die Klonforschung vor imperialem Zugriff zu schützen."
+    },
+    {
+      "id": "tote-0",
+      "workSlug": "tales-of-the-empire",
+      "characterId": "morgan-elsbeth",
+      "arcId": "tote-inquisitorin",
+      "at": 1,
+      "text": "Verliert ihre Heimat Dathomir an die Klonkriege und schwört Rache."
+    },
+    {
+      "id": "tote-1",
+      "workSlug": "tales-of-the-empire",
+      "characterId": "morgan-elsbeth",
+      "arcId": "tote-inquisitorin",
+      "at": 3,
+      "text": "Steigt zur Handlangerin Thrawns und zur Magistratin von Corvus auf."
+    },
+    {
+      "id": "tote-2",
+      "workSlug": "tales-of-the-empire",
+      "characterId": "barriss",
+      "arcId": "tote-dathomir",
+      "at": 4,
+      "text": "Verlässt nach ihrem Verrat den Jedi-Orden und sucht in der Dunkelheit neuen Sinn."
+    },
+    {
+      "id": "kenobi-0",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "obi-wan",
+      "arcId": "kenobi-obi-wan",
+      "at": 1,
+      "text": "Lebt zurückgezogen auf Tatooine und wacht heimlich über den jungen Luke."
+    },
+    {
+      "id": "kenobi-1",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "obi-wan",
+      "arcId": "kenobi-obi-wan",
+      "at": 2,
+      "text": "Reist nach Daiyu, um die entführte Leia zu retten."
+    },
+    {
+      "id": "kenobi-2",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "obi-wan",
+      "arcId": "kenobi-vader",
+      "at": 4,
+      "text": "Stellt sich Vader zum ersten Mal seit Mustafar in einem verheerenden Duell."
+    },
+    {
+      "id": "kenobi-3",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "obi-wan",
+      "arcId": "kenobi-anakin",
+      "at": 6,
+      "text": "Erkennt, dass in Vader nichts vom einstigen Anakin übrig ist – und lässt los."
+    },
+    {
+      "id": "kenobi-4",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "leia-organa",
+      "arcId": "kenobi-obi-wan",
+      "at": 1,
+      "text": "Wird von Kopfgeldjägern der Dritten Schwester entführt."
+    },
+    {
+      "id": "kenobi-5",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "leia-organa",
+      "arcId": "kenobi-obi-wan",
+      "at": 3,
+      "text": "Beginnt, dem widerwilligen Obi-Wan zu vertrauen."
+    },
+    {
+      "id": "kenobi-6",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "vader",
+      "arcId": "kenobi-anakin",
+      "at": 3,
+      "text": "Lässt Reva wissen, dass er von Obi-Wans Überleben erfahren hat."
+    },
+    {
+      "id": "kenobi-7",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "vader",
+      "arcId": "kenobi-vader",
+      "at": 4,
+      "text": "Setzt ein Dorf in Brand, um Obi-Wan aus der Deckung zu locken."
+    },
+    {
+      "id": "kenobi-8",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "reva",
+      "arcId": "kenobi-vader",
+      "at": 5,
+      "text": "Enthüllt ihre wahre Absicht: Rache an Vader statt Loyalität."
+    },
+    {
+      "id": "kenobi-9",
+      "workSlug": "obi-wan-kenobi",
+      "characterId": "reva",
+      "arcId": "kenobi-vader",
+      "at": 6,
+      "text": "Verschont den jungen Luke auf Tatooine und lässt von der Rache ab."
+    },
+    {
+      "id": "rebels-0",
+      "workSlug": "star-wars-rebels",
+      "characterId": "ezra",
+      "arcId": "rebels-ghost",
+      "at": 1,
+      "text": "Wird von der Crew der Ghost aus dem Leben als Straßendieb auf Lothal geholt."
+    },
+    {
+      "id": "rebels-1",
+      "workSlug": "star-wars-rebels",
+      "characterId": "ezra",
+      "arcId": "rebels-erwachen",
+      "at": 15,
+      "text": "Opfert sich, um Thrawn ins unbekannte Weltall zu verbannen."
+    },
+    {
+      "id": "rebels-2",
+      "workSlug": "star-wars-rebels",
+      "characterId": "kanan",
+      "arcId": "rebels-ghost",
+      "at": 1,
+      "text": "Bildet Ezra heimlich als Jedi aus, ohne Orden oder Tempel."
+    },
+    {
+      "id": "rebels-3",
+      "workSlug": "star-wars-rebels",
+      "characterId": "kanan",
+      "arcId": "rebels-imperium",
+      "at": 12,
+      "text": "Verliert im Kampf gegen die Inquisitoren sein Augenlicht."
+    },
+    {
+      "id": "rebels-4",
+      "workSlug": "star-wars-rebels",
+      "characterId": "hera",
+      "arcId": "rebels-erwachen",
+      "at": 5,
+      "text": "Vereint verstreute Widerstandszellen zur organisierten Rebellion."
+    },
+    {
+      "id": "rebels-5",
+      "workSlug": "star-wars-rebels",
+      "characterId": "thrawn",
+      "arcId": "rebels-imperium",
+      "at": 10,
+      "text": "Analysiert die Kunst und Taktik der Rebellen, um sie gezielt zu zerschlagen."
+    },
+    {
+      "id": "andor-0",
+      "workSlug": "andor",
+      "characterId": "cassian",
+      "arcId": "andor-cassian",
+      "at": 1,
+      "text": "Sucht auf Ferrix Antworten zum Verschwinden seiner Schwester – und tötet zwei Corp-Wachen in Notwehr."
+    },
+    {
+      "id": "andor-1",
+      "workSlug": "andor",
+      "characterId": "cassian",
+      "arcId": "andor-rebellion",
+      "at": 3,
+      "text": "Wird von Luthen Rael angeworben, nachdem er der ISB nur knapp entkommt."
+    },
+    {
+      "id": "andor-2",
+      "workSlug": "andor",
+      "characterId": "cassian",
+      "arcId": "andor-imperium",
+      "at": 8,
+      "text": "Wird ohne fairen Prozess zu sechs Jahren Zwangsarbeit auf Narkina 5 verurteilt."
+    },
+    {
+      "id": "andor-3",
+      "workSlug": "andor",
+      "characterId": "cassian",
+      "arcId": "andor-rebellion",
+      "at": 10,
+      "text": "Organisiert den Ausbruch aus dem Gefängniskomplex."
+    },
+    {
+      "id": "andor-4",
+      "workSlug": "andor",
+      "characterId": "cassian",
+      "arcId": "andor-cassian",
+      "at": 12,
+      "text": "Kehrt nach Ferrix zurück und übernimmt bei Maarvas Beerdigung offen die Rolle des Rebellen."
+    },
+    {
+      "id": "andor-5",
+      "workSlug": "andor",
+      "characterId": "mon-mothma",
+      "arcId": "andor-rebellion",
+      "at": 4,
+      "text": "Schleust unter dem Deckmantel der Wohltätigkeit Gelder zur Finanzierung der Rebellion."
+    },
+    {
+      "id": "andor-6",
+      "workSlug": "andor",
+      "characterId": "mon-mothma",
+      "arcId": "andor-imperium",
+      "at": 9,
+      "text": "Manövriert sich im Senat gegen wachsendes Misstrauen ihres Umfelds und der ISB."
+    },
+    {
+      "id": "andor-7",
+      "workSlug": "andor",
+      "characterId": "bix",
+      "arcId": "andor-cassian",
+      "at": 2,
+      "text": "Verschafft Cassian einen riskanten Deal mit einem Schmuggler."
+    },
+    {
+      "id": "andor-8",
+      "workSlug": "andor",
+      "characterId": "bix",
+      "arcId": "andor-imperium",
+      "at": 11,
+      "text": "Wird von der ISB verhört und schwer gefoltert."
+    },
+    {
+      "id": "andor-9",
+      "workSlug": "andor",
+      "characterId": "syril",
+      "arcId": "andor-imperium",
+      "at": 1,
+      "text": "Verfolgt eigenmächtig die Ermittlungen zum Doppelmord auf Ferrix, gegen den Willen seiner Vorgesetzten."
+    },
+    {
+      "id": "andor-10",
+      "workSlug": "andor",
+      "characterId": "syril",
+      "arcId": "andor-imperium",
+      "at": 9,
+      "text": "Wird von der ISB rekrutiert, um Cassian auf Chandrila aufzuspüren."
+    },
+    {
+      "id": "totu-0",
+      "workSlug": "tales-of-the-underworld",
+      "characterId": "ventress",
+      "arcId": "totu-unterwelt",
+      "at": 1,
+      "text": "Arbeitet als Kopfgeldjägerin an der Seite von Boba Fett auf einem riskanten Auftrag."
+    },
+    {
+      "id": "totu-1",
+      "workSlug": "tales-of-the-underworld",
+      "characterId": "boba",
+      "arcId": "totu-unterwelt",
+      "at": 3,
+      "text": "Bekräftigt vor Ventress seinen Ruf als gnadenloser Kopfgeldjäger."
+    },
+    {
       "id": "the-mandalorian-0",
       "workSlug": "the-mandalorian",
       "characterId": "din",
@@ -812,6 +1812,214 @@
       "arcId": "m-kind",
       "at": 7,
       "text": "Bringt das Kind in Sicherheit."
+    },
+    {
+      "id": "boba-0",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "boba",
+      "arcId": "boba-vergangenheit",
+      "at": 2,
+      "text": "Wird von Tuskenräubern gefangen genommen und lernt ihre Lebensweise."
+    },
+    {
+      "id": "boba-1",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "boba",
+      "arcId": "boba-thron",
+      "at": 1,
+      "text": "Übernimmt Jabbas altes Territorium auf Tatooine."
+    },
+    {
+      "id": "boba-2",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "boba",
+      "arcId": "boba-thron",
+      "at": 5,
+      "text": "Muss sich gegen die Übernahmeversuche des Pyke-Syndikats behaupten."
+    },
+    {
+      "id": "boba-3",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "fennec",
+      "arcId": "boba-thron",
+      "at": 1,
+      "text": "Wird Bobas rechte Hand und Sicherheitschefin."
+    },
+    {
+      "id": "boba-4",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "fennec",
+      "arcId": "boba-thron",
+      "at": 5,
+      "text": "Verhandelt mit den Straßenbanden von Mos Espa um Unterstützung."
+    },
+    {
+      "id": "boba-5",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "din",
+      "arcId": "boba-tatooine",
+      "at": 6,
+      "text": "Hilft Boba im entscheidenden Kampf gegen die Pykes."
+    },
+    {
+      "id": "boba-6",
+      "workSlug": "book-of-boba-fett",
+      "characterId": "cad-bane",
+      "arcId": "boba-thron",
+      "at": 6,
+      "text": "Fordert Boba im Duell heraus, im Auftrag der Pykes."
+    },
+    {
+      "id": "sc-0",
+      "workSlug": "skeleton-crew",
+      "characterId": "wim",
+      "arcId": "sc-kinder",
+      "at": 1,
+      "text": "Findet mit Freunden ein vergrabenes altes Schiff und startet versehentlich in den Hyperraum."
+    },
+    {
+      "id": "sc-1",
+      "workSlug": "skeleton-crew",
+      "characterId": "wim",
+      "arcId": "sc-galaxis",
+      "at": 8,
+      "text": "Kehrt mit neuem Blick auf seine ruhige Heimatwelt zurück."
+    },
+    {
+      "id": "sc-2",
+      "workSlug": "skeleton-crew",
+      "characterId": "fern",
+      "arcId": "sc-kinder",
+      "at": 2,
+      "text": "Übernimmt in der Gruppe die Führungsrolle, als Erwachsene fehlen."
+    },
+    {
+      "id": "sc-3",
+      "workSlug": "skeleton-crew",
+      "characterId": "jod",
+      "arcId": "sc-jod",
+      "at": 3,
+      "text": "Gibt sich den Kindern gegenüber als Jedi aus, um ihr Vertrauen zu gewinnen."
+    },
+    {
+      "id": "sc-4",
+      "workSlug": "skeleton-crew",
+      "characterId": "jod",
+      "arcId": "sc-jod",
+      "at": 7,
+      "text": "Wird als Pirat und Betrüger entlarvt."
+    },
+    {
+      "id": "sc-5",
+      "workSlug": "skeleton-crew",
+      "characterId": "sm-33",
+      "arcId": "sc-galaxis",
+      "at": 1,
+      "text": "Erkennt die Kinder fälschlich als seine 'Captains' an."
+    },
+    {
+      "id": "ahsoka-0",
+      "workSlug": "ahsoka",
+      "characterId": "ahsoka-tano",
+      "arcId": "ahsoka-ahsoka",
+      "at": 1,
+      "text": "Folgt einer alten Karte, die zum verschollenen Großadmiral Thrawn führen soll."
+    },
+    {
+      "id": "ahsoka-1",
+      "workSlug": "ahsoka",
+      "characterId": "ahsoka-tano",
+      "arcId": "ahsoka-empire",
+      "at": 7,
+      "text": "Stellt sich Thrawn im fernen Weltall zum entscheidenden Duell."
+    },
+    {
+      "id": "ahsoka-2",
+      "workSlug": "ahsoka",
+      "characterId": "sabine",
+      "arcId": "ahsoka-ahsoka",
+      "at": 2,
+      "text": "Wird von Ahsoka in den Wegen der Macht unterrichtet, gegen deren eigene Zweifel."
+    },
+    {
+      "id": "ahsoka-3",
+      "workSlug": "ahsoka",
+      "characterId": "sabine",
+      "arcId": "ahsoka-din-djarin",
+      "at": 5,
+      "text": "Reist eigenmächtig ins Unbekannte Weltall, um Ezra zu retten."
+    },
+    {
+      "id": "ahsoka-4",
+      "workSlug": "ahsoka",
+      "characterId": "din-ahsoka",
+      "arcId": "ahsoka-din-djarin",
+      "at": 4,
+      "text": "Verrät Ahsoka Sabines Aufenthaltsort – aus Verpflichtung, nicht Überzeugung."
+    },
+    {
+      "id": "ahsoka-5",
+      "workSlug": "ahsoka",
+      "characterId": "thrawn-ahsoka",
+      "arcId": "ahsoka-empire",
+      "at": 7,
+      "text": "Kehrt mit einer neuen Flotte aus dem Exil zurück."
+    },
+    {
+      "id": "maul-0",
+      "workSlug": "maul-shadow-lord",
+      "characterId": "maul",
+      "arcId": "maul-schatten",
+      "at": 1,
+      "text": "Baut im Verborgenen ein neues Verbrechensnetzwerk nach dem Fall seines alten Syndikats auf."
+    },
+    {
+      "id": "maul-1",
+      "workSlug": "maul-shadow-lord",
+      "characterId": "maul",
+      "arcId": "maul-rache",
+      "at": 5,
+      "text": "Verfolgt weiter seine Obsession, die Skywalker-Blutlinie auszulöschen."
+    },
+    {
+      "id": "maul-2",
+      "workSlug": "maul-shadow-lord",
+      "characterId": "ochi",
+      "arcId": "maul-schatten",
+      "at": 3,
+      "text": "Bietet Maul seine Dienste als Assassine an."
+    },
+    {
+      "id": "resistance-0",
+      "workSlug": "star-wars-resistance",
+      "characterId": "kaz",
+      "arcId": "resistance-kaz",
+      "at": 1,
+      "text": "Wird als verdeckter Spion des Widerstands auf die Ölplattform Colossus geschickt."
+    },
+    {
+      "id": "resistance-1",
+      "workSlug": "star-wars-resistance",
+      "characterId": "poe",
+      "arcId": "resistance-kaz",
+      "at": 1,
+      "text": "Rekrutiert Kaz für die geheime Aufklärungsmission gegen die Erste Ordnung."
+    },
+    {
+      "id": "resistance-2",
+      "workSlug": "star-wars-resistance",
+      "characterId": "torra",
+      "arcId": "resistance-erste-ordnung",
+      "at": 18,
+      "text": "Verteidigt Colossus gegen den offenen Angriff der Ersten Ordnung."
+    },
+    {
+      "id": "resistance-3",
+      "workSlug": "star-wars-resistance",
+      "characterId": "kaz",
+      "arcId": "resistance-erste-ordnung",
+      "at": 21,
+      "text": "Schließt sich offen dem Widerstand gegen die Erste Ordnung an."
     }
   ]
 }

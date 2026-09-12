@@ -147,16 +147,16 @@
 		style:left="{-geo.left}px"
 		aria-hidden="true"
 	>
-		<path data-trunk d={shape.trunk} class="stroke-neutral" stroke-width="2" fill="none" />
+		<path data-trunk d={shape.trunk} class="stroke-neutral" stroke-width="3" fill="none" />
 		{#each shape.trunkDots as x (x)}
-			<circle data-dot cx={x} cy={geo.y} r="4.5" class="fill-neutral" />
+			<circle data-dot cx={x} cy={geo.y} r="6.5" class="fill-neutral" />
 		{/each}
 		{#each shape.strands as strand (strand.tone)}
 			<path
 				data-strand
 				d={strand.path}
 				style:stroke={toneVar(strand.tone)}
-				stroke-width="2"
+				stroke-width="3"
 				stroke-linecap="round"
 				fill="none"
 			/>
@@ -165,10 +165,10 @@
 					data-dot
 					cx={dot.x}
 					cy={dot.y}
-					r={dot.filled ? 6.5 : 4.5}
+					r={dot.filled ? 9 : 6.5}
 					style:fill={dot.filled ? toneVar(strand.tone) : 'var(--color-ground)'}
 					style:stroke={dot.filled ? 'var(--color-ground)' : toneVar(strand.tone)}
-					stroke-width={dot.filled ? 3 : 2}
+					stroke-width={dot.filled ? 4 : 3}
 				/>
 			{/each}
 		{/each}
