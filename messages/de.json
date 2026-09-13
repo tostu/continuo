@@ -11,6 +11,8 @@
 	"optional": "optional",
 	"kind_film": "Film",
 	"kind_series": "Serie",
+	"kind_filter_label": "Nach Filmen und Serien filtern",
+	"no_works_kind": "Keine Werke mit den gewählten Gattungen.",
 	"characters_in_work": "Figuren mit Plot Points",
 	"search_placeholder": "Figur suchen",
 	"arc_filter_label": "Nach Handlungsstrang filtern",

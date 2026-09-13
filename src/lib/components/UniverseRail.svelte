@@ -37,13 +37,18 @@
 	const pos = $state<Record<string, { x: number; y: number }>>({});
 	const tweens: Record<string, { kill: () => void }> = {};
 	let lastMode: RailMode | undefined;
+	/** Knotenmenge des letzten Layouts – ändert sie sich (Filter), wird ebenfalls getweent. */
+	let lastSlugs = '';
 
 	const at = (node: RailNode) => pos[node.slug] ?? node;
 
 	$effect(() => {
 		const { nodes } = layout;
-		const animate = lastMode !== undefined && lastMode !== mode && !reducedMotion();
+		const slugs = nodes.map((n) => n.slug).join(',');
+		const animate =
+			lastMode !== undefined && (lastMode !== mode || lastSlugs !== slugs) && !reducedMotion();
 		lastMode = mode;
+		lastSlugs = slugs;
 		const { gsap } = useGsap();
 
 		nodes.forEach((node, i) => {

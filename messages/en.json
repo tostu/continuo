@@ -11,6 +11,8 @@
 	"optional": "optional",
 	"kind_film": "Film",
 	"kind_series": "Series",
+	"kind_filter_label": "Filter by films and series",
+	"no_works_kind": "No works with the selected types.",
 	"characters_in_work": "characters with plot points",
 	"search_placeholder": "Search characters",
 	"arc_filter_label": "Filter by storyline",
