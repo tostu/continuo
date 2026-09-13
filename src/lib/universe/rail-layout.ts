@@ -117,14 +117,17 @@ export function layoutRail(
 	let stack = 0;
 
 	for (const group of groupWorks(u, mode)) {
-		banners.push({
-			id: `${mode}-${group.id}`,
-			label: group.label,
-			tone: group.tone,
-			x: cx,
-			y: cursor + 16
-		});
-		cursor += BANNER_GAP;
+		// Release-Modus ist keine Saga-Gruppierung mehr, daher kein Saga-Banner.
+		if (mode !== 'saga') {
+			banners.push({
+				id: `${mode}-${group.id}`,
+				label: group.label,
+				tone: group.tone,
+				x: cx,
+				y: cursor + 16
+			});
+			cursor += BANNER_GAP;
+		}
 
 		// Jede Gruppe (Saga-Banner) startet mit einem frischen Anker, damit ihr erstes
 		// Werk immer auf dem Hauptpfad landet statt als Seitenast am alten Anker zu hängen.
