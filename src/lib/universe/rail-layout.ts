@@ -47,14 +47,14 @@ interface RailGroup {
 	works: Work[];
 }
 
-const R_REQUIRED = 26;
-const R_OPTIONAL = 15;
+const R_REQUIRED = 38;
+const R_OPTIONAL = 23;
 const TOP = 24;
-const BANNER_GAP = 40;
-const ROW_REQUIRED = 96;
-const ROW_OPTIONAL = 72;
-const BRANCH_DROP = 58;
-const BRANCH_STACK = 56;
+const BANNER_GAP = 54;
+const ROW_REQUIRED = 132;
+const ROW_OPTIONAL = 104;
+const BRANCH_DROP = 78;
+const BRANCH_STACK = 76;
 /** Variation der Schlängelung, damit der Pfad nicht mechanisch wirkt. */
 const WAVE = [1, 0.78, 0.95, 0.66, 0.88];
 
@@ -101,8 +101,8 @@ export function layoutRail(
 ): RailLayout {
 	const sagaTone = new Map(u.sagas.map((s) => [s.id, s.tone]));
 	const cx = width / 2;
-	const amplitude = Math.max(48, Math.min(72, width * 0.2));
-	const branchReach = Math.max(56, Math.min(96, width * 0.24));
+	const amplitude = Math.max(68, Math.min(100, width * 0.24));
+	const branchReach = Math.max(76, Math.min(130, width * 0.28));
 	const nodes: RailNode[] = [];
 	const banners: RailBanner[] = [];
 	const edges: RailEdge[] = [];

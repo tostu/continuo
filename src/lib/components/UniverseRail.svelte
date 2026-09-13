@@ -397,7 +397,10 @@
 					in:fade={motion({ duration: 220, delay: 180 })}
 				>
 					{#if node.optional}
-						<span class="block text-[11.5px] font-medium text-muted">{work.short}</span>
+						<span class="block text-[12px] font-medium text-ink">{work.short}</span>
+						<span class="block text-[10.5px] text-muted">
+							{dateLabel(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
+						</span>
 					{:else}
 						<span class="block text-[14px] font-semibold text-ink">{work.short}</span>
 						<span class="block text-[11.5px] text-muted">
