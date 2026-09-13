@@ -47,14 +47,9 @@ describe.skipIf(!starWars)('layoutRail', () => {
 		expect(episodeI.y).toBeLessThan(episodeIV.y);
 	});
 
-	it('has no group banners in chronology mode', () => {
-		const { banners } = layoutRail(starWars!, 'chronology', 360);
-		expect(banners).toHaveLength(0);
-	});
-
-	it('puts each banner above the first work of its group in saga mode', () => {
-		const { nodes, banners } = layoutRail(starWars!, 'saga', 360);
-		const groups = groupWorks(starWars!, 'saga');
+	it.each(modes)('puts each banner above the first work of its group (%s)', (mode) => {
+		const { nodes, banners } = layoutRail(starWars!, mode, 360);
+		const groups = groupWorks(starWars!, mode);
 		expect(banners).toHaveLength(groups.length);
 		groups.forEach((group, i) => {
 			const first = nodes.find((n) => n.slug === group.works[0].slug)!;

@@ -63,15 +63,26 @@ const byChronology = (a: Work, b: Work) => a.chronology - b.chronology;
 
 export function groupWorks(u: Pick<Universe, 'works' | 'sagas'>, mode: RailMode): RailGroup[] {
 	if (mode === 'chronology') {
-		return [
-			{
-				id: 'chronology',
-				label: '',
-				tone: 'neutral',
-				colorNodes: false,
-				works: [...u.works].sort(byChronology)
+		const sagaById = new Map(u.sagas.map((s) => [s.id, s]));
+		const groups: RailGroup[] = [];
+		let lastSagaId: string | null = null;
+		for (const work of [...u.works].sort(byChronology)) {
+			const saga = sagaById.get(work.sagaId);
+			const last = groups.at(-1);
+			if (last && lastSagaId === work.sagaId) {
+				last.works.push(work);
+			} else {
+				groups.push({
+					id: `${work.sagaId}-${groups.length}`,
+					label: saga?.name ?? '',
+					tone: saga?.tone ?? 'neutral',
+					colorNodes: true,
+					works: [work]
+				});
 			}
-		];
+			lastSagaId = work.sagaId;
+		}
+		return groups;
 	}
 	const ordered = [...u.works].sort(byRelease);
 	return u.sagas
@@ -93,6 +104,7 @@ export function layoutRail(
 	const sagaTone = new Map(u.sagas.map((s) => [s.id, s.tone]));
 	const cx = width / 2;
 	const amplitude = Math.max(48, Math.min(72, width * 0.2));
+	const branchReach = Math.max(56, Math.min(96, width * 0.24));
 	const nodes: RailNode[] = [];
 	const banners: RailBanner[] = [];
 	const edges: RailEdge[] = [];
@@ -100,22 +112,26 @@ export function layoutRail(
 	let cursor = TOP;
 	let pathIndex = 0;
 	let previousOnPath: { node: RailNode; groupId: string } | null = null;
+	let anchor: RailNode | null = null;
+	// Bleibt über eine Gruppengrenze hinweg bestehen, damit ein Seitenast, der am Ende
+	// einer Gruppe offen war, noch an das erste Werk der nächsten Gruppe anschließen kann.
+	let lastBranch: RailNode | null = null;
+	let stack = 0;
 
 	for (const group of groupWorks(u, mode)) {
-		if (mode !== 'chronology') {
-			banners.push({
-				id: `${mode}-${group.id}`,
-				label: group.label,
-				tone: group.tone,
-				x: cx,
-				y: cursor + 16
-			});
-			cursor += BANNER_GAP;
-		}
+		banners.push({
+			id: `${mode}-${group.id}`,
+			label: group.label,
+			tone: group.tone,
+			x: cx,
+			y: cursor + 16
+		});
+		cursor += BANNER_GAP;
 
-		let anchor: RailNode | null = null;
-		let lastBranch: RailNode | null = null;
-		let stack = 0;
+		// Jede Gruppe (Saga-Banner) startet mit einem frischen Anker, damit ihr erstes
+		// Werk immer auf dem Hauptpfad landet statt als Seitenast am alten Anker zu hängen.
+		anchor = null;
+		stack = 0;
 
 		for (const work of group.works) {
 			const tone = group.colorNodes ? group.tone : (sagaTone.get(work.sagaId) ?? 'neutral');
@@ -149,6 +165,19 @@ export function layoutRail(
 					});
 				}
 
+				// Schließt Seitenäste wieder an den Hauptpfad an, wenn ihre Geschichte
+				// zeitlich vor diesem Pflicht-Werk liegt.
+				if (lastBranch) {
+					edges.push({
+						id: `${lastBranch.slug}->${work.slug}`,
+						from: lastBranch.slug,
+						to: work.slug,
+						dashed: true,
+						branch: true,
+						tone
+					});
+				}
+
 				previousOnPath = { node, groupId: group.id };
 				// Nur Pflicht-Werke dienen als Ankerpunkt für Seitenäste.
 				anchor = work.required ? node : anchor;
@@ -160,10 +189,15 @@ export function layoutRail(
 			}
 
 			// Optionales Werk als Seitenast am letzten Pflicht-Knoten der Gruppe.
+			// Bleibt nah am Anker statt an den Bildschirmrand zu springen; die Distanz
+			// variiert pro Kettenglied (WAVE), damit die Verbindung zwischen gestapelten
+			// Seitenästen nicht schnurgerade wirkt.
 			const outward = anchor.x > cx ? 1 : -1;
+			const reach = branchReach * WAVE[stack % WAVE.length];
+			const x = Math.min(width - 40, Math.max(40, anchor.x + outward * reach));
 			const node: RailNode = {
 				slug: work.slug,
-				x: outward > 0 ? width - 40 : 40,
+				x,
 				y: anchor.y + BRANCH_DROP + stack * BRANCH_STACK,
 				r: R_OPTIONAL,
 				optional: true,
