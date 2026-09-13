@@ -9,5 +9,18 @@
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"workers_dev": true,
-	"preview_urls": true
+	"preview_urls": true,
+
+	// Der deployte Worker liefert nur statische Assets aus und fragt D1 nie an – die
+	// Daten werden beim Prerendering eingebacken. Das Binding steht hier nur, damit
+	// `wrangler d1 migrations apply` und `wrangler d1 execute` aus diesem Repo laufen.
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "continuo-db",
+			"database_id": "17f3badd-b947-4c13-aa18-e302a0a13484",
+			"migrations_dir": "drizzle",
+			"migrations_pattern": "drizzle/*/migration.sql"
+		}
+	]
 }

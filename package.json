@@ -15,7 +15,16 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run && npm run test:e2e",
 		"test:e2e": "playwright install && playwright test",
-		"gen": "wrangler types --env-file .env.example"
+		"gen": "wrangler types --env-file .env.example",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate:local": "wrangler d1 migrations apply continuo-db --local",
+		"db:migrate:remote": "wrangler d1 migrations apply continuo-db --remote",
+		"db:seed:local": "wrangler d1 execute continuo-db --local --file=src/lib/server/db/seed.sql",
+		"db:seed:remote": "wrangler d1 execute continuo-db --remote --file=src/lib/server/db/seed.sql",
+		"db:studio": "drizzle-kit studio",
+		"db:studio:local": "drizzle-kit studio --config drizzle.config.local.ts",
+		"dev:local": "D1_LOCAL=true vite dev",
+		"build:local": "D1_LOCAL=true vite build"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
@@ -31,6 +40,8 @@
 		"@types/d3-shape": "^3.2.0",
 		"@types/node": "^24",
 		"@vitest/browser-playwright": "^4.1.8",
+		"dotenv": "^17.4.2",
+		"drizzle-kit": "1.0.0-rc.4",
 		"eslint": "^10.4.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.19.0",
@@ -53,6 +64,7 @@
 		"bits-ui": "^2.19.2",
 		"d3-scale": "^4.0.2",
 		"d3-shape": "^3.2.0",
+		"drizzle-orm": "1.0.0-rc.4",
 		"gsap": "^3.15.0"
 	}
 }
