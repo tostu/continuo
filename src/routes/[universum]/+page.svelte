@@ -12,11 +12,11 @@
 	const universe = $derived(data.universe);
 	const required = $derived(universe.works.filter((w) => w.required).length);
 
-	let mode = $state<RailMode>('saga');
+	let mode = $state<RailMode>('chronology');
 
 	const modes: { value: RailMode; label: string }[] = [
-		{ value: 'saga', label: m.mode_saga() },
-		{ value: 'chronology', label: m.mode_chronology() }
+		{ value: 'chronology', label: m.mode_chronology() },
+		{ value: 'saga', label: m.mode_saga() }
 	];
 </script>
 
