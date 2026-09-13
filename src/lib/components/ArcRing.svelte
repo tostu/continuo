@@ -41,7 +41,8 @@
 		grow.t = 0;
 		const tween = gsap.to(grow, {
 			t: 1,
-			duration: 0.5 + slices.length * 0.25,
+			// Kurz genug, dass der Ring fertig ist, bevor die nächste Figur angetippt wird.
+			duration: 0.4 + slices.length * 0.12,
 			ease: 'power2.inOut',
 			delay
 		});

@@ -31,25 +31,31 @@
 	onMount(() => {
 		if (reducedMotion()) return;
 		const { gsap } = useGsap();
-		const tl = gsap.timeline({ delay: 0.2 });
+		// `stagger.amount` verteilt die Staffelung über ein festes Fenster: eine Figur mit zehn
+		// Plot Points ist genauso schnell durch wie eine mit dreien – sonst tröpfeln die Punkte
+		// noch, wenn längst die nächste Figur angetippt wurde.
+		const tl = gsap.timeline({ delay: 0.12 });
 		tl.from(svg.querySelectorAll('[data-dot]'), {
 			scale: 0,
 			transformOrigin: '50% 50%',
-			duration: 0.45,
+			duration: 0.4,
 			ease: 'back.out(3)',
-			stagger: 0.28
+			stagger: { amount: 0.45 }
 		});
-		tl.from(
-			svg.querySelectorAll('[data-seg]'),
-			{
-				drawSVG: '0%',
-				duration: 0.28,
-				ease: 'none',
-				stagger: 0.28,
-				clearProps: 'strokeDasharray,strokeDashoffset'
-			},
-			0.2
-		);
+		// Bei nur einem Plot Point gibt es keine Verbindungsstücke – GSAP würde sonst warnen.
+		const segments = svg.querySelectorAll('[data-seg]');
+		if (segments.length)
+			tl.from(
+				segments,
+				{
+					drawSVG: '0%',
+					duration: 0.25,
+					ease: 'none',
+					stagger: { amount: 0.45 },
+					clearProps: 'strokeDasharray,strokeDashoffset'
+				},
+				0.15
+			);
 		return () => tl.kill();
 	});
 </script>

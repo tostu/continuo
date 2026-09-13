@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, untrack } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 	import { linkVertical } from 'd3-shape';
 	import { Tooltip } from 'bits-ui';
 	import Icon from './Icon.svelte';
@@ -30,46 +30,145 @@
 	/** Chronology-Modus zeigt das Datum der Handlung, sonst das Erscheinungsjahr. */
 	const dateLabel = (work: Work) => (mode === 'chronology' ? work.loreDate : year(work));
 	/** Svelte-Transitions respektieren reduced motion nicht von selbst. */
-	const motion = (params: { delay?: number; duration: number }) =>
-		reducedMotion() ? { duration: 0 } : params;
+	function motion<T extends { duration: number; delay?: number }>(params: T): T {
+		return reducedMotion() ? { ...params, duration: 0, delay: 0 } : params;
+	}
+
+	/**
+	 * Gemeinsame Taktung für Moduswechsel und Filter: Knoten, Höhe, Kanten und Banner laufen im
+	 * selben Fenster, damit nichts stehenbleibt, während der Rest noch unterwegs ist.
+	 */
+	const MORPH = { duration: 0.7, spread: 0.3, ease: 'power3.inOut' };
+	/** Intro-Staffelung als Gesamtfenster: die Dauer wächst nicht mit der Zahl der Werke. */
+	const INTRO_SPREAD = 0.9;
+	const CLEAR = 'transform,translate,rotate,scale,opacity';
+	const CLEAR_STROKE = `${CLEAR},strokeDasharray,strokeDashoffset`;
+
+	type Killable = { kill: () => void };
 
 	// Animierte Knotenpositionen: Pfade werden aus diesen Werten abgeleitet und morphen dadurch mit.
 	const pos = $state<Record<string, { x: number; y: number }>>({});
-	const tweens: Record<string, { kill: () => void }> = {};
+	// Die Höhe hängt am selben Tween wie die Knoten statt an einer eigenen CSS-Transition –
+	// sonst steht der Container schon, während die unteren Knoten noch wandern.
+	const box = $state({ h: 0 });
+	let morph: Killable | undefined;
+	let grow: Killable | undefined;
+	let intro: (Killable & { progress: (value: number) => Killable }) | undefined;
+	let started = false;
 	let lastMode: RailMode | undefined;
 	/** Knotenmenge des letzten Layouts – ändert sie sich (Filter), wird ebenfalls getweent. */
 	let lastSlugs = '';
 
 	const at = (node: RailNode) => pos[node.slug] ?? node;
 
+	/**
+	 * Setzt ein laufendes Intro sofort auf seinen Endzustand. Ohne das bleiben Knoten, deren
+	 * Staffel noch nicht dran war, auf `scale: 0` hängen, wenn man währenddessen umschaltet.
+	 */
+	function finishIntro() {
+		if (!intro) return;
+		const { gsap } = useGsap();
+		intro.progress(1).kill();
+		intro = undefined;
+		gsap.set(
+			root.querySelectorAll('[data-banner],[data-edge],[data-node-body],[data-node-label]'),
+			{ clearProps: CLEAR_STROKE }
+		);
+	}
+
+	/**
+	 * Läuft vor dem DOM-Update: ein noch laufendes Intro muss fertig sein, bevor Svelte die
+	 * Aus-Transitions startet. Danach räumt Svelte die Elemente sonst nie ab – GSAP hält sie
+	 * mitten in der Staffelung fest und die alten Banner bleiben als Geister stehen.
+	 */
+	$effect.pre(() => {
+		if (layout) untrack(finishIntro);
+	});
+
+	$effect(() => {
+		const { nodes, height } = layout;
+		const currentMode = mode;
+
+		// Alle Zugriffe auf `pos`/`box` ungetrackt: der Tween schreibt hinein, das würde den
+		// Effekt sonst endlos neu auslösen.
+		untrack(() => {
+			const { gsap } = useGsap();
+			const slugs = nodes.map((n) => n.slug).join(',');
+			const changed = started && (lastMode !== currentMode || lastSlugs !== slugs);
+			const animate = changed && !reducedMotion();
+
+			morph?.kill();
+			grow?.kill();
+
+			// Verschwundene Knoten vergessen: kommen sie zurück, starten sie am neuen Platz,
+			// statt aus einer veralteten Position quer über den Zeitstrahl zu rutschen.
+			const live = new Set(nodes.map((n) => n.slug));
+			for (const slug of Object.keys(pos)) if (!live.has(slug)) delete pos[slug];
+
+			const entering: string[] = [];
+			for (const node of nodes) {
+				if (pos[node.slug]) continue;
+				pos[node.slug] = { x: node.x, y: node.y };
+				if (started) entering.push(node.slug);
+			}
+
+			if (animate) {
+				const targets = nodes.map((n) => pos[n.slug]);
+				morph = gsap.to(targets, {
+					x: (i: number) => nodes[i].x,
+					y: (i: number) => nodes[i].y,
+					duration: MORPH.duration,
+					ease: MORPH.ease,
+					stagger: { amount: MORPH.spread }
+				});
+				grow = gsap.to(box, {
+					h: height,
+					duration: MORPH.duration + MORPH.spread,
+					ease: MORPH.ease
+				});
+			} else {
+				for (const node of nodes) Object.assign(pos[node.slug], { x: node.x, y: node.y });
+				box.h = height;
+			}
+
+			// Neu hinzugekommene Knoten (Filter) poppen an ihrem Platz auf, statt hart zu erscheinen.
+			if (entering.length && !reducedMotion()) {
+				const els = entering
+					.map((s) => root.querySelector(`[data-node="${s}"]`))
+					.filter((el) => el !== null);
+				if (els.length)
+					gsap.from(els, {
+						scale: 0,
+						opacity: 0,
+						duration: 0.45,
+						ease: 'back.out(1.8)',
+						stagger: { amount: 0.25 },
+						clearProps: CLEAR
+					});
+			}
+
+			started = true;
+			lastMode = currentMode;
+			lastSlugs = slugs;
+		});
+	});
+
+	// „Läuft gerade"-Puls hängt an der aktuellen Knotenmenge, damit er auch für Knoten läuft,
+	// die erst durch einen Filterwechsel dazukommen.
 	$effect(() => {
 		const { nodes } = layout;
-		const slugs = nodes.map((n) => n.slug).join(',');
-		const animate =
-			lastMode !== undefined && (lastMode !== mode || lastSlugs !== slugs) && !reducedMotion();
-		lastMode = mode;
-		lastSlugs = slugs;
+		if (!nodes.length || reducedMotion()) return;
+		const marks = root.querySelectorAll('[data-pulse]');
+		if (!marks.length) return;
 		const { gsap } = useGsap();
-
-		nodes.forEach((node, i) => {
-			tweens[node.slug]?.kill();
-			const current = untrack(() => pos[node.slug]);
-			if (!animate || !current) {
-				pos[node.slug] = { x: node.x, y: node.y };
-				return;
-			}
-			const p = { ...current };
-			tweens[node.slug] = gsap.to(p, {
-				x: node.x,
-				y: node.y,
-				duration: 0.85,
-				delay: i * 0.025,
-				ease: 'power3.inOut',
-				onUpdate: () => {
-					pos[node.slug] = { x: p.x, y: p.y };
-				}
-			});
+		const pulse = gsap.to(marks, {
+			scale: 1.45,
+			opacity: 0,
+			duration: 1.8,
+			ease: 'power2.out',
+			repeat: -1
 		});
+		return () => pulse.kill();
 	});
 
 	onMount(() => {
@@ -77,68 +176,77 @@
 		const { gsap } = useGsap();
 		const q = (selector: string) => root.querySelectorAll(selector);
 
-		const tl = gsap.timeline();
+		const tl = gsap.timeline({ onComplete: () => (intro = undefined) });
+		intro = tl;
+		// Leere Auswahl überspringen – GSAP warnt sonst über fehlende Targets (z.B. Banner im
+		// Release-Modus oder ein Universum ganz ohne optionale Werke).
+		const from = (selector: string, vars: gsap.TweenVars, at: number) => {
+			const els = q(selector);
+			if (els.length) tl.from(els, vars, at);
+		};
 		// clearProps gibt Tailwinds translate/scale-Klassen (Zentrierung, Hover) nach dem Intro wieder frei.
-		const release = 'transform,translate,rotate,scale,opacity';
-		tl.from(
-			q('[data-banner]'),
+		// `stagger.amount` verteilt die Staffelung über ein festes Fenster statt pro Element zu
+		// addieren – sonst dauert das Intro bei 27 Werken mehrere Sekunden und der Zeitstrahl
+		// ist beim Scrollen noch halb leer.
+		from(
+			'[data-banner]',
 			{
 				opacity: 0,
 				y: -10,
 				scale: 0.9,
-				duration: 0.5,
+				duration: 0.45,
 				ease: 'power3.out',
-				stagger: 0.45,
-				clearProps: release
+				stagger: { amount: 0.5 },
+				clearProps: CLEAR
 			},
 			0
 		);
-		tl.from(
-			q('[data-edge]:not([data-dashed])'),
+		from(
+			'[data-edge]:not([data-dashed])',
 			{
 				drawSVG: '0%',
-				duration: 0.26,
+				duration: 0.45,
 				ease: 'none',
-				stagger: 0.12,
+				stagger: { amount: INTRO_SPREAD },
 				clearProps: 'strokeDasharray,strokeDashoffset'
 			},
-			0.1
+			0.08
 		);
-		tl.from(
-			q('[data-node-body]'),
-			{ scale: 0, duration: 0.55, ease: 'back.out(2.4)', stagger: 0.1, clearProps: release },
+		from(
+			'[data-node-body]',
+			{
+				scale: 0,
+				duration: 0.5,
+				ease: 'back.out(2)',
+				stagger: { amount: INTRO_SPREAD },
+				clearProps: CLEAR
+			},
 			0.05
 		);
-		tl.from(
-			q('[data-node-label]'),
-			{ opacity: 0, y: 6, duration: 0.4, ease: 'power2.out', stagger: 0.1, clearProps: release },
-			0.2
+		from(
+			'[data-node-label]',
+			{
+				opacity: 0,
+				y: 6,
+				duration: 0.35,
+				ease: 'power2.out',
+				stagger: { amount: INTRO_SPREAD },
+				clearProps: CLEAR
+			},
+			0.25
 		);
-		tl.from(q('[data-dashed]'), { opacity: 0, duration: 0.5, stagger: 0.1 }, 1);
-
-		const pulse = gsap.to(q('[data-pulse]'), {
-			scale: 1.45,
-			opacity: 0,
-			duration: 1.8,
-			ease: 'power2.out',
-			repeat: -1
-		});
+		from('[data-dashed]', { opacity: 0, duration: 0.45, stagger: { amount: 0.4 } }, 0.7);
 
 		return () => {
 			tl.kill();
-			pulse.kill();
-			Object.values(tweens).forEach((t) => t.kill());
+			morph?.kill();
+			grow?.kill();
 		};
 	});
 </script>
 
-<div
-	bind:this={root}
-	bind:clientWidth={width}
-	class="relative transition-[height] duration-700 motion-reduce:transition-none"
-	style:height="{layout.height}px"
->
-	<svg class="absolute inset-0 overflow-visible" {width} height={layout.height} aria-hidden="true">
+<div bind:this={root} bind:clientWidth={width} class="relative" style:height="{box.h}px">
+	<svg class="absolute inset-0 overflow-visible" {width} height={box.h} aria-hidden="true">
 		{#each layout.edges as edge (edge.id)}
 			{@const a = at(nodeBySlug.get(edge.from)!)}
 			{@const b = at(nodeBySlug.get(edge.to)!)}
@@ -151,8 +259,8 @@
 				stroke-width={edge.branch ? 3 : 4}
 				stroke-linecap="round"
 				stroke-dasharray={edge.dashed ? '0.5 8' : undefined}
-				in:fade={motion({ delay: 500, duration: 350 })}
-				out:fade={motion({ duration: 150 })}
+				in:fade={motion({ delay: 220, duration: 320 })}
+				out:fade={motion({ duration: 180 })}
 			/>
 		{/each}
 	</svg>
@@ -170,8 +278,8 @@
 			style:background-color={banner.tone === 'neutral'
 				? 'var(--color-raised)'
 				: toneVar(banner.tone)}
-			in:fade={motion({ delay: 250, duration: 300 })}
-			out:fade={motion({ duration: 150 })}
+			in:fade={motion({ delay: 180, duration: 280 })}
+			out:fade={motion({ duration: 180 })}
 		>
 			{banner.label}
 		</div>
@@ -180,7 +288,14 @@
 	{#each layout.nodes as node (node.slug)}
 		{@const work = workBySlug.get(node.slug)!}
 		{@const p = at(node)}
-		<div class="absolute z-20" style:left="{p.x}px" style:top="{p.y}px">
+		<!-- `data-node` findet neu dazugekommene Knoten für den Einblend-Pop. -->
+		<div
+			data-node={node.slug}
+			class="absolute z-20"
+			style:left="{p.x}px"
+			style:top="{p.y}px"
+			out:scale={motion({ duration: 260, start: 0.4 })}
+		>
 			{#if work.nowPlaying}
 				<span
 					data-pulse
@@ -279,7 +394,7 @@
 							: undefined}
 					style:right={node.labelSide === 'left' ? `${node.r + 12}px` : undefined}
 					style:top={node.labelSide === 'below' ? `${node.r + 6}px` : '0px'}
-					in:fade={motion({ duration: 250, delay: 450 })}
+					in:fade={motion({ duration: 220, delay: 180 })}
 				>
 					{#if node.optional}
 						<span class="block text-[11.5px] font-medium text-muted">{work.short}</span>

@@ -45,11 +45,15 @@
 	);
 
 	let grid = $state<HTMLElement>();
+	let intro: { progress: (value: number) => { kill: () => void }; kill: () => void } | undefined;
 	let flipState: ReturnType<ReturnType<typeof useGsap>['Flip']['getState']> | null = null;
 
 	// Flip: Position vor der Filteränderung merken, nach dem DOM-Update animieren.
 	function captureLayout() {
 		if (!grid || reducedMotion()) return;
+		// Ein noch laufendes Intro würde gegen Flip anarbeiten: erst fertigstellen, dann messen.
+		intro?.progress(1).kill();
+		intro = undefined;
 		flipState = useGsap().Flip.getState(grid.querySelectorAll('[data-flip-id]'));
 	}
 
@@ -75,14 +79,15 @@
 	onMount(() => {
 		if (reducedMotion() || !grid) return;
 		const { gsap } = useGsap();
-		const tween = gsap.from(grid.querySelectorAll('[data-flip-id]'), {
+		// Festes Staffelfenster: ein Werk mit dreißig Figuren startet nicht länger als eines mit fünf.
+		intro = gsap.from(grid.querySelectorAll('[data-flip-id]'), {
 			opacity: 0,
 			y: 18,
 			duration: 0.5,
 			ease: 'power3.out',
-			stagger: 0.05
+			stagger: { amount: 0.5 }
 		});
-		return () => tween.kill();
+		return () => intro?.kill();
 	});
 </script>
 
@@ -169,7 +174,7 @@
 							{photoUrl}
 							{shares}
 							size={86}
-							delay={0.2 + i * 0.05}
+							delay={0.15 + (i / Math.max(visible.length - 1, 1)) * 0.5}
 							transitionName="avatar-{character.id}"
 						/>
 					</span>
