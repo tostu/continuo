@@ -62,3 +62,20 @@ export interface Universe {
 	characters: Character[];
 	plotPoints: PlotPoint[];
 }
+
+/**
+ * Zugeschnittenes Modell für `ZoomDemo` – nur die drei Stufen des Beispiels, damit die
+ * Startseite nicht das ganze Universum als JSON mitschleppt. Gebaut in `+page.server.ts`.
+ */
+export interface ZoomModel {
+	universeName: string;
+	work: Work;
+	arcs: Arc[];
+	railWorks: { work: Work; tone: Tone }[];
+	cast: {
+		character: Character;
+		/** Anteil je Handlungsstrang – Farbring des Avatars. */
+		shares: { arc: Arc; count: number }[];
+		points: PlotPoint[];
+	}[];
+}

@@ -2,39 +2,30 @@
 	import { onMount, tick } from 'svelte';
 	import Avatar from './Avatar.svelte';
 	import PlotTimeline from './PlotTimeline.svelte';
-	import { universeBySlug } from '$lib/universe/registry';
-	import {
-		arcShares,
-		arcsFor,
-		charactersFor,
-		plotPointsFor,
-		sagaOf,
-		toneVar,
-		workBySlug,
-		year
-	} from '$lib/universe/derive';
+	import { toneVar, year } from '$lib/universe/derive';
+	import type { ZoomModel } from '$lib/universe/types';
 	import { m } from '$lib/paraglide/messages.js';
 
 	/**
 	 * Drei Zoomstufen am Beispiel Star Wars → Episode IV → eine Figur.
 	 * Keile verbinden das markierte Element einer Stufe mit der nächsten Stufe, wie eine Lupe.
+	 *
+	 * Die Daten kommen zugeschnitten aus dem Server-Load (`zoomModel` in +page.server.ts) –
+	 * die Universen liegen in D1 und werden beim Prerendering gelesen.
 	 */
-	let { photos = {} }: { photos?: Record<string, string | undefined> } = $props();
+	let { zoom, photos = {} }: { zoom: ZoomModel; photos?: Record<string, string | undefined> } =
+		$props();
 
-	const universe = universeBySlug('star-wars')!;
-	const work = workBySlug(universe, 'episode-iv')!;
-	const arcs = arcsFor(universe, work.slug);
-	const railWorks = [...universe.works]
-		.sort((a, b) => a.released.localeCompare(b.released))
-		.slice(0, 7)
-		.map((w) => ({ work: w, tone: sagaOf(universe, w).tone }));
-	const cast = charactersFor(universe, work.slug)
-		.slice(0, 6)
-		.map((character) => ({ character, shares: arcShares(universe, work.slug, character.id) }));
+	const work = $derived(zoom.work);
+	const arcs = $derived(zoom.arcs);
+	const railWorks = $derived(zoom.railWorks);
+	const cast = $derived(zoom.cast);
 
-	let selectedId = $state(cast[0].character.id);
-	const selected = $derived(cast.find((c) => c.character.id === selectedId)!);
-	const points = $derived(plotPointsFor(universe, work.slug, selectedId));
+	// Ohne Klick steht die erste Figur – deshalb `undefined` statt einer Startkopie aus `zoom`.
+	let picked = $state<string>();
+	const selected = $derived(cast.find((c) => c.character.id === picked) ?? cast[0]);
+	const selectedId = $derived(selected.character.id);
+	const points = $derived(selected.points);
 	const arcTone = (arcId: string) => arcs.find((a) => a.id === arcId)?.tone ?? 'neutral';
 
 	let stage: HTMLOListElement;
@@ -111,7 +102,7 @@
 			</p>
 		</div>
 		<div data-panel="universe" class="rounded-2xl bg-surface p-3 ring-1 ring-hairline">
-			<p class="px-2 pt-1 text-[13px] font-semibold">{universe.name}</p>
+			<p class="px-2 pt-1 text-[13px] font-semibold">{zoom.universeName}</p>
 			<ol class="relative mt-2" aria-hidden="true">
 				<span class="absolute top-6 bottom-6 left-[27px] w-0.5 bg-hairline"></span>
 				{#each railWorks as { work: w, tone } (w.slug)}
@@ -165,7 +156,7 @@
 							type="button"
 							data-zoom-from={isSelected ? 'work' : undefined}
 							aria-pressed={isSelected}
-							onclick={() => (selectedId = character.id)}
+							onclick={() => (picked = character.id)}
 							class="flex w-full flex-col items-center gap-1.5 rounded-xl px-1 py-2 text-center transition-colors focus-visible:outline-2 focus-visible:outline-ink {isSelected
 								? 'bg-raised ring-1 ring-neutral'
 								: 'hover:bg-raised/60'}"

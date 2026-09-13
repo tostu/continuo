@@ -2,45 +2,15 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import HeroLine from '$lib/components/HeroLine.svelte';
 	import ZoomDemo from '$lib/components/ZoomDemo.svelte';
-	import { universes } from '$lib/universe/registry';
-	import { toneVar, year } from '$lib/universe/derive';
-	import type { Universe } from '$lib/universe/types';
+	import { toneVar } from '$lib/universe/derive';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
 
 	let { data } = $props();
 
-	/** Kennzahlen und Mini-Chronologie für die Zeile eines Universums. */
-	function summarize(slug: string, u: Universe) {
-		const works = [...u.works].sort((a, b) => a.released.localeCompare(b.released));
-		const first = Date.parse(works[0]?.released ?? '');
-		const span = Math.max(Date.parse(works.at(-1)?.released ?? '') - first, 1);
-		const toneOf = new Map(u.sagas.map((s) => [s.id, s.tone]));
-		const nowPlaying = works.find((w) => w.nowPlaying);
-
-		return {
-			slug,
-			name: u.name,
-			sagas: u.sagas,
-			from: works[0] && year(works[0]),
-			to: works.at(-1) && year(works.at(-1)!),
-			works: works.length,
-			required: works.filter((w) => w.required).length,
-			characters: u.characters.length,
-			plotPoints: u.plotPoints.length,
-			nowPlaying,
-			nowPlayingTone: toneOf.get(nowPlaying?.sagaId ?? '') ?? 'arc-1',
-			dots: works.map((w) => ({
-				slug: w.slug,
-				x: (Date.parse(w.released) - first) / span,
-				tone: toneOf.get(w.sagaId) ?? 'neutral',
-				required: w.required
-			}))
-		};
-	}
-
-	const rows = universes.map(({ slug, universe }) => summarize(slug, universe));
-	const totalWorks = rows.reduce((sum, r) => sum + r.works, 0);
+	// Aus D1 gelesen und beim Prerendering fertig berechnet – siehe +page.server.ts.
+	const rows = $derived(data.rows);
+	const totalWorks = $derived(rows.reduce((sum, r) => sum + r.works, 0));
 
 	let hero = $state<HTMLElement>();
 	let headline = $state<HTMLElement>();
@@ -90,7 +60,7 @@
 		{m.zoom_title()}
 	</h2>
 
-	<ZoomDemo photos={data.photosByCharacterId} />
+	<ZoomDemo zoom={data.zoom} photos={data.photosByCharacterId} />
 </section>
 
 <section id="universen" class="mt-32 scroll-mt-8 pb-20 sm:mt-40" aria-labelledby="pick-title">
