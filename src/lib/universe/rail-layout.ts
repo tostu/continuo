@@ -61,39 +61,37 @@ const WAVE = [1, 0.78, 0.95, 0.66, 0.88];
 const byRelease = (a: Work, b: Work) => a.released.localeCompare(b.released);
 const byChronology = (a: Work, b: Work) => a.chronology - b.chronology;
 
-export function groupWorks(u: Pick<Universe, 'works' | 'sagas'>, mode: RailMode): RailGroup[] {
-	if (mode === 'chronology') {
-		const sagaById = new Map(u.sagas.map((s) => [s.id, s]));
-		const groups: RailGroup[] = [];
-		let lastSagaId: string | null = null;
-		for (const work of [...u.works].sort(byChronology)) {
-			const saga = sagaById.get(work.sagaId);
-			const last = groups.at(-1);
-			if (last && lastSagaId === work.sagaId) {
-				last.works.push(work);
-			} else {
-				groups.push({
-					id: `${work.sagaId}-${groups.length}`,
-					label: saga?.name ?? '',
-					tone: saga?.tone ?? 'neutral',
-					colorNodes: true,
-					works: [work]
-				});
-			}
-			lastSagaId = work.sagaId;
+/**
+ * Sortiert Werke nach `compare` und schneidet ein neues Banner, sobald sich
+ * die Saga ändert – bei Saga-Modus (Release-Reihenfolge) kann eine Saga so
+ * über mehrere getrennte Banner auftauchen, wenn ihre Werke über die Zeit
+ * verstreut veröffentlicht wurden.
+ */
+function bannerGroups(works: Work[], sagas: Universe['sagas'], compare: (a: Work, b: Work) => number) {
+	const sagaById = new Map(sagas.map((s) => [s.id, s]));
+	const groups: RailGroup[] = [];
+	let lastSagaId: string | null = null;
+	for (const work of [...works].sort(compare)) {
+		const saga = sagaById.get(work.sagaId);
+		const last = groups.at(-1);
+		if (last && lastSagaId === work.sagaId) {
+			last.works.push(work);
+		} else {
+			groups.push({
+				id: `${work.sagaId}-${groups.length}`,
+				label: saga?.name ?? '',
+				tone: saga?.tone ?? 'neutral',
+				colorNodes: true,
+				works: [work]
+			});
 		}
-		return groups;
+		lastSagaId = work.sagaId;
 	}
-	const ordered = [...u.works].sort(byRelease);
-	return u.sagas
-		.map((s) => ({
-			id: s.id,
-			label: s.name,
-			tone: s.tone,
-			colorNodes: true,
-			works: ordered.filter((w) => w.sagaId === s.id)
-		}))
-		.filter((g) => g.works.length > 0);
+	return groups;
+}
+
+export function groupWorks(u: Pick<Universe, 'works' | 'sagas'>, mode: RailMode): RailGroup[] {
+	return bannerGroups(u.works, u.sagas, mode === 'chronology' ? byChronology : byRelease);
 }
 
 export function layoutRail(
