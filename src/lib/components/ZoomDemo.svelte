@@ -73,7 +73,7 @@
 
 <ol
 	bind:this={stage}
-	class="relative mt-12 grid gap-y-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)_minmax(0,1.1fr)] lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6"
+	class="relative mt-12 grid grid-cols-1 gap-y-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)_minmax(0,1.1fr)] lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6"
 >
 	{#if wedges.length}
 		<svg
