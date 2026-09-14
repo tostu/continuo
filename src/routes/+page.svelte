@@ -63,7 +63,7 @@
 		{m.zoom_title()}
 	</h2>
 
-	<ZoomDemo zoom={data.zoom} photos={data.photosByCharacterId} />
+	<ZoomDemo zoom={data.zoom} />
 </section>
 
 <section id="universen" class="mt-32 scroll-mt-8 pb-20 sm:mt-40" aria-labelledby="pick-title">

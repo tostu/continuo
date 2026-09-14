@@ -27,6 +27,8 @@ export interface Work {
 	nowPlaying?: boolean;
 	/** Poster- bzw. Cover-Bild für Teaser und Zeitstrahl. */
 	cover?: string;
+	/** Quellenangabe fürs Cover, z. B. für die Zitatrecht-Attribution. */
+	coverCredit?: string;
 }
 
 /** Handlungsstrang innerhalb eines Werks. */
@@ -42,6 +44,10 @@ export interface Character {
 	workSlug: string;
 	name: string;
 	initials: string;
+	/** Foto der Figur (manuell kuratiert). */
+	photo?: string;
+	/** Quellenangabe fürs Foto, z. B. für die Zitatrecht-Attribution. */
+	photoCredit?: string;
 }
 
 export interface PlotPoint {

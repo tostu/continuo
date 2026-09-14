@@ -63,6 +63,7 @@ export const works = sqliteTable(
 		rangeEnd: real('range_end').notNull(),
 		nowPlaying: integer('now_playing', { mode: 'boolean' }),
 		cover: text('cover'),
+		coverCredit: text('cover_credit'),
 		sortOrder: integer('sort_order').notNull()
 	},
 	(t) => [
@@ -104,6 +105,8 @@ export const characters = sqliteTable(
 		id: text('id').notNull(),
 		name: text('name').notNull(),
 		initials: text('initials').notNull(),
+		photo: text('photo'),
+		photoCredit: text('photo_credit'),
 		sortOrder: integer('sort_order').notNull()
 	},
 	(t) => [

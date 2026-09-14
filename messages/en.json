@@ -51,5 +51,6 @@
 	"seo_character_title": "{character} in {work}: Every Plot Point",
 	"seo_character_description": "Every plot point for {character} in {work} ({universe}) — with its moment in the work and its storyline.",
 	"seo_status_required": "essential viewing",
-	"seo_status_optional": "optional"
+	"seo_status_optional": "optional",
+	"image_credit": "Source: {source}"
 }

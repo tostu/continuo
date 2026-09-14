@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { listUniverses } from '$lib/server/universe-repo';
-import { charactersFor, workBySlug } from '$lib/universe/derive';
-import { loadTmdbData } from '$lib/server/tmdb';
+import { workBySlug } from '$lib/universe/derive';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const entries: EntryGenerator = async () =>
@@ -14,8 +13,5 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 	const work = workBySlug(universe, params.werk);
 	if (!work) error(404, 'Werk nicht gefunden');
 
-	const characters = charactersFor(universe, work.slug);
-	const { poster, photosByCharacterId } = await loadTmdbData(work, characters);
-
-	return { work, poster, photosByCharacterId };
+	return { work };
 };

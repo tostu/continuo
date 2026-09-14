@@ -11,7 +11,6 @@ interface __BaseEnv_Env {
 	D1_LOCAL_PATH: string;
 	BETTER_AUTH_SECRET: string;
 	ORIGIN: string;
-	TMDB_API_READ_ACCESS_TOKEN: string;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {
@@ -34,7 +33,6 @@ declare namespace NodeJS {
 			| 'D1_LOCAL_PATH'
 			| 'BETTER_AUTH_SECRET'
 			| 'ORIGIN'
-			| 'TMDB_API_READ_ACCESS_TOKEN'
 		>
 	> {}
 }

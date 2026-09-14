@@ -83,7 +83,8 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		// Die JSON-Felder waren optional – `undefined` statt `null`, damit `{#if}` und
 		// `src={w.cover}` sich verhalten wie vorher.
 		...(w.nowPlaying ? { nowPlaying: true } : {}),
-		...(w.cover ? { cover: w.cover } : {})
+		...(w.cover ? { cover: w.cover } : {}),
+		...(w.coverCredit ? { coverCredit: w.coverCredit } : {})
 	}));
 
 	const arcs: Arc[] = arcRows.map((a) => ({
@@ -97,7 +98,9 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		id: c.id,
 		workSlug: c.workSlug,
 		name: c.name,
-		initials: c.initials
+		initials: c.initials,
+		...(c.photo ? { photo: c.photo } : {}),
+		...(c.photoCredit ? { photoCredit: c.photoCredit } : {})
 	}));
 
 	const plotPoints: PlotPoint[] = plotPointRows.map((p) => ({

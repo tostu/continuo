@@ -51,5 +51,6 @@
 	"seo_character_title": "{character} in {work}: alle Plot Points",
 	"seo_character_description": "Jeder Plot Point von {character} in {work} ({universe}) – mit Zeitpunkt im Werk und Handlungsstrang.",
 	"seo_status_required": "Pflicht für die Handlung",
-	"seo_status_optional": "optional"
+	"seo_status_optional": "optional",
+	"image_credit": "Quelle: {source}"
 }

@@ -6,6 +6,7 @@
 	import PlotCard from '$lib/components/PlotCard.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
+	import ImageCredit from '$lib/components/ImageCredit.svelte';
 	import { arcShares, arcsFor, dominantArc, plotPointsFor, toneVar } from '$lib/universe/derive';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
@@ -54,7 +55,7 @@
 		work: work.title,
 		universe: universe.name
 	})}
-	image={data.photoUrl}
+	image={character.photo}
 	wideImage={false}
 	imageAlt={character.name}
 	type="profile"
@@ -76,15 +77,16 @@
 	<h1 class="mt-4 text-[44px] leading-[0.95] font-bold tracking-tight">{character.name}</h1>
 </header>
 
-<div class="mt-8 flex justify-center">
+<div class="mt-8 flex flex-col items-center">
 	<Avatar
 		initials={character.initials}
-		photoUrl={data.photoUrl}
+		photoUrl={character.photo}
 		{shares}
 		size={172}
 		delay={0.15}
 		transitionName="avatar-{character.id}"
 	/>
+	<ImageCredit text={character.photoCredit} />
 </div>
 
 <p class="mt-10 flex items-end gap-4">

@@ -8,7 +8,6 @@ import {
 	workBySlug,
 	year
 } from '$lib/universe/derive';
-import { loadTmdbData } from '$lib/server/tmdb';
 import type { Universe, ZoomModel } from '$lib/universe/types';
 import type { PageServerLoad } from './$types';
 
@@ -72,15 +71,8 @@ export const load: PageServerLoad = async () => {
 	const starWars = universes.find((u) => u.slug === 'star-wars')!.universe;
 	const zoom = zoomModel(starWars);
 
-	// Fotos für das Zoom-Beispiel – nur zur Build-Zeit; ohne Token bleibt es bei Initialen.
-	const { photosByCharacterId } = await loadTmdbData(
-		zoom.work,
-		zoom.cast.map((c) => c.character)
-	);
-
 	return {
 		rows: universes.map(({ slug, universe }) => summarize(slug, universe)),
-		zoom,
-		photosByCharacterId
+		zoom
 	};
 };

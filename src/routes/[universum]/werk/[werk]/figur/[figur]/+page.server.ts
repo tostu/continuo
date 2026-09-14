@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { listUniverses } from '$lib/server/universe-repo';
 import { charactersFor, workBySlug } from '$lib/universe/derive';
-import { loadTmdbData } from '$lib/server/tmdb';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 export const entries: EntryGenerator = async () =>
@@ -15,7 +14,5 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 	const character = work && charactersFor(universe, work.slug).find((c) => c.id === params.figur);
 	if (!work || !character) error(404, 'Figur nicht gefunden');
 
-	const { photosByCharacterId } = await loadTmdbData(work, [character]);
-
-	return { work, character, photoUrl: photosByCharacterId[character.id] };
+	return { work, character };
 };

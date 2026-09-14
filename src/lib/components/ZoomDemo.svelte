@@ -13,8 +13,7 @@
 	 * Die Daten kommen zugeschnitten aus dem Server-Load (`zoomModel` in +page.server.ts) –
 	 * die Universen liegen in D1 und werden beim Prerendering gelesen.
 	 */
-	let { zoom, photos = {} }: { zoom: ZoomModel; photos?: Record<string, string | undefined> } =
-		$props();
+	let { zoom }: { zoom: ZoomModel } = $props();
 
 	const work = $derived(zoom.work);
 	const arcs = $derived(zoom.arcs);
@@ -163,7 +162,7 @@
 						>
 							<Avatar
 								initials={character.initials}
-								photoUrl={photos[character.id]}
+								photoUrl={character.photo}
 								{shares}
 								size={56}
 							/>
@@ -201,7 +200,7 @@
 				<div class="flex items-center gap-4">
 					<Avatar
 						initials={selected.character.initials}
-						photoUrl={photos[selectedId]}
+						photoUrl={selected.character.photo}
 						shares={selected.shares}
 						size={76}
 					/>

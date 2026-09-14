@@ -6,6 +6,7 @@
 	import SearchField from '$lib/components/SearchField.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
+	import ImageCredit from '$lib/components/ImageCredit.svelte';
 	import {
 		arcShares,
 		arcsFor,
@@ -29,7 +30,7 @@
 	const characters = $derived(
 		charactersFor(universe, work.slug).map((character) => ({
 			character,
-			photoUrl: data.photosByCharacterId[character.id],
+			photoUrl: character.photo,
 			shares: arcShares(universe, work.slug, character.id),
 			count: plotPointsFor(universe, work.slug, character.id).length
 		}))
@@ -103,12 +104,12 @@
 		saga: saga.name,
 		status: work.required ? m.seo_status_required() : m.seo_status_optional()
 	})}
-	image={data.poster}
+	image={work.cover}
 	wideImage={false}
 	imageAlt={work.title}
 	type="article"
 	jsonLd={[
-		...workSchema(work, universe, `/${data.slug}/werk/${work.slug}`, data.poster),
+		...workSchema(work, universe, `/${data.slug}/werk/${work.slug}`, work.cover),
 		...breadcrumbs([
 			{ name: 'Continuo', path: '/' },
 			{ name: universe.name, path: `/${data.slug}` },
@@ -126,12 +127,15 @@
 	</Button.Root>
 
 	<div class="mt-5 flex items-start gap-4">
-		{#if data.poster}
-			<img
-				src={data.poster}
-				alt=""
-				class="h-28 w-[76px] shrink-0 rounded-lg object-cover ring-1 ring-hairline"
-			/>
+		{#if work.cover}
+			<div class="shrink-0">
+				<img
+					src={work.cover}
+					alt=""
+					class="h-28 w-[76px] rounded-lg object-cover ring-1 ring-hairline"
+				/>
+				<ImageCredit text={work.coverCredit} />
+			</div>
 		{/if}
 		<div>
 			<p
