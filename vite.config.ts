@@ -14,7 +14,27 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter()
+			adapter: adapter(),
+			csp: {
+				// 'auto' → hashes on prerendered pages (this site is 100% prerendered).
+				// The JSON-LD <script> in Seo.svelte is injected via {@html} and thus invisible
+				// to Svelte's own hash collection; hooks.server.ts patches its hash into the
+				// generated CSP meta tag by hand.
+				mode: 'auto',
+				directives: {
+					'default-src': ['self'],
+					'script-src': ['self'],
+					// Svelte's transition/animate directives inject inline <style>, so this can't be hash-only.
+					'style-src': ['self', 'unsafe-inline', 'https://fonts.googleapis.com'],
+					'font-src': ['self', 'https://fonts.gstatic.com'],
+					'img-src': ['self', 'data:'],
+					'connect-src': ['self'],
+					'base-uri': ['none'],
+					'object-src': ['none'],
+					'form-action': ['self'],
+					'frame-ancestors': ['none']
+				}
+			}
 		}),
 
 		paraglideVitePlugin({
