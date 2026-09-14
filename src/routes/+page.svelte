@@ -1,10 +1,12 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import HeroLine from '$lib/components/HeroLine.svelte';
 	import ZoomDemo from '$lib/components/ZoomDemo.svelte';
 	import { toneVar } from '$lib/universe/derive';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
+	import { websiteSchema } from '$lib/seo/jsonld';
 
 	let { data } = $props();
 
@@ -16,10 +18,11 @@
 	let headline = $state<HTMLElement>();
 </script>
 
-<svelte:head>
-	<title>Continuo · {m.landing_title()}</title>
-	<meta name="description" content={m.landing_intro()} />
-</svelte:head>
+<Seo
+	title={m.seo_landing_title()}
+	description={m.seo_landing_description()}
+	jsonLd={websiteSchema(m.seo_landing_description())}
+/>
 
 <header class="pt-8">
 	<p class="text-[17px] font-bold tracking-tight">Continuo</p>

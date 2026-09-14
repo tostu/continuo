@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b4cc4" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#0f7a5f" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#a8431f" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0f0f0f"/>
+  <circle cx="980" cy="120" r="420" fill="url(#glow)"/>
+
+  <text x="80" y="128" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="6" fill="#9a968d">CONTINUO</text>
+
+  <text x="80" y="300" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="74" font-weight="700" fill="#f4f1ea">Große Film- und Serienwelten,</text>
+  <text x="80" y="384" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="74" font-weight="700" fill="#f4f1ea">der Reihe nach.</text>
+
+  <text x="80" y="452" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" fill="#9a968d">Watch order · Zeitstrahl · Figuren · Plot Points</text>
+
+  <g>
+    <line x1="80" y1="548" x2="1120" y2="548" stroke="#2a2a2a" stroke-width="3"/>
+    <circle cx="140" cy="548" r="17" fill="#5b4cc4"/>
+    <circle cx="300" cy="548" r="10" fill="#5b4cc4" opacity="0.5"/>
+    <circle cx="440" cy="548" r="17" fill="#0f7a5f"/>
+    <circle cx="600" cy="548" r="10" fill="#0f7a5f" opacity="0.5"/>
+    <circle cx="742" cy="548" r="17" fill="#0f7a5f"/>
+    <circle cx="900" cy="548" r="10" fill="#a8431f" opacity="0.5"/>
+    <circle cx="1050" cy="548" r="17" fill="#a8431f"/>
+  </g>
+</svg>

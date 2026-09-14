@@ -5,10 +5,12 @@
 	import PlotTimeline from '$lib/components/PlotTimeline.svelte';
 	import PlotCard from '$lib/components/PlotCard.svelte';
 	import Icon from '$lib/components/Icon.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import { arcShares, arcsFor, dominantArc, plotPointsFor, toneVar } from '$lib/universe/derive';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
+	import { breadcrumbs } from '$lib/seo/jsonld';
 
 	let { data } = $props();
 
@@ -45,9 +47,24 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{character.name} · {work.short}</title>
-</svelte:head>
+<Seo
+	title={m.seo_character_title({ character: character.name, work: work.title })}
+	description={m.seo_character_description({
+		character: character.name,
+		work: work.title,
+		universe: universe.name
+	})}
+	image={data.photoUrl}
+	wideImage={false}
+	imageAlt={character.name}
+	type="profile"
+	jsonLd={breadcrumbs([
+		{ name: 'Continuo', path: '/' },
+		{ name: universe.name, path: `/${data.slug}` },
+		{ name: work.title, path: `/${data.slug}/werk/${work.slug}` },
+		{ name: character.name, path: `/${data.slug}/werk/${work.slug}/figur/${character.id}` }
+	])}
+/>
 
 <header class="pt-6">
 	<Button.Root

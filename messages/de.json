@@ -40,5 +40,16 @@
 	"stat_characters": "Figuren",
 	"stat_plot_points": "Plot Points",
 	"open_timeline": "Zeitstrahl öffnen",
-	"all_universes": "Alle Universen"
+	"all_universes": "Alle Universen",
+	"seo_landing_title": "Continuo · Reihenfolge für Film- und Serien-Universen",
+	"seo_landing_description": "In welcher Reihenfolge schaut man Star Wars, Marvel oder Fate? Continuo zeigt jedes Universum als Zeitstrahl – chronologisch und nach Release, mit Pflichtfolgen, Figuren und Plot Points.",
+	"seo_universe_title": "{universe} Reihenfolge: alle Filme & Serien chronologisch",
+	"seo_universe_description": "{works} Filme und Serien aus {universe} in der richtigen Reihenfolge – chronologisch oder nach Erscheinungsdatum. {required} davon sind Pflicht. Mit Zeitstrahl, Figuren und Plot Points.",
+	"seo_universe_heading_kicker": "Reihenfolge",
+	"seo_work_title": "{work} ({year}): Einordnung in die {universe} Reihenfolge",
+	"seo_work_description": "Wo {work} ({year}) in der {universe} Reihenfolge steht: {kind}, {saga}, {status}. Mit allen Figuren und ihren Plot Points.",
+	"seo_character_title": "{character} in {work}: alle Plot Points",
+	"seo_character_description": "Jeder Plot Point von {character} in {work} ({universe}) – mit Zeitpunkt im Werk und Handlungsstrang.",
+	"seo_status_required": "Pflicht für die Handlung",
+	"seo_status_optional": "optional"
 }

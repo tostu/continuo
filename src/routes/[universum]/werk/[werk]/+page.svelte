@@ -5,6 +5,7 @@
 	import ArcFilter from '$lib/components/ArcFilter.svelte';
 	import SearchField from '$lib/components/SearchField.svelte';
 	import Icon from '$lib/components/Icon.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import {
 		arcShares,
 		arcsFor,
@@ -17,6 +18,7 @@
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
+	import { breadcrumbs, workSchema } from '$lib/seo/jsonld';
 
 	let { data } = $props();
 
@@ -91,9 +93,29 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{work.short} · {universe.name}</title>
-</svelte:head>
+<Seo
+	title={m.seo_work_title({ work: work.title, year: year(work), universe: universe.name })}
+	description={m.seo_work_description({
+		work: work.title,
+		year: year(work),
+		universe: universe.name,
+		kind: work.kind === 'film' ? m.kind_film() : m.kind_series(),
+		saga: saga.name,
+		status: work.required ? m.seo_status_required() : m.seo_status_optional()
+	})}
+	image={data.poster}
+	wideImage={false}
+	imageAlt={work.title}
+	type="article"
+	jsonLd={[
+		...workSchema(work, universe, `/${data.slug}/werk/${work.slug}`, data.poster),
+		...breadcrumbs([
+			{ name: 'Continuo', path: '/' },
+			{ name: universe.name, path: `/${data.slug}` },
+			{ name: work.title, path: `/${data.slug}/werk/${work.slug}` }
+		])
+	]}
+/>
 
 <header class="pt-6">
 	<Button.Root

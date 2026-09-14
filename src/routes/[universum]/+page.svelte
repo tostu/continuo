@@ -4,10 +4,12 @@
 	import ModeToggle from '$lib/components/ModeToggle.svelte';
 	import KindFilter from '$lib/components/KindFilter.svelte';
 	import Icon from '$lib/components/Icon.svelte';
+	import Seo from '$lib/components/Seo.svelte';
 	import type { RailMode } from '$lib/universe/rail-layout';
 	import type { Work } from '$lib/universe/types';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
+	import { breadcrumbs, watchOrderSchema } from '$lib/seo/jsonld';
 
 	let { data } = $props();
 
@@ -25,11 +27,37 @@
 		{ value: 'chronology', label: m.mode_chronology() },
 		{ value: 'saga', label: m.mode_saga() }
 	];
+
+	// Für Titel und Rich Results zählt das ganze Universum, nicht die aktive Filterung.
+	const allWorks = $derived(universe.works);
+	const allRequired = $derived(allWorks.filter((w) => w.required).length);
+	const seoTitle = $derived(m.seo_universe_title({ universe: universe.name }));
+	const seoDescription = $derived(
+		m.seo_universe_description({
+			universe: universe.name,
+			works: allWorks.length,
+			required: allRequired
+		})
+	);
+	const chronological = $derived([...allWorks].sort((a, b) => a.chronology - b.chronology));
 </script>
 
-<svelte:head>
-	<title>{m.universe_title()} · {universe.name}</title>
-</svelte:head>
+<Seo
+	title={seoTitle}
+	description={seoDescription}
+	jsonLd={[
+		...watchOrderSchema(
+			seoTitle,
+			seoDescription,
+			chronological,
+			(w) => `/${data.slug}/werk/${w.slug}`
+		),
+		...breadcrumbs([
+			{ name: 'Continuo', path: '/' },
+			{ name: universe.name, path: `/${data.slug}` }
+		])
+	]}
+/>
 
 <header class="pt-6 pb-2">
 	<Button.Root
@@ -40,9 +68,12 @@
 	</Button.Root>
 
 	<p class="mt-5 text-[12px] font-semibold tracking-[0.18em] text-muted uppercase">
-		{universe.name}
+		{m.universe_title()}
 	</p>
-	<h1 class="mt-1 text-[42px] leading-none font-bold tracking-tight">{m.universe_title()}</h1>
+	<h1 class="mt-1 text-[42px] leading-none font-bold tracking-tight text-balance">
+		{universe.name}
+		<span class="text-muted">{m.seo_universe_heading_kicker()}</span>
+	</h1>
 	<p class="mt-5 flex items-end gap-3">
 		<span class="text-[64px] leading-[0.8] font-bold tracking-tight text-arc-1 tabular-nums">
 			{works.length}

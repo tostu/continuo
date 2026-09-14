@@ -3,7 +3,10 @@
 	import { Button } from 'bits-ui';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
+	import Seo from '$lib/components/Seo.svelte';
 </script>
+
+<Seo title="{page.status} · {m.not_found()} · Continuo" description={m.not_found()} noindex />
 
 <section class="flex min-h-dvh flex-col justify-center pb-24">
 	<p class="text-[96px] leading-none font-bold tracking-tighter text-arc-3 tabular-nums">

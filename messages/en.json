@@ -40,5 +40,16 @@
 	"stat_characters": "characters",
 	"stat_plot_points": "plot points",
 	"open_timeline": "Open timeline",
-	"all_universes": "All universes"
+	"all_universes": "All universes",
+	"seo_landing_title": "Continuo · Watch order for film and series universes",
+	"seo_landing_description": "What order do you watch Star Wars, Marvel or Fate in? Continuo lays out every universe as one timeline — chronological and release order, with the essential entries, characters and plot points.",
+	"seo_universe_title": "{universe} Watch Order: Every Film & Series in Order",
+	"seo_universe_description": "All {works} {universe} films and series in the right watch order — chronological or by release date. {required} of them are essential. With a timeline, characters and plot points.",
+	"seo_universe_heading_kicker": "Watch order",
+	"seo_work_title": "{work} ({year}): Where It Fits in the {universe} Watch Order",
+	"seo_work_description": "Where {work} ({year}) sits in the {universe} watch order: {kind}, {saga}, {status}. With every character and their plot points.",
+	"seo_character_title": "{character} in {work}: Every Plot Point",
+	"seo_character_description": "Every plot point for {character} in {work} ({universe}) — with its moment in the work and its storyline.",
+	"seo_status_required": "essential viewing",
+	"seo_status_optional": "optional"
 }
