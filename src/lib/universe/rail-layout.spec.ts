@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { groupWorks, layoutRail, type RailMode } from './rail-layout';
+import { placementsFor } from './placements';
 import { loadUniverse } from '$lib/server/universe-repo';
 
 const modes: RailMode[] = ['saga', 'chronology'];
 
 /**
- * Die Assertions hängen an echten Werken (`episode-iii`, `the-clone-wars`), deshalb
+ * Die Assertions hängen an echten Werken (`episode-iii`, erste Staffel von `the-clone-wars`), deshalb
  * kommt das Universum aus der lokalen D1: `D1_LOCAL=true bun run test:unit`.
  * Ohne lesbare Datenbank wird übersprungen statt zu scheitern.
  */
@@ -17,18 +18,20 @@ const starWars = await loadUniverse('star-wars').catch((err) => {
 describe.skipIf(!starWars)('layoutRail', () => {
 	it.each(modes)('places every work exactly once (%s)', (mode) => {
 		const { nodes } = layoutRail(starWars!, mode, 360);
-		expect(new Set(nodes.map((n) => n.slug)).size).toBe(starWars!.works.length);
-		expect(nodes).toHaveLength(starWars!.works.length);
+		// Serien mit Staffeln liefern einen Knoten pro Staffel.
+		const placements = placementsFor(starWars!).length;
+		expect(new Set(nodes.map((n) => n.slug)).size).toBe(placements);
+		expect(nodes).toHaveLength(placements);
 	});
 
 	it('branches optional works off the main path in saga mode', () => {
 		const { nodes, edges } = layoutRail(starWars!, 'saga', 360);
-		const cloneWars = nodes.find((n) => n.slug === 'the-clone-wars')!;
+		const cloneWars = nodes.find((n) => n.slug === 'the-clone-wars::the-clone-wars-s1')!;
 		expect(cloneWars.onPath).toBe(false);
 		expect(edges).toContainEqual(
 			expect.objectContaining({
 				from: 'episode-iii',
-				to: 'the-clone-wars',
+				to: 'the-clone-wars::the-clone-wars-s1',
 				branch: true,
 				dashed: true
 			})
