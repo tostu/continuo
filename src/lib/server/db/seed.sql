@@ -1438,9 +1438,11 @@ INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology
   ('dragon-ball', 'coolers-revenge', 'Dragon Ball Z: Cooler''s Revenge', 'Cooler''s Revenge', 'film', '1991-07-20', 60, 'Nach Friezas Niederlage', 'z-era', 0, 'Min.', 0, 47, NULL, 3),
   ('dragon-ball', 'broly-legendary-super-saiyan', 'Dragon Ball Z: Broly – Der Legendäre Super-Saiyajin', 'Broly – Der Legendäre Super-Saiyajin', 'film', '1993-03-06', 85, 'Vor den Cell-Spielen', 'z-era', 0, 'Min.', 0, 70, NULL, 4),
   ('dragon-ball', 'fusion-reborn', 'Dragon Ball Z: Fusion Reborn', 'Fusion Reborn', 'film', '1995-03-04', 110, 'Nach Kid Buus Niederlage', 'z-era', 0, 'Min.', 0, 52, NULL, 5),
-  ('dragon-ball', 'dragon-ball-super', 'Dragon Ball Super', 'Dragon Ball Super', 'serie', '2015-07-05', 130, 'Jahre nach Kid Buu', 'super-era', 1, 'Folge', 1, 131, NULL, 6),
-  ('dragon-ball', 'dragon-ball-super-broly', 'Dragon Ball Super: Broly', 'Broly', 'film', '2018-12-14', 140, 'Nach dem Turnier der Kraft', 'super-era', 0, 'Min.', 0, 100, NULL, 7),
-  ('dragon-ball', 'dragon-ball-super-super-hero', 'Dragon Ball Super: Super Hero', 'Super Hero', 'film', '2022-06-11', 150, 'Jahre nach Broly', 'super-era', 0, 'Min.', 0, 99, NULL, 8);
+  ('dragon-ball', 'dragon-ball-daima', 'Dragon Ball Daima', 'Dragon Ball Daima', 'serie', '2024-10-11', 115, 'Kurz nach Majin Buus Niederlage', 'z-era', 0, 'Folge', 1, 20, NULL, 6),
+  ('dragon-ball', 'dragon-ball-super', 'Dragon Ball Super', 'Dragon Ball Super', 'serie', '2015-07-05', 130, 'Jahre nach Kid Buu', 'super-era', 1, 'Folge', 1, 131, NULL, 7),
+  ('dragon-ball', 'dragon-ball-super-broly', 'Dragon Ball Super: Broly', 'Broly', 'film', '2018-12-14', 140, 'Nach dem Turnier der Kraft', 'super-era', 0, 'Min.', 0, 100, NULL, 8),
+  ('dragon-ball', 'dragon-ball-super-super-hero', 'Dragon Ball Super: Super Hero', 'Super Hero', 'film', '2022-06-11', 150, 'Jahre nach Broly', 'super-era', 0, 'Min.', 0, 99, NULL, 9),
+  ('dragon-ball', 'dragon-ball-gt', 'Dragon Ball GT', 'Dragon Ball GT', 'serie', '1996-02-07', 160, 'Fünf Jahre nach Dragon Ball Z', 'super-era', 0, 'Folge', 1, 64, NULL, 10);
 
 INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, released, chronology, lore_date, range_start, range_end, sort_order) VALUES
   ('dragon-ball', 'dragon-ball-z', 'z-s1', 1, 'Saiyajin-Saga', '1989-04-26', 20, 'Ankunft der Saiyajin', 1, 39, 0),
@@ -1462,7 +1464,12 @@ INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('dragon-ball', 'super-battle-of-gods', 'dragon-ball-super', 'Battle of Gods', 'arc-1', 10),
   ('dragon-ball', 'super-tournament-of-power', 'dragon-ball-super', 'Turnier der Kraft', 'arc-3', 11),
   ('dragon-ball', 'sbroly-broly', 'dragon-ball-super-broly', 'Brolys Rückkehr', 'arc-3', 12),
-  ('dragon-ball', 'sh-red-ribbon', 'dragon-ball-super-super-hero', 'Die neue Red-Ribbon-Armee', 'arc-3', 13);
+  ('dragon-ball', 'sh-red-ribbon', 'dragon-ball-super-super-hero', 'Die neue Red-Ribbon-Armee', 'arc-3', 13),
+  ('dragon-ball', 'daima-demon-realm', 'dragon-ball-daima', 'Die Reise ins Dämonenreich', 'arc-1', 14),
+  ('dragon-ball', 'daima-gomah', 'dragon-ball-daima', 'König Gomah', 'arc-3', 15),
+  ('dragon-ball', 'gt-black-star', 'dragon-ball-gt', 'Die Black-Star-Dragon-Balls', 'arc-1', 16),
+  ('dragon-ball', 'gt-baby', 'dragon-ball-gt', 'Baby-Saga', 'arc-3', 17),
+  ('dragon-ball', 'gt-shadow-dragons', 'dragon-ball-gt', 'Die Schattendrachen', 'arc-2', 18);
 
 INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
   ('dragon-ball', 'dragon-ball-original', 'goku-db', 'Son Goku', 'SG', 0),
@@ -1489,7 +1496,13 @@ INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order
   ('dragon-ball', 'dragon-ball-super-broly', 'goku-sbroly', 'Son Goku', 'SG', 21),
   ('dragon-ball', 'dragon-ball-super-broly', 'broly-sbroly', 'Broly', 'BR', 22),
   ('dragon-ball', 'dragon-ball-super-super-hero', 'gohan-sh', 'Son Gohan', 'GO', 23),
-  ('dragon-ball', 'dragon-ball-super-super-hero', 'piccolo-sh', 'Piccolo', 'PI', 24);
+  ('dragon-ball', 'dragon-ball-super-super-hero', 'piccolo-sh', 'Piccolo', 'PI', 24),
+  ('dragon-ball', 'dragon-ball-daima', 'goku-daima', 'Son Goku', 'SG', 25),
+  ('dragon-ball', 'dragon-ball-daima', 'glorio-daima', 'Glorio', 'GL', 26),
+  ('dragon-ball', 'dragon-ball-daima', 'gomah-daima', 'Gomah', 'GM', 27),
+  ('dragon-ball', 'dragon-ball-gt', 'goku-gt', 'Son Goku', 'SG', 28),
+  ('dragon-ball', 'dragon-ball-gt', 'pan-gt', 'Pan', 'PA', 29),
+  ('dragon-ball', 'dragon-ball-gt', 'baby-gt', 'Baby', 'BA', 30);
 
 INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
   ('dragon-ball', 'pp-db-1', 'dragon-ball-original', 'goku-db', 'db-suche', 5, 'Findet als Kind die Vier-Sterne-Dragon-Ball und beginnt die Reise mit Bulma.'),
@@ -1516,7 +1529,15 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('dragon-ball', 'pp-sbroly-1', 'dragon-ball-super-broly', 'goku-sbroly', 'sbroly-broly', 60, 'Kämpft gemeinsam mit Vegeta gegen den wiedergeborenen Broly.'),
   ('dragon-ball', 'pp-sbroly-2', 'dragon-ball-super-broly', 'broly-sbroly', 'sbroly-broly', 30, 'Wächst isoliert auf einem fernen Planeten zu unermesslicher Stärke heran.'),
   ('dragon-ball', 'pp-sh-1', 'dragon-ball-super-super-hero', 'gohan-sh', 'sh-red-ribbon', 70, 'Erwacht als Gohan Beast zu neuer, ungeahnter Stärke.'),
-  ('dragon-ball', 'pp-sh-2', 'dragon-ball-super-super-hero', 'piccolo-sh', 'sh-red-ribbon', 50, 'Trainiert heimlich mit Pan und wird zu Orange Piccolo.');
+  ('dragon-ball', 'pp-sh-2', 'dragon-ball-super-super-hero', 'piccolo-sh', 'sh-red-ribbon', 50, 'Trainiert heimlich mit Pan und wird zu Orange Piccolo.'),
+  ('dragon-ball', 'pp-daima-1', 'dragon-ball-daima', 'gomah-daima', 'daima-gomah', 1, 'Lässt Goku und seine Freunde per Wunsch an die Dragon Balls zu Kindern schrumpfen.'),
+  ('dragon-ball', 'pp-daima-2', 'dragon-ball-daima', 'glorio-daima', 'daima-demon-realm', 3, 'Begleitet Goku als Führer durch das Dämonenreich.'),
+  ('dragon-ball', 'pp-daima-3', 'dragon-ball-daima', 'goku-daima', 'daima-gomah', 19, 'Verwandelt sich im Kampf gegen Gomah in einen Super-Saiyajin 4.'),
+  ('dragon-ball', 'pp-gt-1', 'dragon-ball-gt', 'goku-gt', 'gt-black-star', 1, 'Wird durch einen Wunsch an die Black-Star-Dragon-Balls wieder zum Kind.'),
+  ('dragon-ball', 'pp-gt-2', 'dragon-ball-gt', 'pan-gt', 'gt-black-star', 3, 'Reist mit Goku und Trunks durchs All, um die verstreuten Dragon Balls einzusammeln.'),
+  ('dragon-ball', 'pp-gt-3', 'dragon-ball-gt', 'baby-gt', 'gt-baby', 28, 'Übernimmt Vegetas Körper und macht die Erdbewohner zu seinen Untertanen.'),
+  ('dragon-ball', 'pp-gt-4', 'dragon-ball-gt', 'goku-gt', 'gt-baby', 35, 'Erreicht als Erster die Stufe Super-Saiyajin 4.'),
+  ('dragon-ball', 'pp-gt-5', 'dragon-ball-gt', 'goku-gt', 'gt-shadow-dragons', 64, 'Besiegt Omega Shenlong und verlässt die Erde gemeinsam mit Shenlong.');
 
 -- Naruto
 
@@ -1525,7 +1546,8 @@ INSERT INTO universes (slug, name, sort_order) VALUES
 
 INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
   ('naruto', 'part-1', 'Naruto (Teil 1)', 'arc-2', 0),
-  ('naruto', 'part-2', 'Naruto: Shippuden (Teil 2)', 'arc-1', 1);
+  ('naruto', 'part-2', 'Naruto: Shippuden (Teil 2)', 'arc-1', 1),
+  ('naruto', 'boruto-era', 'Boruto (Neue Generation)', 'arc-3', 2);
 
 INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
   ('naruto', 'naruto-original', 'Naruto', 'Naruto', 'serie', '2002-10-03', 10, 'Kindheit von Naruto', 'part-1', 1, 'Folge', 1, 220, NULL, 0),
@@ -1539,7 +1561,8 @@ INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology
   ('naruto', 'shippuden-movie-4-lost-tower', 'Naruto Shippuden: The Lost Tower', 'Der verlorene Turm', 'film', '2010-07-31', 65, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 91, NULL, 8),
   ('naruto', 'shippuden-movie-5-blood-prison', 'Naruto Shippuden: Blood Prison', 'Blutgefängnis', 'film', '2011-07-30', 70, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 102, NULL, 9),
   ('naruto', 'road-to-ninja', 'Naruto Shippuden: Road to Ninja', 'Road to Ninja', 'film', '2012-07-28', 75, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 109, NULL, 10),
-  ('naruto', 'the-last-naruto-the-movie', 'The Last: Naruto the Movie', 'The Last', 'film', '2014-12-06', 90, 'Zwei Jahre nach dem Vierten Weltkrieg', 'part-2', 1, 'Min.', 0, 112, NULL, 11);
+  ('naruto', 'the-last-naruto-the-movie', 'The Last: Naruto the Movie', 'The Last', 'film', '2014-12-06', 90, 'Zwei Jahre nach dem Vierten Weltkrieg', 'part-2', 1, 'Min.', 0, 112, NULL, 11),
+  ('naruto', 'boruto', 'Boruto: Naruto Next Generations', 'Boruto', 'serie', '2017-04-05', 100, 'Naruto ist Siebter Hokage', 'boruto-era', 1, 'Folge', 1, 293, NULL, 12);
 
 INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('naruto', 'n-genin', 'naruto-original', 'Die Genin-Prüfung', 'arc-1', 0),
@@ -1556,7 +1579,10 @@ INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('naruto', 'sm5-hozuki', 'shippuden-movie-5-blood-prison', 'Das Hochsicherheitsgefängnis Hōzukijō', 'arc-3', 11),
   ('naruto', 'sm6-genjutsu', 'road-to-ninja', 'Die Genjutsu-Welt', 'arc-3', 12),
   ('naruto', 'last-hinata', 'the-last-naruto-the-movie', 'Hinatas Gefühle', 'arc-1', 13),
-  ('naruto', 'last-toneri', 'the-last-naruto-the-movie', 'Toneris Plan', 'arc-3', 14);
+  ('naruto', 'last-toneri', 'the-last-naruto-the-movie', 'Toneris Plan', 'arc-3', 14),
+  ('naruto', 'bo-akademie', 'boruto', 'Die Ninja-Akademie', 'arc-1', 15),
+  ('naruto', 'bo-momoshiki', 'boruto', 'Die Chunin-Prüfung und Momoshiki', 'arc-2', 16),
+  ('naruto', 'bo-kara', 'boruto', 'Kara und das Karma', 'arc-3', 17);
 
 INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
   ('naruto', 'naruto-original', 'naruto-no', 'Naruto Uzumaki', 'NU', 0),
@@ -1581,7 +1607,11 @@ INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order
   ('naruto', 'road-to-ninja', 'menma-sm6', 'Menma', 'ME', 19),
   ('naruto', 'the-last-naruto-the-movie', 'naruto-last', 'Naruto Uzumaki', 'NU', 20),
   ('naruto', 'the-last-naruto-the-movie', 'hinata-last', 'Hinata Hyūga', 'HH', 21),
-  ('naruto', 'the-last-naruto-the-movie', 'toneri-last', 'Toneri Ōtsutsuki', 'TO', 22);
+  ('naruto', 'the-last-naruto-the-movie', 'toneri-last', 'Toneri Ōtsutsuki', 'TO', 22),
+  ('naruto', 'boruto', 'boruto-bo', 'Boruto Uzumaki', 'BU', 23),
+  ('naruto', 'boruto', 'sarada-bo', 'Sarada Uchiha', 'SU', 24),
+  ('naruto', 'boruto', 'kawaki-bo', 'Kawaki', 'KA', 25),
+  ('naruto', 'boruto', 'naruto-bo', 'Naruto Uzumaki', 'NU', 26);
 
 INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
   ('naruto', 'pp-no-1', 'naruto-original', 'naruto-no', 'n-genin', 5, 'Besteht mithilfe des Schattendoppelgänger-Jutsu die Genin-Prüfung.'),
@@ -1607,7 +1637,12 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('naruto', 'pp-sm6-2', 'road-to-ninja', 'menma-sm6', 'sm6-genjutsu', 45, 'Ist die finstere Alternativversion von Naruto in der Genjutsu-Welt.'),
   ('naruto', 'pp-last-1', 'the-last-naruto-the-movie', 'naruto-last', 'last-hinata', 60, 'Erkennt endlich seine wahren Gefühle für Hinata.'),
   ('naruto', 'pp-last-2', 'the-last-naruto-the-movie', 'hinata-last', 'last-hinata', 20, 'Gesteht sich ihre langjährige Liebe zu Naruto ein.'),
-  ('naruto', 'pp-last-3', 'the-last-naruto-the-movie', 'toneri-last', 'last-toneri', 80, 'Entführt Hinata, um den Mond auf die Erde stürzen zu lassen.');
+  ('naruto', 'pp-last-3', 'the-last-naruto-the-movie', 'toneri-last', 'last-toneri', 80, 'Entführt Hinata, um den Mond auf die Erde stürzen zu lassen.'),
+  ('naruto', 'pp-bo-1', 'boruto', 'boruto-bo', 'bo-akademie', 1, 'Beginnt an der Ninja-Akademie und hadert mit seinem Vater, dem Hokage.'),
+  ('naruto', 'pp-bo-2', 'boruto', 'sarada-bo', 'bo-akademie', 23, 'Trifft auf der Suche nach ihrem Vater endlich Sasuke.'),
+  ('naruto', 'pp-bo-3', 'boruto', 'boruto-bo', 'bo-momoshiki', 65, 'Besiegt Momoshiki Ōtsutsuki und erhält von ihm das Karma-Mal.'),
+  ('naruto', 'pp-bo-4', 'boruto', 'kawaki-bo', 'bo-kara', 190, 'Flieht vor Kara und wird bei der Familie Uzumaki aufgenommen.'),
+  ('naruto', 'pp-bo-5', 'boruto', 'naruto-bo', 'bo-kara', 216, 'Nutzt gegen Isshiki den Baryon-Modus und verliert dabei Kurama.');
 
 -- Star Trek
 
@@ -1638,7 +1673,9 @@ INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology
   ('star-trek', 'star-trek-first-contact', 'Star Trek: First Contact', 'First Contact', 'film', '1996-11-22', 90, '2373', 'tng-era', 1, 'Min.', 0, 111, NULL, 14),
   ('star-trek', 'star-trek-insurrection', 'Star Trek: Insurrection', 'Insurrection', 'film', '1998-12-11', 95, '2375', 'tng-era', 0, 'Min.', 0, 103, NULL, 15),
   ('star-trek', 'star-trek-nemesis', 'Star Trek: Nemesis', 'Nemesis', 'film', '2002-12-13', 100, '2379', 'tng-era', 1, 'Min.', 0, 116, NULL, 16),
-  ('star-trek', 'star-trek-picard', 'Star Trek: Picard', 'Picard', 'serie', '2020-01-23', 110, '2399–2401', 'modern-era', 0, 'Folge', 1, 30, NULL, 17);
+  ('star-trek', 'star-trek-lower-decks', 'Star Trek: Lower Decks', 'Lower Decks', 'serie', '2020-08-06', 102, '2380–2382', 'modern-era', 0, 'Folge', 1, 50, NULL, 17),
+  ('star-trek', 'star-trek-prodigy', 'Star Trek: Prodigy', 'Prodigy', 'serie', '2021-10-28', 105, '2383–2385', 'modern-era', 0, 'Folge', 1, 40, NULL, 18),
+  ('star-trek', 'star-trek-picard', 'Star Trek: Picard', 'Picard', 'serie', '2020-01-23', 110, '2399–2401', 'modern-era', 0, 'Folge', 1, 30, NULL, 19);
 
 INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('star-trek', 'ent-xindi', 'star-trek-enterprise', 'Der Xindi-Konflikt', 'arc-1', 0),
@@ -1664,7 +1701,9 @@ INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('star-trek', 'fc-zeitreise', 'star-trek-first-contact', 'Die Borg-Zeitreise', 'arc-3', 20),
   ('star-trek', 'ins-baku', 'star-trek-insurrection', 'Das Volk der Ba''ku', 'arc-1', 21),
   ('star-trek', 'nem-shinzon', 'star-trek-nemesis', 'Shinzons Verschwörung', 'arc-3', 22),
-  ('star-trek', 'pic-synths', 'star-trek-picard', 'Das Verbot der Synthetiks', 'arc-1', 23);
+  ('star-trek', 'pic-synths', 'star-trek-picard', 'Das Verbot der Synthetiks', 'arc-1', 23),
+  ('star-trek', 'ld-cerritos', 'star-trek-lower-decks', 'Die Crew der Cerritos', 'arc-1', 24),
+  ('star-trek', 'pro-protostar', 'star-trek-prodigy', 'Die U.S.S. Protostar', 'arc-1', 25);
 
 INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
   ('star-trek', 'star-trek-enterprise', 'archer-ent', 'Jonathan Archer', 'JA', 0),
@@ -1712,7 +1751,12 @@ INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order
   ('star-trek', 'star-trek-nemesis', 'picard-nem', 'Jean-Luc Picard', 'JP', 42),
   ('star-trek', 'star-trek-nemesis', 'shinzon-nem', 'Shinzon', 'SH', 43),
   ('star-trek', 'star-trek-picard', 'picard-pic', 'Jean-Luc Picard', 'JP', 44),
-  ('star-trek', 'star-trek-picard', 'seven-pic', 'Seven of Nine', 'S7', 45);
+  ('star-trek', 'star-trek-picard', 'seven-pic', 'Seven of Nine', 'S7', 45),
+  ('star-trek', 'star-trek-lower-decks', 'mariner-ld', 'Beckett Mariner', 'BM', 46),
+  ('star-trek', 'star-trek-lower-decks', 'boimler-ld', 'Brad Boimler', 'BB', 47),
+  ('star-trek', 'star-trek-prodigy', 'dal-pro', 'Dal R''El', 'DR', 48),
+  ('star-trek', 'star-trek-prodigy', 'gwyn-pro', 'Gwyn', 'GW', 49),
+  ('star-trek', 'star-trek-prodigy', 'janeway-pro', 'Hologramm-Janeway', 'HJ', 50);
 
 INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
   ('star-trek', 'pp-ent-1', 'star-trek-enterprise', 'archer-ent', 'ent-xindi', 40, 'Führt die Enterprise NX-01 in die gefährliche Expanse, um die Xindi-Waffe zu finden.'),
@@ -1758,6 +1802,11 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('star-trek', 'pp-ins-2', 'star-trek-insurrection', 'data-ins', 'ins-baku', 20, 'Gerät durch einen Defekt außer Kontrolle und enthüllt so die Verschwörung.'),
   ('star-trek', 'pp-nem-1', 'star-trek-nemesis', 'shinzon-nem', 'nem-shinzon', 30, 'Enthüllt sich als klonierter Doppelgänger Picards vom Planeten Remus.'),
   ('star-trek', 'pp-nem-2', 'star-trek-nemesis', 'picard-nem', 'nem-shinzon', 100, 'Stellt sich seinem eigenen Klon im entscheidenden Raumschiffduell.'),
+  ('star-trek', 'pp-ld-1', 'star-trek-lower-decks', 'mariner-ld', 'ld-cerritos', 1, 'Dient als rebellische Fähnrich auf der U.S.S. Cerritos, deren Captain heimlich ihre Mutter ist.'),
+  ('star-trek', 'pp-ld-2', 'star-trek-lower-decks', 'boimler-ld', 'ld-cerritos', 10, 'Nimmt eine Versetzung auf Captain Rikers U.S.S. Titan an.'),
+  ('star-trek', 'pp-pro-1', 'star-trek-prodigy', 'dal-pro', 'pro-protostar', 1, 'Entdeckt mit anderen Gefangenen von Tars Lamora das verlassene Sternenflottenschiff Protostar.'),
+  ('star-trek', 'pp-pro-2', 'star-trek-prodigy', 'gwyn-pro', 'pro-protostar', 2, 'Schließt sich als Tochter des Diviners der Crew an, die aus seinem Lager flieht.'),
+  ('star-trek', 'pp-pro-3', 'star-trek-prodigy', 'janeway-pro', 'pro-protostar', 3, 'Bringt der jungen Crew als Trainingshologramm die Werte der Sternenflotte bei.'),
   ('star-trek', 'pp-pic-1', 'star-trek-picard', 'picard-pic', 'pic-synths', 10, 'Verlässt im Ruhestand die Sternenflotte aus Protest gegen das Synthetik-Verbot.'),
   ('star-trek', 'pp-pic-2', 'star-trek-picard', 'seven-pic', 'pic-synths', 25, 'Kämpft Jahre nach Voyager als Fenris-Rangerin gegen galaktisches Unrecht.');
 
