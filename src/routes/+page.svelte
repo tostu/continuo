@@ -3,7 +3,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import HeroLine from '$lib/components/HeroLine.svelte';
 	import ZoomDemo from '$lib/components/ZoomDemo.svelte';
-	import { toneVar } from '$lib/universe/derive';
+	import UniverseListItem from '$lib/components/UniverseListItem.svelte';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
 	import { websiteSchema } from '$lib/seo/jsonld';
@@ -11,8 +11,11 @@
 	let { data } = $props();
 
 	// Aus D1 gelesen und beim Prerendering fertig berechnet – siehe +page.server.ts.
+	// Nur eine Vorschau: die Startseite zeigt höchstens `LANDING_UNIVERSE_LIMIT` Zeilen,
+	// die volle, durchsuch- und sortierbare Liste lebt auf /universen.
 	const rows = $derived(data.rows);
-	const totalWorks = $derived(rows.reduce((sum, r) => sum + r.works, 0));
+	const total = $derived(data.total);
+	const totalWorks = $derived(data.totalWorks);
 
 	let hero = $state<HTMLElement>();
 	let headline = $state<HTMLElement>();
@@ -74,94 +77,26 @@
 		{m.pick_title()}
 	</h2>
 	<p class="mt-3 font-serif text-[17px] text-muted">
-		{m.pick_summary({ count: rows.length, works: totalWorks })}
+		{m.pick_summary({ count: total, works: totalWorks })}
 	</p>
 
 	<ul class="mt-10 border-t border-hairline">
 		{#each rows as row (row.slug)}
 			<li class="border-b border-hairline">
-				<a
-					href={href(`/${row.slug}`)}
-					class="group -mx-3 block rounded-2xl px-3 py-8 transition-colors hover:bg-card focus-visible:outline-2 focus-visible:outline-ink sm:-mx-5 sm:px-5 sm:py-10"
-				>
-					<div class="flex items-baseline justify-between gap-4">
-						<h3 class="text-[32px] leading-none font-bold tracking-[-0.03em] sm:text-[44px]">
-							{row.name}
-						</h3>
-						<span class="shrink-0 text-[15px] text-muted tabular-nums">{row.from}–{row.to}</span>
-					</div>
-
-					<!-- Mini-Chronologie: jedes Werk ein Punkt, x = Erscheinungsdatum. -->
-					<div class="relative mx-1.5 mt-8 h-5" aria-hidden="true">
-						<span class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-neutral"></span>
-						{#each row.dots as dot (dot.slug)}
-							<span
-								class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full {dot.required
-									? 'size-4 ring-2 ring-ground group-hover:ring-card'
-									: 'size-3.5 border-2 bg-ground group-hover:bg-card'}"
-								style:left="{dot.x * 100}%"
-								style:background-color={dot.required ? toneVar(dot.tone) : undefined}
-								style:border-color={dot.required ? undefined : toneVar(dot.tone)}
-							></span>
-						{/each}
-					</div>
-
-					<ul class="mt-4 flex flex-wrap gap-x-4 gap-y-1.5">
-						{#each row.sagas as saga (saga.id)}
-							<li class="inline-flex items-center gap-1.5 text-[13px] text-muted">
-								<span class="size-2 rounded-full" style:background-color={toneVar(saga.tone)}
-								></span>
-								{saga.name}
-							</li>
-						{/each}
-					</ul>
-
-					<div class="mt-8 flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
-						<dl class="flex flex-wrap gap-x-6 gap-y-1 text-[14px] text-muted">
-							<div>
-								<dt class="sr-only">{m.stat_works()}</dt>
-								<dd>
-									<span class="font-semibold text-ink tabular-nums">{row.works}</span>
-									{m.works_summary({ required: row.required })}
-								</dd>
-							</div>
-							<div>
-								<dt class="sr-only">{m.stat_characters()}</dt>
-								<dd>
-									<span class="font-semibold text-ink tabular-nums">{row.characters}</span>
-									{m.stat_characters()}
-								</dd>
-							</div>
-							<div>
-								<dt class="sr-only">{m.stat_plot_points()}</dt>
-								<dd>
-									<span class="font-semibold text-ink tabular-nums">{row.plotPoints}</span>
-									{m.stat_plot_points()}
-								</dd>
-							</div>
-							{#if row.nowPlaying}
-								<div
-									class="inline-flex items-center gap-1.5"
-									style:color={toneVar(row.nowPlayingTone)}
-								>
-									<dt class="inline-flex items-center gap-1.5">
-										<Icon name="play" size={10} />{m.now_playing()}:
-									</dt>
-									<dd class="font-semibold">{row.nowPlaying.short}</dd>
-								</div>
-							{/if}
-						</dl>
-						<span class="inline-flex items-center gap-3 text-[15px] font-semibold">
-							{m.open_timeline()}
-							<span
-								class="grid size-9 place-items-center rounded-full bg-raised transition-colors group-hover:bg-ink group-hover:text-ground"
-							>
-								<Icon name="back" size={18} class="rotate-180" />
-							</span>
-						</span>
-					</div>
-				</a>
+				<UniverseListItem {row} />
 			</li>
 		{/each}
 	</ul>
+
+	{#if total > rows.length}
+		<a
+			href={href('/universen')}
+			class="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-card pr-3 pl-5 text-[15px] font-semibold text-ink ring-1 ring-hairline transition-colors hover:bg-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+		>
+			{m.see_all_universes({ count: total })}
+			<span class="grid size-8 place-items-center rounded-full bg-raised text-ink">
+				<Icon name="back" size={16} class="rotate-180" />
+			</span>
+		</a>
+	{/if}
 </section>

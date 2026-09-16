@@ -57,7 +57,10 @@ export const GET: RequestHandler = async () => {
 	const universes = await listUniverses();
 	const lastmod = new Date().toISOString().slice(0, 10);
 
-	const entries: Entry[] = [{ path: '/', priority: '1.0', changefreq: 'weekly' }];
+	const entries: Entry[] = [
+		{ path: '/', priority: '1.0', changefreq: 'weekly' },
+		{ path: '/universen', priority: '0.8', changefreq: 'weekly' }
+	];
 
 	for (const { slug, universe } of universes) {
 		// Die Universums-Seite ist die Zielseite für „<Universum> Reihenfolge".

@@ -5,55 +5,14 @@ import {
 	charactersFor,
 	plotPointsFor,
 	sagaOf,
-	workBySlug,
-	year
+	workBySlug
 } from '$lib/universe/derive';
-import {
-	placementReleased,
-	placementRequired,
-	placementSagaId,
-	placementsFor
-} from '$lib/universe/placements';
+import { summarizeUniverse } from '$lib/universe/summarize';
 import type { Universe, ZoomModel } from '$lib/universe/types';
 import type { PageServerLoad } from './$types';
 
-/** Kennzahlen und Mini-Chronologie für die Zeile eines Universums. */
-function summarize(slug: string, u: Universe) {
-	const works = [...u.works].sort((a, b) => a.released.localeCompare(b.released));
-	const toneOf = new Map(u.sagas.map((s) => [s.id, s.tone]));
-	const nowPlaying = works.find((w) => w.nowPlaying);
-
-	// Ein Dot pro Platzierung (Staffel oder Werk), nicht pro Werk – eine mehrstaffelige
-	// Serie zeigt so mehrere Punkte, zwischen die ein Film zeitlich fallen kann.
-	const placements = [...placementsFor(u)].sort((a, b) =>
-		placementReleased(a).localeCompare(placementReleased(b))
-	);
-	const first = Date.parse(placements[0] ? placementReleased(placements[0]) : '');
-	const span = Math.max(
-		Date.parse(placements.at(-1) ? placementReleased(placements.at(-1)!) : '') - first,
-		1
-	);
-
-	return {
-		slug,
-		name: u.name,
-		sagas: u.sagas,
-		from: works[0] && year(works[0]),
-		to: works.at(-1) && year(works.at(-1)!),
-		works: works.length,
-		required: works.filter((w) => w.required).length,
-		characters: u.characters.length,
-		plotPoints: u.plotPoints.length,
-		nowPlaying,
-		nowPlayingTone: toneOf.get(nowPlaying?.sagaId ?? '') ?? 'arc-1',
-		dots: placements.map((p) => ({
-			slug: p.slug,
-			x: (Date.parse(placementReleased(p)) - first) / span,
-			tone: toneOf.get(placementSagaId(p)) ?? 'neutral',
-			required: placementRequired(p)
-		}))
-	};
-}
+/** Zahl der Universen, die auf der Startseite als Vorschau gezeigt werden. */
+const LANDING_UNIVERSE_LIMIT = 3;
 
 /**
  * Zugeschnittenes Modell für das Zoom-Beispiel: Star Wars → Episode IV → eine Figur.
@@ -86,8 +45,12 @@ export const load: PageServerLoad = async () => {
 	const starWars = universes.find((u) => u.slug === 'star-wars')!.universe;
 	const zoom = zoomModel(starWars);
 
+	const rows = universes.map(({ slug, universe }) => summarizeUniverse(slug, universe));
+
 	return {
-		rows: universes.map(({ slug, universe }) => summarize(slug, universe)),
+		rows: rows.slice(0, LANDING_UNIVERSE_LIMIT),
+		total: rows.length,
+		totalWorks: rows.reduce((sum, r) => sum + r.works, 0),
 		zoom
 	};
 };
