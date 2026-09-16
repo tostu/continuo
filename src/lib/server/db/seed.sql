@@ -1233,3 +1233,101 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('yu-gi-oh', 'pp-sv-1', 'yu-gi-oh-sevens', 'yuga-sv', 'sv-rush-duel', 15, 'Erfindet das schnellere Rush-Duel-Format für den Straßenkampf.'),
   ('yu-gi-oh', 'pp-gr-1', 'yu-gi-oh-go-rush', 'yudias-gr', 'gr-goha', 20, 'Stellt sich der übermächtigen Goha-Firmengruppe mit eigenen Rush-Duellen entgegen.');
 
+-- Pokémon
+
+INSERT INTO universes (slug, name, sort_order) VALUES
+  ('pokemon', 'Pokémon', 8);
+
+INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
+  ('pokemon', 'kanto-johto-era', 'Kanto-, Orange-Inseln- und Johto-Ära', 'arc-2', 0),
+  ('pokemon', 'hoenn-sinnoh-era', 'Hoenn- und Sinnoh-Ära', 'arc-1', 1),
+  ('pokemon', 'unova-kalos-era', 'Einheit- und Kalos-Ära', 'arc-3', 2),
+  ('pokemon', 'alola-modern-era', 'Alola- und moderne Ära', 'arc-2', 3);
+
+INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
+  ('pokemon', 'pokemon', 'Pokémon', 'Pokémon (Serie)', 'serie', '1997-04-01', 10, 'Ashs gesamte Reise', 'kanto-johto-era', 1, 'Folge', 1, 1250, NULL, 0),
+  ('pokemon', 'pokemon-movie-1', 'Pokémon: Mewtwo Strikes Back', 'Mewtwo Strikes Back', 'film', '1998-07-18', 20, 'Nach der Kanto-Liga', 'kanto-johto-era', 0, 'Min.', 0, 96, NULL, 1),
+  ('pokemon', 'pokemon-movie-2', 'Pokémon: The Power of One', 'The Power of One', 'film', '1999-07-17', 40, 'Zu Beginn der Johto-Ära', 'kanto-johto-era', 0, 'Min.', 0, 90, NULL, 2),
+  ('pokemon', 'pokemon-movie-4', 'Pokémon 4Ever: Celebi – Voice of the Forest', 'Celebi – Voice of the Forest', 'film', '2001-07-07', 55, 'Während der Johto-Ära', 'kanto-johto-era', 0, 'Min.', 0, 75, NULL, 3),
+  ('pokemon', 'pokemon-movie-5', 'Pokémon Heroes', 'Pokémon Heroes', 'film', '2002-07-13', 58, 'Während der Johto-Ära', 'kanto-johto-era', 0, 'Min.', 0, 79, NULL, 4),
+  ('pokemon', 'pokemon-movie-6', 'Pokémon: Jirachi – Wish Maker', 'Jirachi – Wish Maker', 'film', '2003-07-19', 75, 'Während der Hoenn-Ära', 'hoenn-sinnoh-era', 0, 'Min.', 0, 74, NULL, 5),
+  ('pokemon', 'pokemon-movie-8', 'Pokémon: Lucario and the Mystery of Mew', 'Lucario and the Mystery of Mew', 'film', '2005-07-16', 80, 'Während der Hoenn-Ära', 'hoenn-sinnoh-era', 0, 'Min.', 0, 95, NULL, 6),
+  ('pokemon', 'pokemon-movie-10', 'Pokémon: The Rise of Darkrai', 'The Rise of Darkrai', 'film', '2007-07-14', 95, 'Während der Sinnoh-Ära', 'hoenn-sinnoh-era', 0, 'Min.', 0, 95, NULL, 7),
+  ('pokemon', 'pokemon-movie-13', 'Pokémon: Zoroark – Master of Illusions', 'Zoroark – Master of Illusions', 'film', '2010-07-10', 115, 'Während der Einheit-Ära', 'unova-kalos-era', 0, 'Min.', 0, 95, NULL, 8),
+  ('pokemon', 'pokemon-movie-16', 'Pokémon: Genesect and the Legend Awakened', 'Genesect and the Legend Awakened', 'film', '2013-07-13', 125, 'Während der Einheit-Ära', 'unova-kalos-era', 0, 'Min.', 0, 95, NULL, 9),
+  ('pokemon', 'pokemon-movie-19', 'Pokémon: Volcanion and the Mechanical Marvel', 'Volcanion and the Mechanical Marvel', 'film', '2016-07-16', 140, 'Während der Kalos-Ära', 'unova-kalos-era', 0, 'Min.', 0, 79, NULL, 10),
+  ('pokemon', 'pokemon-movie-20', 'Pokémon the Movie: I Choose You!', 'I Choose You!', 'film', '2017-07-15', 155, 'Neuerzählung von Ashs erstem Tag', 'alola-modern-era', 0, 'Min.', 0, 100, NULL, 11);
+
+INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, released, chronology, lore_date, range_start, range_end, sort_order) VALUES
+  ('pokemon', 'pokemon', 'poke-s1', 1, 'Kanto (Indigo League)', '1997-04-01', 10, 'Kanto-Liga', 1, 82, 0),
+  ('pokemon', 'pokemon', 'poke-s2', 2, 'Orange-Inseln', '1999-04-16', 30, 'Orange-Liga', 83, 116, 1),
+  ('pokemon', 'pokemon', 'poke-s3', 3, 'Johto-Liga', '1999-08-26', 50, 'Johto-Liga', 117, 275, 2),
+  ('pokemon', 'pokemon', 'poke-s4', 4, 'Hoenn (Advanced Generation)', '2002-11-14', 70, 'Hoenn-Liga', 276, 468, 3),
+  ('pokemon', 'pokemon', 'poke-s5', 5, 'Sinnoh (Diamond & Pearl)', '2006-09-28', 90, 'Sinnoh-Liga', 469, 656, 4),
+  ('pokemon', 'pokemon', 'poke-s6', 6, 'Einheit (Black & White)', '2010-09-23', 110, 'Einheit-Liga', 657, 761, 5),
+  ('pokemon', 'pokemon', 'poke-s7', 7, 'Kalos (XY)', '2013-10-17', 130, 'Kalos-Liga', 762, 935, 6),
+  ('pokemon', 'pokemon', 'poke-s8', 8, 'Alola (Sun & Moon)', '2016-11-17', 150, 'Alola-Region', 936, 1063, 7),
+  ('pokemon', 'pokemon', 'poke-s9', 9, 'Reisen (Journeys)', '2019-11-17', 170, 'Ash & Goh', 1064, 1234, 8),
+  ('pokemon', 'pokemon', 'poke-s10', 10, 'Horizonte (Horizons)', '2023-04-14', 190, 'Liko & Roy', 1235, 1250, 9);
+
+INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
+  ('pokemon', 'poke-anfang', 'pokemon', 'Der Anfang der Reise', 'arc-1', 0),
+  ('pokemon', 'poke-ligen', 'pokemon', 'Die Ligen-Herausforderungen', 'arc-1', 1),
+  ('pokemon', 'poke-neue-gefaehrten', 'pokemon', 'Neue Gefährten, neue Regionen', 'arc-3', 2),
+  ('pokemon', 'm1-klon', 'pokemon-movie-1', 'Mewtwos Klonkrieg', 'arc-3', 3),
+  ('pokemon', 'm2-elemente', 'pokemon-movie-2', 'Das Gleichgewicht der Elemente', 'arc-3', 4),
+  ('pokemon', 'm4-zeitreise', 'pokemon-movie-4', 'Celebis Zeitreise', 'arc-3', 5),
+  ('pokemon', 'm5-wassersteine', 'pokemon-movie-5', 'Die Seelensteine von Alto Mare', 'arc-3', 6),
+  ('pokemon', 'm6-wunsch', 'pokemon-movie-6', 'Der tausendjährige Wunsch', 'arc-3', 7),
+  ('pokemon', 'm8-aura', 'pokemon-movie-8', 'Lucarios Aura-Vermächtnis', 'arc-3', 8),
+  ('pokemon', 'm10-alptraeume', 'pokemon-movie-10', 'Darkrais Albträume', 'arc-3', 9),
+  ('pokemon', 'm13-illusion', 'pokemon-movie-13', 'Zoroarks Illusionswelt', 'arc-3', 10),
+  ('pokemon', 'm16-legende', 'pokemon-movie-16', 'Das Erwachen der Legende', 'arc-3', 11),
+  ('pokemon', 'm19-mechanik', 'pokemon-movie-19', 'Der mechanische Wunder-Junge', 'arc-3', 12),
+  ('pokemon', 'm20-ursprung', 'pokemon-movie-20', 'Der Ursprung der Reise, neu erzählt', 'arc-1', 13);
+
+INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
+  ('pokemon', 'pokemon', 'ash-poke', 'Ash Ketchum', 'AK', 0),
+  ('pokemon', 'pokemon', 'pikachu-poke', 'Pikachu', 'PI', 1),
+  ('pokemon', 'pokemon', 'misty-poke', 'Misty', 'MI', 2),
+  ('pokemon', 'pokemon', 'brock-poke', 'Brock', 'BR', 3),
+  ('pokemon', 'pokemon', 'dawn-poke', 'Dawn', 'DA', 4),
+  ('pokemon', 'pokemon', 'serena-poke', 'Serena', 'SE', 5),
+  ('pokemon', 'pokemon', 'goh-poke', 'Goh', 'GO', 6),
+  ('pokemon', 'pokemon-movie-1', 'mewtwo-m1', 'Mewtwo', 'MT', 7),
+  ('pokemon', 'pokemon-movie-1', 'ash-m1', 'Ash Ketchum', 'AK', 8),
+  ('pokemon', 'pokemon-movie-2', 'lugia-m2', 'Lugia', 'LU', 9),
+  ('pokemon', 'pokemon-movie-4', 'celebi-m4', 'Celebi', 'CE', 10),
+  ('pokemon', 'pokemon-movie-5', 'latias-m5', 'Latias', 'LA', 11),
+  ('pokemon', 'pokemon-movie-6', 'jirachi-m6', 'Jirachi', 'JI', 12),
+  ('pokemon', 'pokemon-movie-8', 'lucario-m8', 'Lucario', 'LC', 13),
+  ('pokemon', 'pokemon-movie-8', 'mew-m8', 'Mew', 'ME2', 14),
+  ('pokemon', 'pokemon-movie-10', 'darkrai-m10', 'Darkrai', 'DK', 15),
+  ('pokemon', 'pokemon-movie-13', 'zoroark-m13', 'Zoroark', 'ZO', 16),
+  ('pokemon', 'pokemon-movie-16', 'genesect-m16', 'Genesect', 'GE', 17),
+  ('pokemon', 'pokemon-movie-19', 'volcanion-m19', 'Volcanion', 'VO', 18),
+  ('pokemon', 'pokemon-movie-20', 'ash-m20', 'Ash Ketchum', 'AK', 19),
+  ('pokemon', 'pokemon-movie-20', 'marshadow-m20', 'Marshadow', 'MA2', 20);
+
+INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
+  ('pokemon', 'pp-poke-1', 'pokemon', 'ash-poke', 'poke-anfang', 1, 'Erhält von Professor Eich sein erstes Pokémon: das widerspenstige Pikachu.'),
+  ('pokemon', 'pp-poke-2', 'pokemon', 'pikachu-poke', 'poke-anfang', 1, 'Weigert sich zunächst, in den Pokéball zurückzukehren, und läuft stattdessen neben Ash her.'),
+  ('pokemon', 'pp-poke-3', 'pokemon', 'misty-poke', 'poke-anfang', 3, 'Schließt sich Ash an, nachdem er ihr Fahrrad zerstört hat.'),
+  ('pokemon', 'pp-poke-4', 'pokemon', 'brock-poke', 'poke-anfang', 10, 'Verlässt seine Arena in Alt-Bello, um selbst Pokémon-Züchter zu werden.'),
+  ('pokemon', 'pp-poke-5', 'pokemon', 'ash-poke', 'poke-ligen', 80, 'Erreicht das Top-16 der Kanto-Liga.'),
+  ('pokemon', 'pp-poke-6', 'pokemon', 'dawn-poke', 'poke-neue-gefaehrten', 470, 'Begleitet Ash als aufstrebende Koordinatorin durch die Sinnoh-Region.'),
+  ('pokemon', 'pp-poke-7', 'pokemon', 'serena-poke', 'poke-neue-gefaehrten', 765, 'Findet in der Kalos-Region ihren eigenen Traum als Performerin.'),
+  ('pokemon', 'pp-poke-8', 'pokemon', 'goh-poke', 'poke-neue-gefaehrten', 1065, 'Reist mit Ash gemeinsam los, um jedes Pokémon zu erforschen und Mew zu fangen.'),
+  ('pokemon', 'pp-m1-1', 'pokemon-movie-1', 'mewtwo-m1', 'm1-klon', 60, 'Erschafft geklonte Pokémon, um sich an seinen Schöpfern zu rächen.'),
+  ('pokemon', 'pp-m1-2', 'pokemon-movie-1', 'ash-m1', 'm1-klon', 75, 'Stellt sich schützend zwischen die kämpfenden Originale und ihre Klone.'),
+  ('pokemon', 'pp-m2-1', 'pokemon-movie-2', 'lugia-m2', 'm2-elemente', 70, 'Erwacht, um das Gleichgewicht zwischen den drei Vogel-Titanen wiederherzustellen.'),
+  ('pokemon', 'pp-m4-1', 'pokemon-movie-4', 'celebi-m4', 'm4-zeitreise', 40, 'Reist mit einem jungen, Ash ähnlichen Jungen zwischen den Zeiten hin und her.'),
+  ('pokemon', 'pp-m5-1', 'pokemon-movie-5', 'latias-m5', 'm5-wassersteine', 50, 'Beschützt in Menschengestalt heimlich ihre Heimatstadt Alto Mare.'),
+  ('pokemon', 'pp-m6-1', 'pokemon-movie-6', 'jirachi-m6', 'm6-wunsch', 45, 'Erwacht nur alle tausend Jahre für sieben Tage, um einen einzigen Wunsch zu erfüllen.'),
+  ('pokemon', 'pp-m8-1', 'pokemon-movie-8', 'lucario-m8', 'm8-aura', 55, 'Erwacht nach tausend Jahren aus einem Aura-Stein und sucht seinen früheren Meister.'),
+  ('pokemon', 'pp-m10-1', 'pokemon-movie-10', 'darkrai-m10', 'm10-alptraeume', 60, 'Wird fälschlich für die Albträume verantwortlich gemacht, die es eigentlich verhindern will.'),
+  ('pokemon', 'pp-m13-1', 'pokemon-movie-13', 'zoroark-m13', 'm13-illusion', 50, 'Erschafft mächtige Illusionen, um ihr entführtes Junges zu beschützen.'),
+  ('pokemon', 'pp-m16-1', 'pokemon-movie-16', 'genesect-m16', 'm16-legende', 55, 'Sucht als wiederbelebtes Fossil-Pokémon Rache für seine Vergangenheit.'),
+  ('pokemon', 'pp-m19-1', 'pokemon-movie-19', 'volcanion-m19', 'm19-mechanik', 60, 'Verbündet sich widerwillig mit Ash, um sein entführtes Volk zu retten.'),
+  ('pokemon', 'pp-m20-1', 'pokemon-movie-20', 'ash-m20', 'm20-ursprung', 70, 'Erlebt seinen allerersten Tag als Pokémon-Trainer noch einmal neu.');
+
