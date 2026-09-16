@@ -1330,3 +1330,64 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('pokemon', 'pp-m16-1', 'pokemon-movie-16', 'genesect-m16', 'm16-legende', 55, 'Sucht als wiederbelebtes Fossil-Pokémon Rache für seine Vergangenheit.'),
   ('pokemon', 'pp-m19-1', 'pokemon-movie-19', 'volcanion-m19', 'm19-mechanik', 60, 'Verbündet sich widerwillig mit Ash, um sein entführtes Volk zu retten.'),
   ('pokemon', 'pp-m20-1', 'pokemon-movie-20', 'ash-m20', 'm20-ursprung', 70, 'Erlebt seinen allerersten Tag als Pokémon-Trainer noch einmal neu.');
+
+-- One Piece
+
+INSERT INTO universes (slug, name, sort_order) VALUES
+  ('one-piece', 'One Piece', 9);
+
+INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
+  ('one-piece', 'east-blue-era', 'East Blue & Alabasta', 'arc-2', 0),
+  ('one-piece', 'sky-water-era', 'Skypiea, Water 7 & Thriller Bark', 'arc-1', 1),
+  ('one-piece', 'war-era', 'Summit War & Fishman Island', 'arc-3', 2),
+  ('one-piece', 'new-world-era', 'Dressrosa & Wano', 'arc-2', 3);
+
+INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
+  ('one-piece', 'one-piece', 'One Piece', 'One Piece (Serie)', 'serie', '1999-10-20', 10, 'Beginn von Ruffys Reise', 'east-blue-era', 1, 'Folge', 1, 1100, NULL, 0),
+  ('one-piece', 'one-piece-film-z', 'One Piece Film: Z', 'Film: Z', 'film', '2012-12-15', 55, 'Nicht-kanonische Nebengeschichte', 'war-era', 0, 'Min.', 0, 108, NULL, 1),
+  ('one-piece', 'one-piece-stampede', 'One Piece: Stampede', 'Stampede', 'film', '2019-08-09', 85, 'Nicht-kanonische Nebengeschichte', 'new-world-era', 0, 'Min.', 0, 101, NULL, 2),
+  ('one-piece', 'one-piece-red', 'One Piece Film: Red', 'Film: Red', 'film', '2022-08-06', 95, 'Nicht-kanonische Nebengeschichte', 'new-world-era', 0, 'Min.', 0, 115, NULL, 3);
+
+INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, released, chronology, lore_date, range_start, range_end, saga_id, sort_order) VALUES
+  ('one-piece', 'one-piece', 'op-east-blue', 1, 'East Blue', '1999-10-20', 10, 'Die Gründung der Strohhut-Crew', 1, 61, 'east-blue-era', 0),
+  ('one-piece', 'one-piece', 'op-alabasta', 2, 'Alabasta', '2000-11-17', 20, 'Der Kampf um Alabasta', 62, 135, 'east-blue-era', 1),
+  ('one-piece', 'one-piece', 'op-skypiea', 3, 'Skypiea', '2002-06-16', 30, 'Die Himmelsinsel', 136, 206, 'sky-water-era', 2),
+  ('one-piece', 'one-piece', 'op-water7', 4, 'Water 7 & Enies Lobby', '2003-06-29', 40, 'Der Verrat und die Rettung Robins', 207, 325, 'sky-water-era', 3),
+  ('one-piece', 'one-piece', 'op-thriller-bark', 5, 'Thriller Bark', '2007-05-13', 50, 'Die Zombie-Insel', 326, 384, 'sky-water-era', 4),
+  ('one-piece', 'one-piece', 'op-war', 6, 'Summit War (Marineford)', '2008-06-15', 60, 'Der Krieg um Ace', 385, 516, 'war-era', 5),
+  ('one-piece', 'one-piece', 'op-fishman', 7, 'Fishman Island', '2011-09-18', 70, 'Die Insel der Fischmenschen', 517, 574, 'war-era', 6),
+  ('one-piece', 'one-piece', 'op-dressrosa', 8, 'Punk Hazard & Dressrosa', '2012-04-15', 80, 'Die Befreiung von Dressrosa', 575, 746, 'new-world-era', 7),
+  ('one-piece', 'one-piece', 'op-wano', 9, 'Whole Cake Island & Wano', '2015-04-05', 90, 'Das Land der Samurai', 747, 1100, 'new-world-era', 8);
+
+INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
+  ('one-piece', 'op-traum', 'one-piece', 'Ruffys Traum vom One Piece', 'arc-1', 0),
+  ('one-piece', 'op-crew', 'one-piece', 'Der Aufbau der Crew', 'arc-1', 1),
+  ('one-piece', 'op-verrat', 'one-piece', 'Verrat und Opfer', 'arc-3', 2),
+  ('one-piece', 'op-yonko', 'one-piece', 'Der Kampf gegen die Vier Kaiser', 'arc-3', 3),
+  ('one-piece', 'fz-rache', 'one-piece-film-z', 'Zephyrs Rachefeldzug', 'arc-3', 4),
+  ('one-piece', 'stampede-schatz', 'one-piece-stampede', 'Die Jagd nach Rogers Schatz', 'arc-3', 5),
+  ('one-piece', 'red-utopia', 'one-piece-red', 'Utas Utopie', 'arc-3', 6);
+
+INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
+  ('one-piece', 'one-piece', 'luffy-op', 'Monkey D. Ruffy', 'MR', 0),
+  ('one-piece', 'one-piece', 'zoro-op', 'Roronoa Zoro', 'RZ', 1),
+  ('one-piece', 'one-piece', 'nami-op', 'Nami', 'NA', 2),
+  ('one-piece', 'one-piece', 'sanji-op', 'Sanji', 'SA', 3),
+  ('one-piece', 'one-piece', 'robin-op', 'Nico Robin', 'NR', 4),
+  ('one-piece', 'one-piece', 'ace-op', 'Portgas D. Ace', 'PA', 5),
+  ('one-piece', 'one-piece-film-z', 'zephyr-fz', 'Zephyr', 'ZE', 6),
+  ('one-piece', 'one-piece-stampede', 'douglas-bullet-stampede', 'Douglas Bullet', 'DB', 7),
+  ('one-piece', 'one-piece-red', 'uta-red', 'Uta', 'UT', 8);
+
+INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
+  ('one-piece', 'pp-op-1', 'one-piece', 'luffy-op', 'op-traum', 1, 'Bricht allein mit einem Ruderboot auf, um Piratenkönig zu werden.'),
+  ('one-piece', 'pp-op-2', 'one-piece', 'zoro-op', 'op-crew', 5, 'Wird als gefürchteter Schwertkämpfer Ruffys erstes Crewmitglied.'),
+  ('one-piece', 'pp-op-3', 'one-piece', 'nami-op', 'op-crew', 8, 'Schließt sich der Crew zunächst nur aus Eigennutz als Navigatorin an.'),
+  ('one-piece', 'pp-op-4', 'one-piece', 'sanji-op', 'op-crew', 45, 'Verlässt das schwimmende Restaurant Baratie, um Koch der Crew zu werden.'),
+  ('one-piece', 'pp-op-5', 'one-piece', 'robin-op', 'op-verrat', 260, 'Opfert sich scheinbar, um ihre neu gefundene Crew vor der Weltregierung zu retten.'),
+  ('one-piece', 'pp-op-6', 'one-piece', 'ace-op', 'op-verrat', 480, 'Wird im Krieg um Marineford vor Ruffys Augen getötet.'),
+  ('one-piece', 'pp-op-7', 'one-piece', 'luffy-op', 'op-yonko', 1050, 'Wird nach dem Sieg über Kaido zum neuen fünften Kaiser der See ausgerufen.'),
+  ('one-piece', 'pp-fz-1', 'one-piece-film-z', 'zephyr-fz', 'fz-rache', 40, 'Will als ehemaliger Marine-Admiral alle Piraten mit einer Superwaffe auslöschen.'),
+  ('one-piece', 'pp-stampede-1', 'one-piece-stampede', 'douglas-bullet-stampede', 'stampede-schatz', 50, 'Sucht auf der Piraten-Weltausstellung nach dem größten Schatz aller Zeiten.'),
+  ('one-piece', 'pp-red-1', 'one-piece-red', 'uta-red', 'red-utopia', 60, 'Will mit ihrer betäubenden Musik eine schmerzfreie Scheinwelt für alle erschaffen.');
+
