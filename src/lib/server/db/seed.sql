@@ -799,3 +799,100 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('mcu', 'pp-nwh-3', 'spider-man-no-way-home', 'strange-nwh', 'nwh-zauber', 25, 'Verpatzt den Gedächtniszauber, wodurch Risse im Multiversum entstehen.'),
   ('mcu', 'pp-nwh-4', 'spider-man-no-way-home', 'green-goblin-nwh', 'nwh-multiversum', 110, 'Verwundet May tödlich und stellt Peter vor seine schwerste Prüfung.');
 
+-- Dragon Ball
+
+INSERT INTO universes (slug, name, sort_order) VALUES
+  ('dragon-ball', 'Dragon Ball', 4);
+
+INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
+  ('dragon-ball', 'original', 'Dragon-Ball-Ära', 'arc-2', 0),
+  ('dragon-ball', 'z-era', 'Dragon-Ball-Z-Ära', 'arc-1', 1),
+  ('dragon-ball', 'super-era', 'Dragon-Ball-Super-Ära', 'arc-3', 2);
+
+INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
+  ('dragon-ball', 'dragon-ball-original', 'Dragon Ball', 'Dragon Ball', 'serie', '1986-02-26', 10, 'Kindheit von Son Goku', 'original', 1, 'Folge', 1, 153, NULL, 0),
+  ('dragon-ball', 'dragon-ball-z', 'Dragon Ball Z', 'Dragon Ball Z', 'serie', '1989-04-26', 20, 'Erwachsenenalter von Son Goku', 'z-era', 1, 'Folge', 1, 291, NULL, 1),
+  ('dragon-ball', 'dead-zone', 'Dragon Ball Z: Dead Zone', 'Dead Zone', 'film', '1989-07-15', 30, 'Kurz nach dem Saiyajin-Angriff', 'z-era', 0, 'Min.', 0, 46, NULL, 2),
+  ('dragon-ball', 'coolers-revenge', 'Dragon Ball Z: Cooler''s Revenge', 'Cooler''s Revenge', 'film', '1991-07-20', 60, 'Nach Friezas Niederlage', 'z-era', 0, 'Min.', 0, 47, NULL, 3),
+  ('dragon-ball', 'broly-legendary-super-saiyan', 'Dragon Ball Z: Broly – Der Legendäre Super-Saiyajin', 'Broly – Der Legendäre Super-Saiyajin', 'film', '1993-03-06', 85, 'Vor den Cell-Spielen', 'z-era', 0, 'Min.', 0, 70, NULL, 4),
+  ('dragon-ball', 'fusion-reborn', 'Dragon Ball Z: Fusion Reborn', 'Fusion Reborn', 'film', '1995-03-04', 110, 'Nach Kid Buus Niederlage', 'z-era', 0, 'Min.', 0, 52, NULL, 5),
+  ('dragon-ball', 'dragon-ball-super', 'Dragon Ball Super', 'Dragon Ball Super', 'serie', '2015-07-05', 130, 'Jahre nach Kid Buu', 'super-era', 1, 'Folge', 1, 131, NULL, 6),
+  ('dragon-ball', 'dragon-ball-super-broly', 'Dragon Ball Super: Broly', 'Broly', 'film', '2018-12-14', 140, 'Nach dem Turnier der Kraft', 'super-era', 0, 'Min.', 0, 100, NULL, 7),
+  ('dragon-ball', 'dragon-ball-super-super-hero', 'Dragon Ball Super: Super Hero', 'Super Hero', 'film', '2022-06-11', 150, 'Jahre nach Broly', 'super-era', 0, 'Min.', 0, 99, NULL, 8);
+
+INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, released, chronology, lore_date, range_start, range_end, sort_order) VALUES
+  ('dragon-ball', 'dragon-ball-z', 'z-s1', 1, 'Saiyajin-Saga', '1989-04-26', 20, 'Ankunft der Saiyajin', 1, 39, 0),
+  ('dragon-ball', 'dragon-ball-z', 'z-s2', 2, 'Namek- und Frieza-Saga', '1990-02-07', 40, 'Kampf um Namek', 40, 107, 1),
+  ('dragon-ball', 'dragon-ball-z', 'z-s3', 3, 'Android- und Cell-Saga', '1991-10-08', 70, 'Die Android-Bedrohung', 108, 194, 2),
+  ('dragon-ball', 'dragon-ball-z', 'z-s4', 4, 'Buu-Saga', '1993-11-24', 100, 'Majin Buus Erwachen', 195, 291, 3);
+
+INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
+  ('dragon-ball', 'db-suche', 'dragon-ball-original', 'Die Suche nach den Dragon Balls', 'arc-1', 0),
+  ('dragon-ball', 'db-turnier', 'dragon-ball-original', 'Das Tenkaichi-Turnier', 'arc-2', 1),
+  ('dragon-ball', 'z-saiyan', 'dragon-ball-z', 'Saiyan-Saga', 'arc-1', 2),
+  ('dragon-ball', 'z-namek', 'dragon-ball-z', 'Namek-Saga', 'arc-2', 3),
+  ('dragon-ball', 'z-android', 'dragon-ball-z', 'Android-Saga', 'arc-3', 4),
+  ('dragon-ball', 'z-buu', 'dragon-ball-z', 'Buu-Saga', 'arc-1', 5),
+  ('dragon-ball', 'dz-garlic', 'dead-zone', 'Garlic Jr.''s Rache', 'arc-3', 6),
+  ('dragon-ball', 'cr-cooler', 'coolers-revenge', 'Coolers Rache', 'arc-3', 7),
+  ('dragon-ball', 'bls-broly', 'broly-legendary-super-saiyan', 'Der Legendäre Super-Saiyajin', 'arc-3', 8),
+  ('dragon-ball', 'fr-janemba', 'fusion-reborn', 'Janembas Chaos', 'arc-3', 9),
+  ('dragon-ball', 'super-battle-of-gods', 'dragon-ball-super', 'Battle of Gods', 'arc-1', 10),
+  ('dragon-ball', 'super-tournament-of-power', 'dragon-ball-super', 'Turnier der Kraft', 'arc-3', 11),
+  ('dragon-ball', 'sbroly-broly', 'dragon-ball-super-broly', 'Brolys Rückkehr', 'arc-3', 12),
+  ('dragon-ball', 'sh-red-ribbon', 'dragon-ball-super-super-hero', 'Die neue Red-Ribbon-Armee', 'arc-3', 13);
+
+INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
+  ('dragon-ball', 'dragon-ball-original', 'goku-db', 'Son Goku', 'SG', 0),
+  ('dragon-ball', 'dragon-ball-original', 'bulma-db', 'Bulma', 'BU', 1),
+  ('dragon-ball', 'dragon-ball-original', 'roshi-db', 'Meister Roshi', 'MR', 2),
+  ('dragon-ball', 'dragon-ball-z', 'goku-z', 'Son Goku', 'SG', 3),
+  ('dragon-ball', 'dragon-ball-z', 'vegeta-z', 'Vegeta', 'VE', 4),
+  ('dragon-ball', 'dragon-ball-z', 'gohan-z', 'Son Gohan', 'GO', 5),
+  ('dragon-ball', 'dragon-ball-z', 'frieza-z', 'Frieza', 'FR', 6),
+  ('dragon-ball', 'dragon-ball-z', 'cell-z', 'Cell', 'CE', 7),
+  ('dragon-ball', 'dragon-ball-z', 'buu-z', 'Majin Buu', 'MB', 8),
+  ('dragon-ball', 'dead-zone', 'goku-dz', 'Son Goku', 'SG', 9),
+  ('dragon-ball', 'dead-zone', 'gohan-dz', 'Son Gohan', 'GO', 10),
+  ('dragon-ball', 'coolers-revenge', 'goku-cr', 'Son Goku', 'SG', 11),
+  ('dragon-ball', 'coolers-revenge', 'cooler-cr', 'Cooler', 'CO', 12),
+  ('dragon-ball', 'broly-legendary-super-saiyan', 'goku-bls', 'Son Goku', 'SG', 13),
+  ('dragon-ball', 'broly-legendary-super-saiyan', 'broly-bls', 'Broly', 'BR', 14),
+  ('dragon-ball', 'fusion-reborn', 'goku-fr', 'Son Goku', 'SG', 15),
+  ('dragon-ball', 'fusion-reborn', 'janemba-fr', 'Janemba', 'JA', 16),
+  ('dragon-ball', 'dragon-ball-super', 'goku-super', 'Son Goku', 'SG', 17),
+  ('dragon-ball', 'dragon-ball-super', 'vegeta-super', 'Vegeta', 'VE', 18),
+  ('dragon-ball', 'dragon-ball-super', 'beerus-super', 'Beerus', 'BE', 19),
+  ('dragon-ball', 'dragon-ball-super', 'jiren-super', 'Jiren', 'JI', 20),
+  ('dragon-ball', 'dragon-ball-super-broly', 'goku-sbroly', 'Son Goku', 'SG', 21),
+  ('dragon-ball', 'dragon-ball-super-broly', 'broly-sbroly', 'Broly', 'BR', 22),
+  ('dragon-ball', 'dragon-ball-super-super-hero', 'gohan-sh', 'Son Gohan', 'GO', 23),
+  ('dragon-ball', 'dragon-ball-super-super-hero', 'piccolo-sh', 'Piccolo', 'PI', 24);
+
+INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
+  ('dragon-ball', 'pp-db-1', 'dragon-ball-original', 'goku-db', 'db-suche', 5, 'Findet als Kind die Vier-Sterne-Dragon-Ball und beginnt die Reise mit Bulma.'),
+  ('dragon-ball', 'pp-db-2', 'dragon-ball-original', 'bulma-db', 'db-suche', 10, 'Nimmt Goku mit auf die Suche nach allen sieben Dragon Balls.'),
+  ('dragon-ball', 'pp-db-3', 'dragon-ball-original', 'roshi-db', 'db-turnier', 60, 'Bildet Goku im Kampf für das Tenkaichi-Turnier aus.'),
+  ('dragon-ball', 'pp-z-1', 'dragon-ball-z', 'goku-z', 'z-saiyan', 20, 'Stirbt im Kampf gegen seinen Bruder Raditz, um die Erde zu retten.'),
+  ('dragon-ball', 'pp-z-2', 'dragon-ball-z', 'vegeta-z', 'z-saiyan', 35, 'Greift gemeinsam mit Nappa die Erde an, um die Dragon Balls zu erobern.'),
+  ('dragon-ball', 'pp-z-3', 'dragon-ball-z', 'gohan-z', 'z-namek', 90, 'Wird auf Namek unfreiwillig zum stärksten Kämpfer der Gruppe.'),
+  ('dragon-ball', 'pp-z-4', 'dragon-ball-z', 'frieza-z', 'z-namek', 105, 'Wird von einem verwandelten Super-Saiyajin Goku besiegt.'),
+  ('dragon-ball', 'pp-z-5', 'dragon-ball-z', 'cell-z', 'z-android', 180, 'Erreicht seine perfekte Form, indem er Android 17 und 18 absorbiert.'),
+  ('dragon-ball', 'pp-z-6', 'dragon-ball-z', 'buu-z', 'z-buu', 270, 'Wird nach zahllosen Verwandlungen endgültig als Kid Buu ausgelöscht.'),
+  ('dragon-ball', 'pp-dz-1', 'dead-zone', 'goku-dz', 'dz-garlic', 30, 'Kämpft gegen den wiederauferstandenen Garlic Jr. um Kamis Palast.'),
+  ('dragon-ball', 'pp-dz-2', 'dead-zone', 'gohan-dz', 'dz-garlic', 15, 'Wird von Garlic Jr.''s Handlangern entführt.'),
+  ('dragon-ball', 'pp-cr-1', 'coolers-revenge', 'goku-cr', 'cr-cooler', 35, 'Besiegt Friezas Bruder Cooler, der Rache für seinen Bruder sucht.'),
+  ('dragon-ball', 'pp-cr-2', 'coolers-revenge', 'cooler-cr', 'cr-cooler', 10, 'Verfolgt Goku bis zur Erde, um den Tod seines Bruders zu rächen.'),
+  ('dragon-ball', 'pp-bls-1', 'broly-legendary-super-saiyan', 'goku-bls', 'bls-broly', 55, 'Steht dem außer Kontrolle geratenen Broly als Super-Saiyajin gegenüber.'),
+  ('dragon-ball', 'pp-bls-2', 'broly-legendary-super-saiyan', 'broly-bls', 'bls-broly', 20, 'Erwacht als der legendäre Super-Saiyajin mit grenzenloser Wut.'),
+  ('dragon-ball', 'pp-fr-1', 'fusion-reborn', 'goku-fr', 'fr-janemba', 40, 'Fusioniert mit Vegeta zu Gogeta, um Janemba zu besiegen.'),
+  ('dragon-ball', 'pp-fr-2', 'fusion-reborn', 'janemba-fr', 'fr-janemba', 15, 'Entsteht aus der Verzerrung der Hölle als reines Chaoswesen.'),
+  ('dragon-ball', 'pp-super-1', 'dragon-ball-super', 'goku-super', 'super-battle-of-gods', 20, 'Weckt Beerus, den Gott der Zerstörung, versehentlich auf.'),
+  ('dragon-ball', 'pp-super-2', 'dragon-ball-super', 'beerus-super', 'super-battle-of-gods', 40, 'Sucht nach einem würdigen Gegner, der sein Interesse weckt.'),
+  ('dragon-ball', 'pp-super-3', 'dragon-ball-super', 'vegeta-super', 'super-tournament-of-power', 90, 'Kämpft im Turnier der Kraft um das Überleben seines Universums.'),
+  ('dragon-ball', 'pp-super-4', 'dragon-ball-super', 'jiren-super', 'super-tournament-of-power', 110, 'Gilt als der stärkste Kämpfer im gesamten Turnier der Kraft.'),
+  ('dragon-ball', 'pp-sbroly-1', 'dragon-ball-super-broly', 'goku-sbroly', 'sbroly-broly', 60, 'Kämpft gemeinsam mit Vegeta gegen den wiedergeborenen Broly.'),
+  ('dragon-ball', 'pp-sbroly-2', 'dragon-ball-super-broly', 'broly-sbroly', 'sbroly-broly', 30, 'Wächst isoliert auf einem fernen Planeten zu unermesslicher Stärke heran.'),
+  ('dragon-ball', 'pp-sh-1', 'dragon-ball-super-super-hero', 'gohan-sh', 'sh-red-ribbon', 70, 'Erwacht als Gohan Beast zu neuer, ungeahnter Stärke.'),
+  ('dragon-ball', 'pp-sh-2', 'dragon-ball-super-super-hero', 'piccolo-sh', 'sh-red-ribbon', 50, 'Trainiert heimlich mit Pan und wird zu Orange Piccolo.');
+
