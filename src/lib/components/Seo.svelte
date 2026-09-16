@@ -7,7 +7,7 @@
 		/** Vollständiger `<title>`; der Seitenname wird angehängt, außer auf der Startseite. */
 		title: string;
 		description: string;
-		/** Absolute Bild-URL (z. B. Werk-Cover). Ohne Angabe das Standard-Card-Bild. */
+		/** Absolute Bild-URL. Ohne Angabe das Standard-Card-Bild. */
 		image?: string;
 		/** true = 1200×630-Card, false = hochformatiges Poster. */
 		wideImage?: boolean;

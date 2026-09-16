@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import Avatar from './Avatar.svelte';
+	import Icon from './Icon.svelte';
 	import PlotTimeline from './PlotTimeline.svelte';
 	import { toneVar, year } from '$lib/universe/derive';
 	import type { ZoomModel } from '$lib/universe/types';
@@ -19,6 +20,9 @@
 	const arcs = $derived(zoom.arcs);
 	const railWorks = $derived(zoom.railWorks);
 	const cast = $derived(zoom.cast);
+	const workTone = $derived(
+		railWorks.find((r) => r.work.slug === work.slug)?.tone ?? 'neutral'
+	);
 
 	// Ohne Klick steht die erste Figur – deshalb `undefined` statt einer Startkopie aus `zoom`.
 	let picked = $state<string>();
@@ -111,13 +115,13 @@
 							? 'bg-raised ring-1 ring-neutral'
 							: ''}"
 					>
-						<img
-							src={w.cover}
-							alt=""
-							loading="lazy"
-							class="h-[42px] w-7 shrink-0 rounded object-cover"
+						<span
+							class="grid h-[42px] w-7 shrink-0 place-items-center rounded text-white"
+							style:background-color={toneVar(tone)}
 							style:box-shadow="0 0 0 2px var(--color-surface), 0 0 0 4px {toneVar(tone)}"
-						/>
+						>
+							<Icon name={w.kind === 'film' ? 'film' : 'tv'} size={13} />
+						</span>
 						<span
 							class="min-w-0 flex-1 truncate text-[13px] {w.required
 								? 'font-semibold'
@@ -137,7 +141,12 @@
 		</div>
 		<div data-panel="work" class="rounded-2xl bg-surface p-5 ring-1 ring-hairline">
 			<div class="flex items-center gap-3">
-				<img src={work.cover} alt="" class="aspect-[2/3] w-11 shrink-0 rounded-md object-cover" />
+				<span
+					class="grid aspect-[2/3] w-11 shrink-0 place-items-center rounded-md text-white"
+					style:background-color={toneVar(workTone)}
+				>
+					<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={18} />
+				</span>
 				<div class="min-w-0">
 					<p class="text-[15px] leading-tight font-bold">{work.title}</p>
 					<p class="mt-1 text-[12px] text-muted">

@@ -1,0 +1,676 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "c19429d9-f850-4f3e-a103-442a8fa3f930",
+  "prevIds": [
+    "a37a47ba-3c5c-42df-b73c-b306f9e0e451"
+  ],
+  "ddl": [
+    {
+      "name": "arcs",
+      "entityType": "tables"
+    },
+    {
+      "name": "characters",
+      "entityType": "tables"
+    },
+    {
+      "name": "plot_points",
+      "entityType": "tables"
+    },
+    {
+      "name": "sagas",
+      "entityType": "tables"
+    },
+    {
+      "name": "universes",
+      "entityType": "tables"
+    },
+    {
+      "name": "works",
+      "entityType": "tables"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "universe_slug",
+      "entityType": "columns",
+      "table": "arcs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "arcs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "work_slug",
+      "entityType": "columns",
+      "table": "arcs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "arcs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "tone",
+      "entityType": "columns",
+      "table": "arcs"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sort_order",
+      "entityType": "columns",
+      "table": "arcs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "universe_slug",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "work_slug",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "initials",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "photo",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "photo_credit",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sort_order",
+      "entityType": "columns",
+      "table": "characters"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "universe_slug",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "work_slug",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "character_id",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "arc_id",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "real",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "at",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "text",
+      "entityType": "columns",
+      "table": "plot_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "universe_slug",
+      "entityType": "columns",
+      "table": "sagas"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "sagas"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "sagas"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "tone",
+      "entityType": "columns",
+      "table": "sagas"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sort_order",
+      "entityType": "columns",
+      "table": "sagas"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "universes"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "universes"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sort_order",
+      "entityType": "columns",
+      "table": "universes"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "universe_slug",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "slug",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "title",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "short",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "kind",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "released",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "real",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "chronology",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "lore_date",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "saga_id",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "required",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "unit",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "real",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "range_start",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "real",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "range_end",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "now_playing",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sort_order",
+      "entityType": "columns",
+      "table": "works"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "work_slug"
+      ],
+      "tableTo": "works",
+      "columnsTo": [
+        "universe_slug",
+        "slug"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "fk_arcs_universe_slug_work_slug_works_universe_slug_slug_fk",
+      "entityType": "fks",
+      "table": "arcs"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "work_slug"
+      ],
+      "tableTo": "works",
+      "columnsTo": [
+        "universe_slug",
+        "slug"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "fk_characters_universe_slug_work_slug_works_universe_slug_slug_fk",
+      "entityType": "fks",
+      "table": "characters"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "work_slug",
+        "character_id"
+      ],
+      "tableTo": "characters",
+      "columnsTo": [
+        "universe_slug",
+        "work_slug",
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "fk_plot_points_universe_slug_work_slug_character_id_characters_universe_slug_work_slug_id_fk",
+      "entityType": "fks",
+      "table": "plot_points"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "work_slug",
+        "arc_id"
+      ],
+      "tableTo": "arcs",
+      "columnsTo": [
+        "universe_slug",
+        "work_slug",
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "fk_plot_points_universe_slug_work_slug_arc_id_arcs_universe_slug_work_slug_id_fk",
+      "entityType": "fks",
+      "table": "plot_points"
+    },
+    {
+      "columns": [
+        "universe_slug"
+      ],
+      "tableTo": "universes",
+      "columnsTo": [
+        "slug"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_sagas_universe_slug_universes_slug_fk",
+      "entityType": "fks",
+      "table": "sagas"
+    },
+    {
+      "columns": [
+        "universe_slug"
+      ],
+      "tableTo": "universes",
+      "columnsTo": [
+        "slug"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_works_universe_slug_universes_slug_fk",
+      "entityType": "fks",
+      "table": "works"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "saga_id"
+      ],
+      "tableTo": "sagas",
+      "columnsTo": [
+        "universe_slug",
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "nameExplicit": false,
+      "name": "fk_works_universe_slug_saga_id_sagas_universe_slug_id_fk",
+      "entityType": "fks",
+      "table": "works"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "arcs_pk",
+      "entityType": "pks",
+      "table": "arcs"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "work_slug",
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "characters_pk",
+      "entityType": "pks",
+      "table": "characters"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "plot_points_pk",
+      "entityType": "pks",
+      "table": "plot_points"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "sagas_pk",
+      "entityType": "pks",
+      "table": "sagas"
+    },
+    {
+      "columns": [
+        "universe_slug",
+        "slug"
+      ],
+      "nameExplicit": false,
+      "name": "works_pk",
+      "entityType": "pks",
+      "table": "works"
+    },
+    {
+      "columns": [
+        "slug"
+      ],
+      "nameExplicit": false,
+      "name": "universes_pk",
+      "table": "universes",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "universe_slug",
+          "isExpression": false
+        },
+        {
+          "value": "work_slug",
+          "isExpression": false
+        },
+        {
+          "value": "id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "arcs_universe_work_id",
+      "entityType": "indexes",
+      "table": "arcs"
+    }
+  ],
+  "renames": []
+}

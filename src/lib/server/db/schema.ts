@@ -62,8 +62,6 @@ export const works = sqliteTable(
 		rangeStart: real('range_start').notNull(),
 		rangeEnd: real('range_end').notNull(),
 		nowPlaying: integer('now_playing', { mode: 'boolean' }),
-		cover: text('cover'),
-		coverCredit: text('cover_credit'),
 		sortOrder: integer('sort_order').notNull()
 	},
 	(t) => [
