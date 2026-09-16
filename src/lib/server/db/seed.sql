@@ -1623,7 +1623,7 @@ INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
 INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
   ('star-trek', 'star-trek-enterprise', 'Star Trek: Enterprise', 'Enterprise', 'serie', '2001-09-26', 10, '2151–2161', 'enterprise-era', 1, 'Folge', 1, 98, NULL, 0),
   ('star-trek', 'star-trek-discovery', 'Star Trek: Discovery', 'Discovery', 'serie', '2017-09-24', 20, '2256–2258', 'enterprise-era', 0, 'Folge', 1, 65, NULL, 1),
-  ('star-trek', 'star-trek-strange-new-worlds', 'Star Trek: Strange New Worlds', 'Strange New Worlds', 'serie', '2022-05-05', 25, '2259–2261', 'tos-era', 0, 'Folge', 1, 30, NULL, 2),
+  ('star-trek', 'star-trek-strange-new-worlds', 'Star Trek: Strange New Worlds', 'Strange New Worlds', 'serie', '2022-05-05', 25, '2259–2261', 'tos-era', 0, 'Folge', 1, 38, NULL, 2),
   ('star-trek', 'star-trek-the-original-series', 'Star Trek: The Original Series', 'The Original Series', 'serie', '1966-09-08', 30, '2266–2269', 'tos-era', 1, 'Folge', 1, 79, NULL, 3),
   ('star-trek', 'star-trek-the-motion-picture', 'Star Trek: The Motion Picture', 'The Motion Picture', 'film', '1979-12-07', 40, '2273', 'tos-era', 1, 'Min.', 0, 132, NULL, 4),
   ('star-trek', 'star-trek-ii-wrath-of-khan', 'Star Trek II: The Wrath of Khan', 'The Wrath of Khan', 'film', '1982-06-04', 50, '2285', 'tos-era', 1, 'Min.', 0, 113, NULL, 5),
@@ -1786,7 +1786,7 @@ INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology
   ('yu-gi-oh', 'yu-gi-oh-arc-v', 'Yu-Gi-Oh! Arc-V', 'Arc-V', 'serie', '2014-04-06', 60, 'Maiami-City-Ära', 'arc-v-era', 1, 'Folge', 1, 148, NULL, 7),
   ('yu-gi-oh', 'yu-gi-oh-vrains', 'Yu-Gi-Oh! VRAINS', 'VRAINS', 'serie', '2017-05-10', 70, 'Link-VRAINS-Ära', 'vrains-era', 1, 'Folge', 1, 120, NULL, 8),
   ('yu-gi-oh', 'yu-gi-oh-sevens', 'Yu-Gi-Oh! Sevens', 'Sevens', 'serie', '2020-04-04', 80, 'Rush-Duel-Ära', 'modern-era', 1, 'Folge', 1, 97, NULL, 9),
-  ('yu-gi-oh', 'yu-gi-oh-go-rush', 'Yu-Gi-Oh! Go Rush!!', 'Go Rush!!', 'serie', '2022-04-10', 90, 'Nach Sevens', 'modern-era', 0, 'Folge', 1, 90, NULL, 10);
+  ('yu-gi-oh', 'yu-gi-oh-go-rush', 'Yu-Gi-Oh! Go Rush!!', 'Go Rush!!', 'serie', '2022-04-10', 90, 'Nach Sevens', 'modern-era', 0, 'Folge', 1, 151, NULL, 10);
 
 INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('yu-gi-oh', 'dm-battle-city', 'yu-gi-oh-duel-monsters', 'Battle-City-Turnier', 'arc-1', 0),
@@ -1867,7 +1867,7 @@ INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
   ('pokemon', 'alola-modern-era', 'Alola- und moderne Ära', 'arc-2', 3);
 
 INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
-  ('pokemon', 'pokemon', 'Pokémon', 'Pokémon (Serie)', 'serie', '1997-04-01', 10, 'Ashs gesamte Reise', 'kanto-johto-era', 1, 'Folge', 1, 1250, NULL, 0),
+  ('pokemon', 'pokemon', 'Pokémon', 'Pokémon (Serie)', 'serie', '1997-04-01', 10, 'Ashs gesamte Reise', 'kanto-johto-era', 1, 'Folge', 1, 1383, NULL, 0),
   ('pokemon', 'pokemon-movie-1', 'Pokémon: Mewtwo Strikes Back', 'Mewtwo Strikes Back', 'film', '1998-07-18', 20, 'Nach der Kanto-Liga', 'kanto-johto-era', 0, 'Min.', 0, 96, NULL, 1),
   ('pokemon', 'pokemon-movie-2', 'Pokémon: The Power of One', 'The Power of One', 'film', '1999-07-17', 40, 'Zu Beginn der Johto-Ära', 'kanto-johto-era', 0, 'Min.', 0, 90, NULL, 2),
   ('pokemon', 'pokemon-movie-4', 'Pokémon 4Ever: Celebi – Voice of the Forest', 'Celebi – Voice of the Forest', 'film', '2001-07-07', 55, 'Während der Johto-Ära', 'kanto-johto-era', 0, 'Min.', 0, 75, NULL, 3),
@@ -1890,7 +1890,7 @@ INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, release
   ('pokemon', 'pokemon', 'poke-s7', 7, 'Kalos (XY)', '2013-10-17', 130, 'Kalos-Liga', 762, 935, 'unova-kalos-era', 6),
   ('pokemon', 'pokemon', 'poke-s8', 8, 'Alola (Sun & Moon)', '2016-11-17', 150, 'Alola-Region', 936, 1063, 'alola-modern-era', 7),
   ('pokemon', 'pokemon', 'poke-s9', 9, 'Reisen (Journeys)', '2019-11-17', 170, 'Ash & Goh', 1064, 1234, 'alola-modern-era', 8),
-  ('pokemon', 'pokemon', 'poke-s10', 10, 'Horizonte (Horizons)', '2023-04-14', 190, 'Liko & Roy', 1235, 1250, 'alola-modern-era', 9);
+  ('pokemon', 'pokemon', 'poke-s10', 10, 'Horizonte (Horizons)', '2023-04-14', 190, 'Liko & Roy', 1235, 1383, 'alola-modern-era', 9);
 
 INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('pokemon', 'poke-anfang', 'pokemon', 'Der Anfang der Reise', 'arc-1', 0),
@@ -1962,10 +1962,11 @@ INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
   ('one-piece', 'east-blue-era', 'East Blue & Alabasta', 'arc-2', 0),
   ('one-piece', 'sky-water-era', 'Skypiea, Water 7 & Thriller Bark', 'arc-1', 1),
   ('one-piece', 'war-era', 'Summit War & Fishman Island', 'arc-3', 2),
-  ('one-piece', 'new-world-era', 'Dressrosa & Wano', 'arc-2', 3);
+  ('one-piece', 'new-world-era', 'Dressrosa & Wano', 'arc-2', 3),
+  ('one-piece', 'final-saga', 'Final Saga', 'arc-3', 4);
 
 INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
-  ('one-piece', 'one-piece', 'One Piece', 'One Piece (Serie)', 'serie', '1999-10-20', 10, 'Beginn von Ruffys Reise', 'east-blue-era', 1, 'Folge', 1, 1100, NULL, 0),
+  ('one-piece', 'one-piece', 'One Piece', 'One Piece (Serie)', 'serie', '1999-10-20', 10, 'Beginn von Ruffys Reise', 'east-blue-era', 1, 'Folge', 1, 1178, NULL, 0),
   ('one-piece', 'one-piece-film-z', 'One Piece Film: Z', 'Film: Z', 'film', '2012-12-15', 55, 'Nicht-kanonische Nebengeschichte', 'war-era', 0, 'Min.', 0, 108, NULL, 1),
   ('one-piece', 'one-piece-stampede', 'One Piece: Stampede', 'Stampede', 'film', '2019-08-09', 85, 'Nicht-kanonische Nebengeschichte', 'new-world-era', 0, 'Min.', 0, 101, NULL, 2),
   ('one-piece', 'one-piece-red', 'One Piece Film: Red', 'Film: Red', 'film', '2022-08-06', 95, 'Nicht-kanonische Nebengeschichte', 'new-world-era', 0, 'Min.', 0, 115, NULL, 3);
@@ -1979,7 +1980,9 @@ INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, release
   ('one-piece', 'one-piece', 'op-war', 6, 'Summit War (Marineford)', '2008-06-15', 60, 'Der Krieg um Ace', 385, 516, 'war-era', 5),
   ('one-piece', 'one-piece', 'op-fishman', 7, 'Fishman Island', '2011-09-18', 70, 'Die Insel der Fischmenschen', 517, 574, 'war-era', 6),
   ('one-piece', 'one-piece', 'op-dressrosa', 8, 'Punk Hazard & Dressrosa', '2012-04-15', 80, 'Die Befreiung von Dressrosa', 575, 746, 'new-world-era', 7),
-  ('one-piece', 'one-piece', 'op-wano', 9, 'Whole Cake Island & Wano', '2015-04-05', 90, 'Das Land der Samurai', 747, 1100, 'new-world-era', 8);
+  ('one-piece', 'one-piece', 'op-wano', 9, 'Whole Cake Island & Wano', '2015-04-05', 90, 'Das Land der Samurai', 747, 1085, 'new-world-era', 8),
+  ('one-piece', 'one-piece', 'op-egghead', 10, 'Egghead', '2024-01-07', 100, 'Die Zukunftsinsel', 1086, 1155, 'final-saga', 9),
+  ('one-piece', 'one-piece', 'op-elbaph', 11, 'Elbaph', '2026-04-05', 110, 'Das Land der Riesen', 1156, 1178, 'final-saga', 10);
 
 INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('one-piece', 'op-traum', 'one-piece', 'Ruffys Traum vom One Piece', 'arc-1', 0),
