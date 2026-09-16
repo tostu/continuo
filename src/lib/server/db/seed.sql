@@ -1139,3 +1139,97 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('star-trek', 'pp-pic-1', 'star-trek-picard', 'picard-pic', 'pic-synths', 10, 'Verlässt im Ruhestand die Sternenflotte aus Protest gegen das Synthetik-Verbot.'),
   ('star-trek', 'pp-pic-2', 'star-trek-picard', 'seven-pic', 'pic-synths', 25, 'Kämpft Jahre nach Voyager als Fenris-Rangerin gegen galaktisches Unrecht.');
 
+-- Yu-Gi-Oh!
+
+INSERT INTO universes (slug, name, sort_order) VALUES
+  ('yu-gi-oh', 'Yu-Gi-Oh!', 7);
+
+INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
+  ('yu-gi-oh', 'original-era', 'Original-Ära (Duel Monsters)', 'arc-2', 0),
+  ('yu-gi-oh', 'gx-era', 'GX-Ära', 'arc-1', 1),
+  ('yu-gi-oh', '5ds-era', '5D''s-Ära', 'arc-3', 2),
+  ('yu-gi-oh', 'zexal-era', 'Zexal-Ära', 'arc-2', 3),
+  ('yu-gi-oh', 'arc-v-era', 'Arc-V-Ära', 'arc-1', 4),
+  ('yu-gi-oh', 'vrains-era', 'VRAINS-Ära', 'arc-3', 5),
+  ('yu-gi-oh', 'modern-era', 'Rush-Duel-Ära', 'arc-2', 6);
+
+INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
+  ('yu-gi-oh', 'yu-gi-oh-duel-monsters', 'Yu-Gi-Oh! Duel Monsters', 'Duel Monsters', 'serie', '2000-04-04', 10, 'Original-Ära', 'original-era', 1, 'Folge', 1, 224, NULL, 0),
+  ('yu-gi-oh', 'yu-gi-oh-pyramid-of-light', 'Yu-Gi-Oh! The Movie: Pyramid of Light', 'Pyramid of Light', 'film', '2004-08-13', 20, 'Während Duel Monsters', 'original-era', 0, 'Min.', 0, 90, NULL, 1),
+  ('yu-gi-oh', 'yu-gi-oh-dark-side-of-dimensions', 'Yu-Gi-Oh!: The Dark Side of Dimensions', 'Dark Side of Dimensions', 'film', '2016-04-23', 25, 'Kurz nach dem Ende von Duel Monsters', 'original-era', 0, 'Min.', 0, 130, NULL, 2),
+  ('yu-gi-oh', 'yu-gi-oh-gx', 'Yu-Gi-Oh! GX', 'GX', 'serie', '2004-10-06', 30, 'Duel-Academy-Ära', 'gx-era', 1, 'Folge', 1, 180, NULL, 3),
+  ('yu-gi-oh', 'yu-gi-oh-5ds', 'Yu-Gi-Oh! 5D''s', '5D''s', 'serie', '2008-04-02', 40, 'Neo-Domino-City-Ära', '5ds-era', 1, 'Folge', 1, 154, NULL, 4),
+  ('yu-gi-oh', 'yu-gi-oh-bonds-beyond-time', 'Yu-Gi-Oh!: Bonds Beyond Time', 'Bonds Beyond Time', 'film', '2010-01-23', 45, 'Crossover während 5D''s', '5ds-era', 0, 'Min.', 0, 59, NULL, 5),
+  ('yu-gi-oh', 'yu-gi-oh-zexal', 'Yu-Gi-Oh! Zexal', 'Zexal', 'serie', '2011-04-11', 50, 'Heartland-City-Ära', 'zexal-era', 1, 'Folge', 1, 146, NULL, 6),
+  ('yu-gi-oh', 'yu-gi-oh-arc-v', 'Yu-Gi-Oh! Arc-V', 'Arc-V', 'serie', '2014-04-06', 60, 'Maiami-City-Ära', 'arc-v-era', 1, 'Folge', 1, 148, NULL, 7),
+  ('yu-gi-oh', 'yu-gi-oh-vrains', 'Yu-Gi-Oh! VRAINS', 'VRAINS', 'serie', '2017-05-10', 70, 'Link-VRAINS-Ära', 'vrains-era', 1, 'Folge', 1, 120, NULL, 8),
+  ('yu-gi-oh', 'yu-gi-oh-sevens', 'Yu-Gi-Oh! Sevens', 'Sevens', 'serie', '2020-04-04', 80, 'Rush-Duel-Ära', 'modern-era', 1, 'Folge', 1, 97, NULL, 9),
+  ('yu-gi-oh', 'yu-gi-oh-go-rush', 'Yu-Gi-Oh! Go Rush!!', 'Go Rush!!', 'serie', '2022-04-10', 90, 'Nach Sevens', 'modern-era', 0, 'Folge', 1, 90, NULL, 10);
+
+INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
+  ('yu-gi-oh', 'dm-battle-city', 'yu-gi-oh-duel-monsters', 'Battle-City-Turnier', 'arc-1', 0),
+  ('yu-gi-oh', 'dm-memory-world', 'yu-gi-oh-duel-monsters', 'Die Erinnerungswelt', 'arc-3', 1),
+  ('yu-gi-oh', 'pol-anubis', 'yu-gi-oh-pyramid-of-light', 'Anubis'' Erwachen', 'arc-3', 2),
+  ('yu-gi-oh', 'dsod-atem', 'yu-gi-oh-dark-side-of-dimensions', 'Atems letztes Duell', 'arc-3', 3),
+  ('yu-gi-oh', 'gx-academy', 'yu-gi-oh-gx', 'Das Leben an der Duel Academy', 'arc-1', 4),
+  ('yu-gi-oh', 'gx-shadow-riders', 'yu-gi-oh-gx', 'Die Shadow Riders', 'arc-3', 5),
+  ('yu-gi-oh', 'fds-signer', 'yu-gi-oh-5ds', 'Die Signer-Drachen', 'arc-1', 6),
+  ('yu-gi-oh', 'fds-dark-signer', 'yu-gi-oh-5ds', 'Die Dark Signer', 'arc-3', 7),
+  ('yu-gi-oh', 'bbt-paradox', 'yu-gi-oh-bonds-beyond-time', 'Paradox'' Angriff', 'arc-3', 8),
+  ('yu-gi-oh', 'zx-numbers', 'yu-gi-oh-zexal', 'Die Number-Karten', 'arc-1', 9),
+  ('yu-gi-oh', 'zx-barian', 'yu-gi-oh-zexal', 'Die Barian-Welt', 'arc-3', 10),
+  ('yu-gi-oh', 'av-action-duel', 'yu-gi-oh-arc-v', 'Action Duel', 'arc-1', 11),
+  ('yu-gi-oh', 'av-dimensions', 'yu-gi-oh-arc-v', 'Die vier Dimensionen', 'arc-3', 12),
+  ('yu-gi-oh', 'vr-hanoi', 'yu-gi-oh-vrains', 'Knights of Hanoi', 'arc-1', 13),
+  ('yu-gi-oh', 'vr-ai', 'yu-gi-oh-vrains', 'Die KI-Bedrohung', 'arc-3', 14),
+  ('yu-gi-oh', 'sv-rush-duel', 'yu-gi-oh-sevens', 'Die Erfindung des Rush Duel', 'arc-1', 15),
+  ('yu-gi-oh', 'gr-goha', 'yu-gi-oh-go-rush', 'Die Goha-Gruppe', 'arc-3', 16);
+
+INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
+  ('yu-gi-oh', 'yu-gi-oh-duel-monsters', 'yugi-dm', 'Yugi Muto', 'YM', 0),
+  ('yu-gi-oh', 'yu-gi-oh-duel-monsters', 'kaiba-dm', 'Seto Kaiba', 'SK', 1),
+  ('yu-gi-oh', 'yu-gi-oh-duel-monsters', 'joey-dm', 'Joey Wheeler', 'JW', 2),
+  ('yu-gi-oh', 'yu-gi-oh-pyramid-of-light', 'yugi-pol', 'Yugi Muto', 'YM', 3),
+  ('yu-gi-oh', 'yu-gi-oh-pyramid-of-light', 'anubis-pol', 'Anubis', 'AN', 4),
+  ('yu-gi-oh', 'yu-gi-oh-dark-side-of-dimensions', 'yugi-dsod', 'Yugi Muto', 'YM', 5),
+  ('yu-gi-oh', 'yu-gi-oh-dark-side-of-dimensions', 'kaiba-dsod', 'Seto Kaiba', 'SK', 6),
+  ('yu-gi-oh', 'yu-gi-oh-gx', 'judai-gx', 'Judai Yuki', 'JY', 7),
+  ('yu-gi-oh', 'yu-gi-oh-gx', 'manjoume-gx', 'Manjoume Jun', 'MJ', 8),
+  ('yu-gi-oh', 'yu-gi-oh-5ds', 'yusei-fds', 'Yusei Fudo', 'YF', 9),
+  ('yu-gi-oh', 'yu-gi-oh-5ds', 'jack-fds', 'Jack Atlas', 'JA', 10),
+  ('yu-gi-oh', 'yu-gi-oh-bonds-beyond-time', 'yusei-bbt', 'Yusei Fudo', 'YF', 11),
+  ('yu-gi-oh', 'yu-gi-oh-bonds-beyond-time', 'judai-bbt', 'Judai Yuki', 'JY', 12),
+  ('yu-gi-oh', 'yu-gi-oh-bonds-beyond-time', 'yugi-bbt', 'Yugi Muto', 'YM', 13),
+  ('yu-gi-oh', 'yu-gi-oh-zexal', 'yuma-zx', 'Yuma Tsukumo', 'YT', 14),
+  ('yu-gi-oh', 'yu-gi-oh-zexal', 'astral-zx', 'Astral', 'AS', 15),
+  ('yu-gi-oh', 'yu-gi-oh-arc-v', 'yuya-av', 'Yuya Sakaki', 'YS', 16),
+  ('yu-gi-oh', 'yu-gi-oh-vrains', 'yusaku-vr', 'Yusaku Fujiki', 'YF2', 17),
+  ('yu-gi-oh', 'yu-gi-oh-sevens', 'yuga-sv', 'Yuga Ohdo', 'YO', 18),
+  ('yu-gi-oh', 'yu-gi-oh-go-rush', 'yudias-gr', 'Yudias Velgemann', 'YV', 19);
+
+INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
+  ('yu-gi-oh', 'pp-dm-1', 'yu-gi-oh-duel-monsters', 'yugi-dm', 'dm-battle-city', 80, 'Gewinnt als Pharao-Geist das Battle-City-Turnier gegen Marik.'),
+  ('yu-gi-oh', 'pp-dm-2', 'yu-gi-oh-duel-monsters', 'yugi-dm', 'dm-memory-world', 200, 'Erinnert sich in der Erinnerungswelt an sein Leben als ägyptischer Pharao.'),
+  ('yu-gi-oh', 'pp-dm-3', 'yu-gi-oh-duel-monsters', 'kaiba-dm', 'dm-battle-city', 60, 'Veranstaltet das Battle-City-Turnier, um Yugi erneut herauszufordern.'),
+  ('yu-gi-oh', 'pp-dm-4', 'yu-gi-oh-duel-monsters', 'joey-dm', 'dm-battle-city', 70, 'Erreicht als treuer Freund das Finale des Battle-City-Turniers.'),
+  ('yu-gi-oh', 'pp-pol-1', 'yu-gi-oh-pyramid-of-light', 'yugi-pol', 'pol-anubis', 60, 'Stellt sich dem wiederauferstandenen Gott Anubis im entscheidenden Duell.'),
+  ('yu-gi-oh', 'pp-pol-2', 'yu-gi-oh-pyramid-of-light', 'anubis-pol', 'pol-anubis', 20, 'Kehrt aus dem Jenseits zurück, um über Ägypten zu herrschen.'),
+  ('yu-gi-oh', 'pp-dsod-1', 'yu-gi-oh-dark-side-of-dimensions', 'kaiba-dsod', 'dsod-atem', 40, 'Baut ein Portal, um Atems Geist noch einmal zum Duell herauszufordern.'),
+  ('yu-gi-oh', 'pp-dsod-2', 'yu-gi-oh-dark-side-of-dimensions', 'yugi-dsod', 'dsod-atem', 100, 'Verabschiedet sich endgültig von Atems Geist im letzten Duell.'),
+  ('yu-gi-oh', 'pp-gx-1', 'yu-gi-oh-gx', 'judai-gx', 'gx-academy', 20, 'Wird als vielversprechender Neuling an die Duel Academy aufgenommen.'),
+  ('yu-gi-oh', 'pp-gx-2', 'yu-gi-oh-gx', 'judai-gx', 'gx-shadow-riders', 140, 'Besiegt die Shadow Riders, um die Duel Academy zu retten.'),
+  ('yu-gi-oh', 'pp-gx-3', 'yu-gi-oh-gx', 'manjoume-gx', 'gx-academy', 30, 'Konkurriert als Rivale ständig um Judais Ruf an der Academy.'),
+  ('yu-gi-oh', 'pp-fds-1', 'yu-gi-oh-5ds', 'yusei-fds', 'fds-signer', 40, 'Trägt als einer der fünf Signer ein Drachen-Mal auf dem Arm.'),
+  ('yu-gi-oh', 'pp-fds-2', 'yu-gi-oh-5ds', 'yusei-fds', 'fds-dark-signer', 100, 'Kämpft gegen die Dark Signer, um die Welt vor der Zerstörung zu bewahren.'),
+  ('yu-gi-oh', 'pp-fds-3', 'yu-gi-oh-5ds', 'jack-fds', 'fds-signer', 30, 'Verteidigt als König von Neo Domino City seinen Turniertitel.'),
+  ('yu-gi-oh', 'pp-bbt-1', 'yu-gi-oh-bonds-beyond-time', 'yusei-bbt', 'bbt-paradox', 30, 'Verbündet sich mit Yugi und Judai gegen den zeitreisenden Paradox.'),
+  ('yu-gi-oh', 'pp-bbt-2', 'yu-gi-oh-bonds-beyond-time', 'judai-bbt', 'bbt-paradox', 25, 'Reist aus seiner eigenen Ära herbei, um die Karten-Geschichte zu retten.'),
+  ('yu-gi-oh', 'pp-zx-1', 'yu-gi-oh-zexal', 'yuma-zx', 'zx-numbers', 30, 'Sammelt gemeinsam mit Astral die geheimnisvollen Number-Karten.'),
+  ('yu-gi-oh', 'pp-zx-2', 'yu-gi-oh-zexal', 'astral-zx', 'zx-barian', 120, 'Erinnert sich nach und nach an seine Herkunft aus der Barian-Welt.'),
+  ('yu-gi-oh', 'pp-av-1', 'yu-gi-oh-arc-v', 'yuya-av', 'av-action-duel', 20, 'Erfindet mit dem Pendulum-Beschwören eine völlig neue Duellstrategie.'),
+  ('yu-gi-oh', 'pp-av-2', 'yu-gi-oh-arc-v', 'yuya-av', 'av-dimensions', 130, 'Entdeckt seine Verbindung zu Gegenspielern aus drei Parallel-Dimensionen.'),
+  ('yu-gi-oh', 'pp-vr-1', 'yu-gi-oh-vrains', 'yusaku-vr', 'vr-hanoi', 20, 'Taucht als Hacker Playmaker ins virtuelle Link VRAINS ein.'),
+  ('yu-gi-oh', 'pp-vr-2', 'yu-gi-oh-vrains', 'yusaku-vr', 'vr-ai', 100, 'Stellt sich der KI Ignis-Bedrohung, um das Netzwerk zu schützen.'),
+  ('yu-gi-oh', 'pp-sv-1', 'yu-gi-oh-sevens', 'yuga-sv', 'sv-rush-duel', 15, 'Erfindet das schnellere Rush-Duel-Format für den Straßenkampf.'),
+  ('yu-gi-oh', 'pp-gr-1', 'yu-gi-oh-go-rush', 'yudias-gr', 'gr-goha', 20, 'Stellt sich der übermächtigen Goha-Firmengruppe mit eigenen Rush-Duellen entgegen.');
+
