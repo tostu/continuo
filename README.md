@@ -1,45 +1,57 @@
-# sv
+# Continuo
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Continuo zeigt Zeitleisten fiktiver Universen – Sagas, Werke, Handlungsstränge (Arcs),
+Figuren und Plot Points – als interaktive, vorgerenderte Website. Beispiel-Universen:
+Star Wars, MCU, Fate, Dragon Ball, Lower Decks/Prodigy.
 
-## Creating a project
+**Stack:** SvelteKit 2 (Svelte 5) · TypeScript · Tailwind CSS 4 · Drizzle ORM · Cloudflare
+D1 + Workers (Adapter) · Paraglide (i18n: de/en) · Vitest + Playwright.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Schnellstart
 
-```sh
-# create a new project
-npx sv create my-app
+```bash
+bun install
+
+# einmalig: lokale D1-Datenbank anlegen und mit Beispieldaten füllen
+bun run db:migrate:local && bun run db:seed:local
+
+bun run dev:local     # Dev-Server gegen die lokale D1
 ```
 
-To recreate this project with the same configuration:
+Öffnet auf `http://localhost:5173`. Details zur D1-Anbindung siehe unten.
 
-```sh
-# recreate this project
-bun x sv@0.17.0 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" drizzle="database:d1" better-auth="demo:password" paraglide="languageTags:en, de+demo:no" ai-tools="ide:claude-code+delivery:plugin" --install bun continuo
-```
+## Scripts
 
-## Developing
+| Befehl | Zweck |
+|---|---|
+| `bun run dev` / `dev:local` | Dev-Server (remote D1 / lokale D1) |
+| `bun run build` / `build:local` | Production-Build (remote D1 / lokale D1) |
+| `bun run preview` | Build lokal über Wrangler ausliefern |
+| `bun run check` | Typprüfung (svelte-check) |
+| `bun run lint` / `format` | Prettier + ESLint prüfen / formatieren |
+| `bun run test:unit` | Vitest |
+| `bun run test:e2e` | Playwright |
+| `bun run test` | Unit- + E2E-Tests |
+| `bun run db:generate` | Migration aus `schema.ts` erzeugen |
+| `bun run db:migrate:local` / `:remote` | Migrationen anwenden |
+| `bun run db:seed:local` / `:remote` | `seed.sql` einspielen |
+| `bun run db:studio` / `:studio:local` | Drizzle Studio (remote / lokal) |
+| `bun run db:export` | Universum-Daten nach `universe-export/` exportieren |
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Einrichtung
 
-```sh
-npm run dev
+`.env` aus `.env.example` befüllen: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_DATABASE_ID` und
+ein API-Token mit `D1: Edit`. Ohne diese Werte bricht jeder Load ab, der `getDb()` benutzt;
+Builds ohne D1-Zugriff laufen weiterhin durch (die Instanz wird lazy erzeugt).
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Für rein lokale Entwicklung reicht `bun run db:migrate:local && bun run db:seed:local` plus
+`bun run dev:local` – dann wird keine echte Cloudflare-Verbindung gebraucht.
 
-## Building
+## Deployment
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Der Adapter ist `@sveltejs/adapter-cloudflare`, Ziel sind Cloudflare Workers
+(`wrangler.jsonc`). Die Seite ist vollständig vorgerendert; deployt wird nur statisches
+Markup plus Assets – der Worker fragt zur Laufzeit keine D1 an.
 
 ## Daten aus D1
 
@@ -82,12 +94,6 @@ Bundle. Aus demselben Grund gibt es **keinen Param-Matcher** mehr für `[univers
 Matcher (`src/params/…`) laufen auch im Browser und dürfen nicht asynchron sein, können die
 Datenbank also nicht fragen. Unbekannte Slugs fallen stattdessen im Layout-Load durch
 (`error(404, …)`), wie es die SvelteKit-Doku für datenabhängige Parameter vorsieht.
-
-### Einrichtung
-
-`.env` aus `.env.example` befüllen – `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_DATABASE_ID`
-und ein API-Token mit `D1: Edit`. Ohne diese Werte bricht jeder Load ab, der `getDb()`
-benutzt; Builds ohne D1-Zugriff laufen weiterhin durch (die Instanz wird lazy erzeugt).
 
 ### Schema ändern
 
