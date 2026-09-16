@@ -41,6 +41,8 @@ export interface Season {
 	chronology: number;
 	loreDate: string;
 	range: [number, number];
+	/** Überschreibt die Saga des Werks, falls eine Serie über mehrere Ären hinweg läuft. */
+	sagaId?: string;
 }
 
 /** Handlungsstrang innerhalb eines Werks. */

@@ -88,6 +88,8 @@ export const seasons = sqliteTable(
 		/** Teilbereich der werkinternen Achse (`works.range_start`..`range_end`). */
 		rangeStart: real('range_start').notNull(),
 		rangeEnd: real('range_end').notNull(),
+		/** Überschreibt saga_id des Werks, falls eine Serie über mehrere Ären hinweg läuft. */
+		sagaId: text('saga_id'),
 		sortOrder: integer('sort_order').notNull()
 	},
 	(t) => [

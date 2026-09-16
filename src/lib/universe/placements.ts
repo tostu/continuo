@@ -34,7 +34,7 @@ export const placementChronology = (p: Placement): number =>
 	p.season?.chronology ?? p.work.chronology;
 export const placementReleased = (p: Placement): string => p.season?.released ?? p.work.released;
 export const placementLoreDate = (p: Placement): string => p.season?.loreDate ?? p.work.loreDate;
-export const placementSagaId = (p: Placement): string => p.work.sagaId;
+export const placementSagaId = (p: Placement): string => p.season?.sagaId ?? p.work.sagaId;
 export const placementRequired = (p: Placement): boolean => p.work.required;
 
 export const placementShort = (p: Placement): string =>

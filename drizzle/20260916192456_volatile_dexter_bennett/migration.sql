@@ -1,0 +1,1 @@
+ALTER TABLE `seasons` ADD `saga_id` text;

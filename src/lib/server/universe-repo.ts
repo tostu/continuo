@@ -110,7 +110,8 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		released: s.released,
 		chronology: s.chronology,
 		loreDate: s.loreDate,
-		range: [s.rangeStart, s.rangeEnd]
+		range: [s.rangeStart, s.rangeEnd],
+		...(s.sagaId ? { sagaId: s.sagaId } : {})
 	}));
 
 	const arcs: Arc[] = arcRows.map((a) => ({

@@ -1258,17 +1258,17 @@ INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology
   ('pokemon', 'pokemon-movie-19', 'Pokémon: Volcanion and the Mechanical Marvel', 'Volcanion and the Mechanical Marvel', 'film', '2016-07-16', 140, 'Während der Kalos-Ära', 'unova-kalos-era', 0, 'Min.', 0, 79, NULL, 10),
   ('pokemon', 'pokemon-movie-20', 'Pokémon the Movie: I Choose You!', 'I Choose You!', 'film', '2017-07-15', 155, 'Neuerzählung von Ashs erstem Tag', 'alola-modern-era', 0, 'Min.', 0, 100, NULL, 11);
 
-INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, released, chronology, lore_date, range_start, range_end, sort_order) VALUES
-  ('pokemon', 'pokemon', 'poke-s1', 1, 'Kanto (Indigo League)', '1997-04-01', 10, 'Kanto-Liga', 1, 82, 0),
-  ('pokemon', 'pokemon', 'poke-s2', 2, 'Orange-Inseln', '1999-04-16', 30, 'Orange-Liga', 83, 116, 1),
-  ('pokemon', 'pokemon', 'poke-s3', 3, 'Johto-Liga', '1999-08-26', 50, 'Johto-Liga', 117, 275, 2),
-  ('pokemon', 'pokemon', 'poke-s4', 4, 'Hoenn (Advanced Generation)', '2002-11-14', 70, 'Hoenn-Liga', 276, 468, 3),
-  ('pokemon', 'pokemon', 'poke-s5', 5, 'Sinnoh (Diamond & Pearl)', '2006-09-28', 90, 'Sinnoh-Liga', 469, 656, 4),
-  ('pokemon', 'pokemon', 'poke-s6', 6, 'Einheit (Black & White)', '2010-09-23', 110, 'Einheit-Liga', 657, 761, 5),
-  ('pokemon', 'pokemon', 'poke-s7', 7, 'Kalos (XY)', '2013-10-17', 130, 'Kalos-Liga', 762, 935, 6),
-  ('pokemon', 'pokemon', 'poke-s8', 8, 'Alola (Sun & Moon)', '2016-11-17', 150, 'Alola-Region', 936, 1063, 7),
-  ('pokemon', 'pokemon', 'poke-s9', 9, 'Reisen (Journeys)', '2019-11-17', 170, 'Ash & Goh', 1064, 1234, 8),
-  ('pokemon', 'pokemon', 'poke-s10', 10, 'Horizonte (Horizons)', '2023-04-14', 190, 'Liko & Roy', 1235, 1250, 9);
+INSERT INTO seasons (universe_slug, work_slug, id, season_number, label, released, chronology, lore_date, range_start, range_end, saga_id, sort_order) VALUES
+  ('pokemon', 'pokemon', 'poke-s1', 1, 'Kanto (Indigo League)', '1997-04-01', 10, 'Kanto-Liga', 1, 82, 'kanto-johto-era', 0),
+  ('pokemon', 'pokemon', 'poke-s2', 2, 'Orange-Inseln', '1999-04-16', 30, 'Orange-Liga', 83, 116, 'kanto-johto-era', 1),
+  ('pokemon', 'pokemon', 'poke-s3', 3, 'Johto-Liga', '1999-08-26', 50, 'Johto-Liga', 117, 275, 'kanto-johto-era', 2),
+  ('pokemon', 'pokemon', 'poke-s4', 4, 'Hoenn (Advanced Generation)', '2002-11-14', 70, 'Hoenn-Liga', 276, 468, 'hoenn-sinnoh-era', 3),
+  ('pokemon', 'pokemon', 'poke-s5', 5, 'Sinnoh (Diamond & Pearl)', '2006-09-28', 90, 'Sinnoh-Liga', 469, 656, 'hoenn-sinnoh-era', 4),
+  ('pokemon', 'pokemon', 'poke-s6', 6, 'Einheit (Black & White)', '2010-09-23', 110, 'Einheit-Liga', 657, 761, 'unova-kalos-era', 5),
+  ('pokemon', 'pokemon', 'poke-s7', 7, 'Kalos (XY)', '2013-10-17', 130, 'Kalos-Liga', 762, 935, 'unova-kalos-era', 6),
+  ('pokemon', 'pokemon', 'poke-s8', 8, 'Alola (Sun & Moon)', '2016-11-17', 150, 'Alola-Region', 936, 1063, 'alola-modern-era', 7),
+  ('pokemon', 'pokemon', 'poke-s9', 9, 'Reisen (Journeys)', '2019-11-17', 170, 'Ash & Goh', 1064, 1234, 'alola-modern-era', 8),
+  ('pokemon', 'pokemon', 'poke-s10', 10, 'Horizonte (Horizons)', '2023-04-14', 190, 'Liko & Roy', 1235, 1250, 'alola-modern-era', 9);
 
 INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
   ('pokemon', 'poke-anfang', 'pokemon', 'Der Anfang der Reise', 'arc-1', 0),
@@ -1330,4 +1330,3 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('pokemon', 'pp-m16-1', 'pokemon-movie-16', 'genesect-m16', 'm16-legende', 55, 'Sucht als wiederbelebtes Fossil-Pokémon Rache für seine Vergangenheit.'),
   ('pokemon', 'pp-m19-1', 'pokemon-movie-19', 'volcanion-m19', 'm19-mechanik', 60, 'Verbündet sich widerwillig mit Ash, um sein entführtes Volk zu retten.'),
   ('pokemon', 'pp-m20-1', 'pokemon-movie-20', 'ash-m20', 'm20-ursprung', 70, 'Erlebt seinen allerersten Tag als Pokémon-Trainer noch einmal neu.');
-
