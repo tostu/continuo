@@ -896,3 +896,94 @@ INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at,
   ('dragon-ball', 'pp-sh-1', 'dragon-ball-super-super-hero', 'gohan-sh', 'sh-red-ribbon', 70, 'Erwacht als Gohan Beast zu neuer, ungeahnter Stärke.'),
   ('dragon-ball', 'pp-sh-2', 'dragon-ball-super-super-hero', 'piccolo-sh', 'sh-red-ribbon', 50, 'Trainiert heimlich mit Pan und wird zu Orange Piccolo.');
 
+-- Naruto
+
+INSERT INTO universes (slug, name, sort_order) VALUES
+  ('naruto', 'Naruto', 5);
+
+INSERT INTO sagas (universe_slug, id, name, tone, sort_order) VALUES
+  ('naruto', 'part-1', 'Naruto (Teil 1)', 'arc-2', 0),
+  ('naruto', 'part-2', 'Naruto: Shippuden (Teil 2)', 'arc-1', 1);
+
+INSERT INTO works (universe_slug, slug, title, short, kind, released, chronology, lore_date, saga_id, required, unit, range_start, range_end, now_playing, sort_order) VALUES
+  ('naruto', 'naruto-original', 'Naruto', 'Naruto', 'serie', '2002-10-03', 10, 'Kindheit von Naruto', 'part-1', 1, 'Folge', 1, 220, NULL, 0),
+  ('naruto', 'naruto-movie-1', 'Naruto the Movie: Ninja Clash in the Land of Snow', 'Movie 1: Land des Schnees', 'film', '2004-08-21', 20, 'Während Teil 1', 'part-1', 0, 'Min.', 0, 85, NULL, 1),
+  ('naruto', 'naruto-movie-2', 'Naruto the Movie 2: Legend of the Stone of Gelel', 'Movie 2: Der Gelel-Stein', 'film', '2005-08-06', 25, 'Während Teil 1', 'part-1', 0, 'Min.', 0, 98, NULL, 2),
+  ('naruto', 'naruto-movie-3', 'Naruto the Movie 3: Guardians of the Crescent Moon Kingdom', 'Movie 3: Königreich des Halbmonds', 'film', '2006-08-05', 28, 'Während Teil 1', 'part-1', 0, 'Min.', 0, 95, NULL, 3),
+  ('naruto', 'naruto-shippuden', 'Naruto: Shippuden', 'Shippuden', 'serie', '2007-02-15', 40, 'Nach Sasukes Weggang', 'part-2', 1, 'Folge', 1, 500, NULL, 4),
+  ('naruto', 'shippuden-movie-1', 'Naruto Shippuden the Movie', 'Shippuden Movie 1', 'film', '2007-08-04', 50, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 99, NULL, 5),
+  ('naruto', 'shippuden-movie-2-bonds', 'Naruto Shippuden the Movie: Bonds', 'Bonds', 'film', '2008-08-02', 55, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 92, NULL, 6),
+  ('naruto', 'shippuden-movie-3-will-of-fire', 'Naruto Shippuden the Movie 3: Inheritors of the Will of Fire', 'Erben des Willens des Feuers', 'film', '2009-08-01', 60, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 99, NULL, 7),
+  ('naruto', 'shippuden-movie-4-lost-tower', 'Naruto Shippuden: The Lost Tower', 'Der verlorene Turm', 'film', '2010-07-31', 65, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 91, NULL, 8),
+  ('naruto', 'shippuden-movie-5-blood-prison', 'Naruto Shippuden: Blood Prison', 'Blutgefängnis', 'film', '2011-07-30', 70, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 102, NULL, 9),
+  ('naruto', 'road-to-ninja', 'Naruto Shippuden: Road to Ninja', 'Road to Ninja', 'film', '2012-07-28', 75, 'Während Teil 2', 'part-2', 0, 'Min.', 0, 109, NULL, 10),
+  ('naruto', 'the-last-naruto-the-movie', 'The Last: Naruto the Movie', 'The Last', 'film', '2014-12-06', 90, 'Zwei Jahre nach dem Vierten Weltkrieg', 'part-2', 1, 'Min.', 0, 112, NULL, 11);
+
+INSERT INTO arcs (universe_slug, id, work_slug, name, tone, sort_order) VALUES
+  ('naruto', 'n-genin', 'naruto-original', 'Die Genin-Prüfung', 'arc-1', 0),
+  ('naruto', 'n-chunin', 'naruto-original', 'Die Chunin-Prüfung', 'arc-3', 1),
+  ('naruto', 'nm1-schnee', 'naruto-movie-1', 'Land des Schnees', 'arc-3', 2),
+  ('naruto', 'nm2-gelel', 'naruto-movie-2', 'Der Gelel-Stein', 'arc-3', 3),
+  ('naruto', 'nm3-mond', 'naruto-movie-3', 'Königreich des Halbmonds', 'arc-3', 4),
+  ('naruto', 'ns-akatsuki', 'naruto-shippuden', 'Akatsuki', 'arc-1', 5),
+  ('naruto', 'ns-krieg', 'naruto-shippuden', 'Der Vierte Shinobi-Weltkrieg', 'arc-3', 6),
+  ('naruto', 'sm1-mukade', 'shippuden-movie-1', 'Mukades Wiederauferstehung', 'arc-3', 7),
+  ('naruto', 'sm2-shinnou', 'shippuden-movie-2-bonds', 'Das abtrünnige Kommando', 'arc-3', 8),
+  ('naruto', 'sm3-hiruko', 'shippuden-movie-3-will-of-fire', 'Hirukos Verschwörung', 'arc-3', 9),
+  ('naruto', 'sm4-zeitreise', 'shippuden-movie-4-lost-tower', 'Zeitreise ins Land des Turms', 'arc-3', 10),
+  ('naruto', 'sm5-hozuki', 'shippuden-movie-5-blood-prison', 'Das Hochsicherheitsgefängnis Hōzukijō', 'arc-3', 11),
+  ('naruto', 'sm6-genjutsu', 'road-to-ninja', 'Die Genjutsu-Welt', 'arc-3', 12),
+  ('naruto', 'last-hinata', 'the-last-naruto-the-movie', 'Hinatas Gefühle', 'arc-1', 13),
+  ('naruto', 'last-toneri', 'the-last-naruto-the-movie', 'Toneris Plan', 'arc-3', 14);
+
+INSERT INTO characters (universe_slug, work_slug, id, name, initials, sort_order) VALUES
+  ('naruto', 'naruto-original', 'naruto-no', 'Naruto Uzumaki', 'NU', 0),
+  ('naruto', 'naruto-original', 'sasuke-no', 'Sasuke Uchiha', 'SU', 1),
+  ('naruto', 'naruto-original', 'sakura-no', 'Sakura Haruno', 'SH', 2),
+  ('naruto', 'naruto-original', 'kakashi-no', 'Kakashi Hatake', 'KH', 3),
+  ('naruto', 'naruto-movie-1', 'naruto-nm1', 'Naruto Uzumaki', 'NU', 4),
+  ('naruto', 'naruto-movie-2', 'naruto-nm2', 'Naruto Uzumaki', 'NU', 5),
+  ('naruto', 'naruto-movie-3', 'naruto-nm3', 'Naruto Uzumaki', 'NU', 6),
+  ('naruto', 'naruto-shippuden', 'naruto-ns', 'Naruto Uzumaki', 'NU', 7),
+  ('naruto', 'naruto-shippuden', 'sasuke-ns', 'Sasuke Uchiha', 'SU', 8),
+  ('naruto', 'naruto-shippuden', 'itachi-ns', 'Itachi Uchiha', 'IU', 9),
+  ('naruto', 'naruto-shippuden', 'pain-ns', 'Pain (Nagato)', 'PA', 10),
+  ('naruto', 'naruto-shippuden', 'obito-ns', 'Obito Uchiha', 'OU', 11),
+  ('naruto', 'shippuden-movie-1', 'naruto-sm1', 'Naruto Uzumaki', 'NU', 12),
+  ('naruto', 'shippuden-movie-2-bonds', 'naruto-sm2', 'Naruto Uzumaki', 'NU', 13),
+  ('naruto', 'shippuden-movie-3-will-of-fire', 'naruto-sm3', 'Naruto Uzumaki', 'NU', 14),
+  ('naruto', 'shippuden-movie-4-lost-tower', 'naruto-sm4', 'Naruto Uzumaki', 'NU', 15),
+  ('naruto', 'shippuden-movie-4-lost-tower', 'minato-sm4', 'Minato Namikaze', 'MN', 16),
+  ('naruto', 'shippuden-movie-5-blood-prison', 'naruto-sm5', 'Naruto Uzumaki', 'NU', 17),
+  ('naruto', 'road-to-ninja', 'naruto-sm6', 'Naruto Uzumaki', 'NU', 18),
+  ('naruto', 'road-to-ninja', 'menma-sm6', 'Menma', 'ME', 19),
+  ('naruto', 'the-last-naruto-the-movie', 'naruto-last', 'Naruto Uzumaki', 'NU', 20),
+  ('naruto', 'the-last-naruto-the-movie', 'hinata-last', 'Hinata Hyūga', 'HH', 21),
+  ('naruto', 'the-last-naruto-the-movie', 'toneri-last', 'Toneri Ōtsutsuki', 'TO', 22);
+
+INSERT INTO plot_points (universe_slug, id, work_slug, character_id, arc_id, at, text) VALUES
+  ('naruto', 'pp-no-1', 'naruto-original', 'naruto-no', 'n-genin', 5, 'Besteht mithilfe des Schattendoppelgänger-Jutsu die Genin-Prüfung.'),
+  ('naruto', 'pp-no-2', 'naruto-original', 'naruto-no', 'n-chunin', 120, 'Kämpft im Tal des Endes gegen den überlaufenden Sasuke.'),
+  ('naruto', 'pp-no-3', 'naruto-original', 'sasuke-no', 'n-chunin', 118, 'Verlässt das Dorf, um bei Orochimaru Macht zu suchen.'),
+  ('naruto', 'pp-no-4', 'naruto-original', 'sakura-no', 'n-genin', 40, 'Wird Teil von Team 7 unter Kakashis Führung.'),
+  ('naruto', 'pp-no-5', 'naruto-original', 'kakashi-no', 'n-chunin', 60, 'Führt Team 7 durch die gefährliche Chunin-Prüfung.'),
+  ('naruto', 'pp-nm1-1', 'naruto-movie-1', 'naruto-nm1', 'nm1-schnee', 40, 'Beschützt die Schauspielerin Koyuki auf dem Weg ins Land des Schnees.'),
+  ('naruto', 'pp-nm2-1', 'naruto-movie-2', 'naruto-nm2', 'nm2-gelel', 50, 'Gerät zwischen die Fronten im Kampf um den mystischen Gelel-Stein.'),
+  ('naruto', 'pp-nm3-1', 'naruto-movie-3', 'naruto-nm3', 'nm3-mond', 45, 'Beschützt das Königreich des Halbmonds vor einer Verschwörung.'),
+  ('naruto', 'pp-ns-1', 'naruto-shippuden', 'naruto-ns', 'ns-akatsuki', 30, 'Kehrt nach zweieinhalb Jahren Training bei Jiraiya zurück.'),
+  ('naruto', 'pp-ns-2', 'naruto-shippuden', 'itachi-ns', 'ns-akatsuki', 130, 'Stirbt im Kampf gegen Sasuke und enthüllt seine wahren Beweggründe.'),
+  ('naruto', 'pp-ns-3', 'naruto-shippuden', 'pain-ns', 'ns-krieg', 170, 'Zerstört das Dorf Konoha auf der Suche nach Naruto.'),
+  ('naruto', 'pp-ns-4', 'naruto-shippuden', 'obito-ns', 'ns-krieg', 400, 'Enttarnt sich als Drahtzieher hinter Akatsuki und dem Weltkrieg.'),
+  ('naruto', 'pp-ns-5', 'naruto-shippuden', 'naruto-ns', 'ns-krieg', 480, 'Besiegt gemeinsam mit Sasuke die wiederauferstandene Kaguya.'),
+  ('naruto', 'pp-sm1-1', 'shippuden-movie-1', 'naruto-sm1', 'sm1-mukade', 60, 'Beschützt die Priesterin Shion vor Mukades Wiederauferstehung.'),
+  ('naruto', 'pp-sm2-1', 'shippuden-movie-2-bonds', 'naruto-sm2', 'sm2-shinnou', 55, 'Verteidigt Konoha gegen ein abtrünniges Kommando aus Amegakure.'),
+  ('naruto', 'pp-sm3-1', 'shippuden-movie-3-will-of-fire', 'naruto-sm3', 'sm3-hiruko', 60, 'Kämpft gegen Hiruko, der die Kraft des Ersten Hokage stehlen will.'),
+  ('naruto', 'pp-sm4-1', 'shippuden-movie-4-lost-tower', 'naruto-sm4', 'sm4-zeitreise', 30, 'Wird durch ein Ninjutsu zwanzig Jahre in die Vergangenheit versetzt.'),
+  ('naruto', 'pp-sm4-2', 'shippuden-movie-4-lost-tower', 'minato-sm4', 'sm4-zeitreise', 40, 'Trifft als junger Hokage-Anwärter auf seinen eigenen zukünftigen Sohn.'),
+  ('naruto', 'pp-sm5-1', 'shippuden-movie-5-blood-prison', 'naruto-sm5', 'sm5-hozuki', 50, 'Wird zu Unrecht ins Hochsicherheitsgefängnis Hōzukijō gesteckt.'),
+  ('naruto', 'pp-sm6-1', 'road-to-ninja', 'naruto-sm6', 'sm6-genjutsu', 40, 'Landet durch ein Genjutsu in einer Welt, in der seine Eltern noch leben.'),
+  ('naruto', 'pp-sm6-2', 'road-to-ninja', 'menma-sm6', 'sm6-genjutsu', 45, 'Ist die finstere Alternativversion von Naruto in der Genjutsu-Welt.'),
+  ('naruto', 'pp-last-1', 'the-last-naruto-the-movie', 'naruto-last', 'last-hinata', 60, 'Erkennt endlich seine wahren Gefühle für Hinata.'),
+  ('naruto', 'pp-last-2', 'the-last-naruto-the-movie', 'hinata-last', 'last-hinata', 20, 'Gesteht sich ihre langjährige Liebe zu Naruto ein.'),
+  ('naruto', 'pp-last-3', 'the-last-naruto-the-movie', 'toneri-last', 'last-toneri', 80, 'Entführt Hinata, um den Mond auf die Erde stürzen zu lassen.');
+
