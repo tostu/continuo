@@ -2,7 +2,8 @@
  * Schema.org-Objekte für die Rich Results. Absolute URLs nur, wenn `PUBLIC_SITE_URL`
  * gesetzt ist – sonst lässt Google die Angaben lieber weg als falsch stehen.
  */
-import type { Universe, Work } from '$lib/universe/types';
+import { placementTitle, type Placement } from '$lib/universe/placements';
+import type { Season, Universe, Work } from '$lib/universe/types';
 import { SITE_NAME, SITE_URL, localizedUrl } from './site';
 
 export interface Crumb {
@@ -40,12 +41,16 @@ export function websiteSchema(description: string) {
 	];
 }
 
-/** Die Werke eines Universums als geordnete Liste – das ist die „watch order". */
+/**
+ * Die Platzierungen eines Universums als geordnete Liste – das ist die „watch order".
+ * Eine mehrstaffelige Serie liefert hier eine `ListItem` pro Staffel statt einer fürs
+ * ganze Werk, damit ein zwischen zwei Staffeln erschienener Film korrekt einsortiert ist.
+ */
 export function watchOrderSchema(
 	name: string,
 	description: string,
-	works: Work[],
-	urlFor: (work: Work) => string
+	placements: Placement[],
+	urlFor: (placement: Placement) => string
 ) {
 	if (!SITE_URL) return [];
 	return [
@@ -55,18 +60,20 @@ export function watchOrderSchema(
 			name,
 			description,
 			itemListOrder: 'https://schema.org/ItemListOrderAscending',
-			numberOfItems: works.length,
-			itemListElement: works.map((work, i) => ({
+			numberOfItems: placements.length,
+			itemListElement: placements.map((placement, i) => ({
 				'@type': 'ListItem',
 				position: i + 1,
-				name: work.title,
-				url: localizedUrl(urlFor(work))
+				name: placementTitle(placement),
+				url: localizedUrl(urlFor(placement))
 			}))
 		}
 	];
 }
 
-export function workSchema(work: Work, universe: Universe, path: string, poster?: string) {
+const episodeCount = (range: [number, number]) => range[1] - range[0] + 1;
+
+export function workSchema(work: Work, universe: Universe, path: string, seasons: Season[] = []) {
 	if (!SITE_URL) return [];
 	return [
 		{
@@ -75,8 +82,24 @@ export function workSchema(work: Work, universe: Universe, path: string, poster?
 			name: work.title,
 			url: localizedUrl(path),
 			datePublished: work.released,
-			...(poster ? { image: poster } : {}),
-			...(work.kind === 'serie' ? { numberOfEpisodes: work.range[1] } : {}),
+			...(work.kind === 'serie'
+				? {
+						numberOfEpisodes: seasons.length
+							? seasons.reduce((sum, s) => sum + episodeCount(s.range), 0)
+							: work.range[1]
+					}
+				: {}),
+			...(seasons.length
+				? {
+						containsSeason: seasons.map((s) => ({
+							'@type': 'TVSeason',
+							seasonNumber: s.seasonNumber,
+							name: s.label,
+							datePublished: s.released,
+							numberOfEpisodes: episodeCount(s.range)
+						}))
+					}
+				: {}),
 			partOfSeries: { '@type': 'CreativeWorkSeries', name: universe.name }
 		}
 	];

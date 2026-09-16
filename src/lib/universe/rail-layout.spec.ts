@@ -52,7 +52,7 @@ describe.skipIf(!starWars)('layoutRail', () => {
 		const groups = groupWorks(starWars!, 'chronology');
 		expect(banners).toHaveLength(groups.length);
 		groups.forEach((group, i) => {
-			const first = nodes.find((n) => n.slug === group.works[0].slug)!;
+			const first = nodes.find((n) => n.slug === group.placements[0].slug)!;
 			expect(banners[i].y).toBeLessThan(first.y - first.r);
 		});
 	});

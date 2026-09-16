@@ -1,4 +1,12 @@
-import type { Tone, Universe, Work } from './types';
+import {
+	placementChronology,
+	placementRequired,
+	placementSagaId,
+	placementsFor,
+	placementReleased,
+	type Placement
+} from './placements';
+import type { Tone, Universe } from './types';
 
 export type RailMode = 'saga' | 'chronology';
 
@@ -44,7 +52,7 @@ interface RailGroup {
 	tone: Tone;
 	/** Knotenfarbe aus der Gruppe statt aus der Saga. */
 	colorNodes: boolean;
-	works: Work[];
+	placements: Placement[];
 }
 
 const R_REQUIRED = 38;
@@ -58,44 +66,54 @@ const BRANCH_STACK = 76;
 /** Variation der Schlängelung, damit der Pfad nicht mechanisch wirkt. */
 const WAVE = [1, 0.78, 0.95, 0.66, 0.88];
 
-const byRelease = (a: Work, b: Work) => a.released.localeCompare(b.released);
-const byChronology = (a: Work, b: Work) => a.chronology - b.chronology;
+const byRelease = (a: Placement, b: Placement) =>
+	placementReleased(a).localeCompare(placementReleased(b));
+const byChronology = (a: Placement, b: Placement) =>
+	placementChronology(a) - placementChronology(b);
 
 /**
- * Sortiert Werke nach `compare` und schneidet ein neues Banner, sobald sich
+ * Sortiert Platzierungen nach `compare` und schneidet ein neues Banner, sobald sich
  * die Saga ändert – bei Saga-Modus (Release-Reihenfolge) kann eine Saga so
  * über mehrere getrennte Banner auftauchen, wenn ihre Werke über die Zeit
  * verstreut veröffentlicht wurden.
  */
-function bannerGroups(works: Work[], sagas: Universe['sagas'], compare: (a: Work, b: Work) => number) {
+function bannerGroups(
+	placements: Placement[],
+	sagas: Universe['sagas'],
+	compare: (a: Placement, b: Placement) => number
+) {
 	const sagaById = new Map(sagas.map((s) => [s.id, s]));
 	const groups: RailGroup[] = [];
 	let lastSagaId: string | null = null;
-	for (const work of [...works].sort(compare)) {
-		const saga = sagaById.get(work.sagaId);
+	for (const placement of [...placements].sort(compare)) {
+		const sagaId = placementSagaId(placement);
+		const saga = sagaById.get(sagaId);
 		const last = groups.at(-1);
-		if (last && lastSagaId === work.sagaId) {
-			last.works.push(work);
+		if (last && lastSagaId === sagaId) {
+			last.placements.push(placement);
 		} else {
 			groups.push({
-				id: `${work.sagaId}-${groups.length}`,
+				id: `${sagaId}-${groups.length}`,
 				label: saga?.name ?? '',
 				tone: saga?.tone ?? 'neutral',
 				colorNodes: true,
-				works: [work]
+				placements: [placement]
 			});
 		}
-		lastSagaId = work.sagaId;
+		lastSagaId = sagaId;
 	}
 	return groups;
 }
 
-export function groupWorks(u: Pick<Universe, 'works' | 'sagas'>, mode: RailMode): RailGroup[] {
-	return bannerGroups(u.works, u.sagas, mode === 'chronology' ? byChronology : byRelease);
+export function groupWorks(
+	u: Pick<Universe, 'works' | 'seasons' | 'sagas'>,
+	mode: RailMode
+): RailGroup[] {
+	return bannerGroups(placementsFor(u), u.sagas, mode === 'chronology' ? byChronology : byRelease);
 }
 
 export function layoutRail(
-	u: Pick<Universe, 'works' | 'sagas'>,
+	u: Pick<Universe, 'works' | 'seasons' | 'sagas'>,
 	mode: RailMode,
 	width: number
 ): RailLayout {
@@ -134,20 +152,22 @@ export function layoutRail(
 		anchor = null;
 		stack = 0;
 
-		for (const work of group.works) {
-			const tone = group.colorNodes ? group.tone : (sagaTone.get(work.sagaId) ?? 'neutral');
+		for (const placement of group.placements) {
+			const required = placementRequired(placement);
+			const sagaId = placementSagaId(placement);
+			const tone = group.colorNodes ? group.tone : (sagaTone.get(sagaId) ?? 'neutral');
 
-			if (work.required || !anchor) {
-				const r = work.required ? R_REQUIRED : R_OPTIONAL;
-				const row = work.required ? ROW_REQUIRED : ROW_OPTIONAL;
+			if (required || !anchor) {
+				const r = required ? R_REQUIRED : R_OPTIONAL;
+				const row = required ? ROW_REQUIRED : ROW_OPTIONAL;
 				const sign = pathIndex % 2 === 0 ? -1 : 1;
 				const x = cx + sign * amplitude * WAVE[pathIndex % WAVE.length];
 				const node: RailNode = {
-					slug: work.slug,
+					slug: placement.slug,
 					x,
 					y: cursor + row / 2 - 8,
 					r,
-					optional: !work.required,
+					optional: !required,
 					onPath: true,
 					tone,
 					labelSide: x <= cx ? 'right' : 'left'
@@ -157,9 +177,9 @@ export function layoutRail(
 				if (previousOnPath) {
 					const sameGroup = previousOnPath.groupId === group.id;
 					edges.push({
-						id: `${previousOnPath.node.slug}->${work.slug}`,
+						id: `${previousOnPath.node.slug}->${placement.slug}`,
 						from: previousOnPath.node.slug,
-						to: work.slug,
+						to: placement.slug,
 						dashed: node.optional,
 						branch: false,
 						tone: sameGroup ? tone : 'neutral'
@@ -170,9 +190,9 @@ export function layoutRail(
 				// zeitlich vor diesem Pflicht-Werk liegt.
 				if (lastBranch) {
 					edges.push({
-						id: `${lastBranch.slug}->${work.slug}`,
+						id: `${lastBranch.slug}->${placement.slug}`,
 						from: lastBranch.slug,
-						to: work.slug,
+						to: placement.slug,
 						dashed: true,
 						branch: true,
 						tone
@@ -181,7 +201,7 @@ export function layoutRail(
 
 				previousOnPath = { node, groupId: group.id };
 				// Nur Pflicht-Werke dienen als Ankerpunkt für Seitenäste.
-				anchor = work.required ? node : anchor;
+				anchor = required ? node : anchor;
 				lastBranch = null;
 				stack = 0;
 				cursor += row;
@@ -197,7 +217,7 @@ export function layoutRail(
 			const reach = branchReach * WAVE[stack % WAVE.length];
 			const x = Math.min(width - 40, Math.max(40, anchor.x + outward * reach));
 			const node: RailNode = {
-				slug: work.slug,
+				slug: placement.slug,
 				x,
 				y: anchor.y + BRANCH_DROP + stack * BRANCH_STACK,
 				r: R_OPTIONAL,
@@ -213,9 +233,9 @@ export function layoutRail(
 			const parent = lastBranch ?? anchor;
 			if (lastBranch) lastBranch.labelSide = outward > 0 ? 'left' : 'right';
 			edges.push({
-				id: `${parent.slug}->${work.slug}`,
+				id: `${parent.slug}->${placement.slug}`,
 				from: parent.slug,
-				to: work.slug,
+				to: placement.slug,
 				dashed: true,
 				branch: true,
 				tone

@@ -73,6 +73,32 @@ export const works = sqliteTable(
 	]
 );
 
+export const seasons = sqliteTable(
+	'seasons',
+	{
+		universeSlug: text('universe_slug').notNull(),
+		workSlug: text('work_slug').notNull(),
+		id: text('id').notNull(),
+		seasonNumber: integer('season_number').notNull(),
+		label: text('label').notNull(),
+		released: text('released').notNull(),
+		/** Eigene Chronologie-Position, unabhängig von der des Werks. */
+		chronology: real('chronology').notNull(),
+		loreDate: text('lore_date').notNull(),
+		/** Teilbereich der werkinternen Achse (`works.range_start`..`range_end`). */
+		rangeStart: real('range_start').notNull(),
+		rangeEnd: real('range_end').notNull(),
+		sortOrder: integer('sort_order').notNull()
+	},
+	(t) => [
+		primaryKey({ columns: [t.universeSlug, t.workSlug, t.id] }),
+		foreignKey({
+			columns: [t.universeSlug, t.workSlug],
+			foreignColumns: [works.universeSlug, works.slug]
+		})
+	]
+);
+
 export const arcs = sqliteTable(
 	'arcs',
 	{

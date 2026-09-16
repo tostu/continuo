@@ -1,4 +1,4 @@
-import type { Arc, Character, PlotPoint, Tone, Universe, Work } from './types';
+import type { Arc, Character, PlotPoint, Season, Tone, Universe, Work } from './types';
 
 export const toneVar = (tone: Tone) => `var(--color-${tone})`;
 
@@ -6,6 +6,9 @@ export const workBySlug = (u: Universe, slug: string): Work | undefined =>
 	u.works.find((w) => w.slug === slug);
 
 export const sagaOf = (u: Universe, work: Work) => u.sagas.find((s) => s.id === work.sagaId)!;
+
+export const seasonsFor = (u: Pick<Universe, 'seasons'>, workSlug: string): Season[] =>
+	u.seasons.filter((s) => s.workSlug === workSlug).sort((a, b) => a.seasonNumber - b.seasonNumber);
 
 export const arcsFor = (u: Universe, workSlug: string): Arc[] =>
 	u.arcs.filter((a) => a.workSlug === workSlug);

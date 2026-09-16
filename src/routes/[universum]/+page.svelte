@@ -6,6 +6,7 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import type { RailMode } from '$lib/universe/rail-layout';
+	import { placementChronology, placementsFor } from '$lib/universe/placements';
 	import type { Work } from '$lib/universe/types';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
@@ -39,7 +40,9 @@
 			required: allRequired
 		})
 	);
-	const chronological = $derived([...allWorks].sort((a, b) => a.chronology - b.chronology));
+	const chronologicalPlacements = $derived(
+		[...placementsFor(universe)].sort((a, b) => placementChronology(a) - placementChronology(b))
+	);
 </script>
 
 <Seo
@@ -49,8 +52,8 @@
 		...watchOrderSchema(
 			seoTitle,
 			seoDescription,
-			chronological,
-			(w) => `/${data.slug}/werk/${w.slug}`
+			chronologicalPlacements,
+			(p) => `/${data.slug}/werk/${p.work.slug}`
 		),
 		...breadcrumbs([
 			{ name: 'Continuo', path: '/' },

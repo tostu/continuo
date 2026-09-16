@@ -6,13 +6,13 @@
 	import SearchField from '$lib/components/SearchField.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import ImageCredit from '$lib/components/ImageCredit.svelte';
 	import {
 		arcShares,
 		arcsFor,
 		charactersFor,
 		plotPointsFor,
 		sagaOf,
+		seasonsFor,
 		toneVar,
 		year
 	} from '$lib/universe/derive';
@@ -27,6 +27,7 @@
 	const work = $derived(data.work);
 	const saga = $derived(sagaOf(universe, work));
 	const arcs = $derived(arcsFor(universe, work.slug));
+	const seasons = $derived(seasonsFor(universe, work.slug));
 	const characters = $derived(
 		charactersFor(universe, work.slug).map((character) => ({
 			character,
@@ -104,12 +105,9 @@
 		saga: saga.name,
 		status: work.required ? m.seo_status_required() : m.seo_status_optional()
 	})}
-	image={work.cover}
-	wideImage={false}
-	imageAlt={work.title}
 	type="article"
 	jsonLd={[
-		...workSchema(work, universe, `/${data.slug}/werk/${work.slug}`, work.cover),
+		...workSchema(work, universe, `/${data.slug}/werk/${work.slug}`, seasons),
 		...breadcrumbs([
 			{ name: 'Continuo', path: '/' },
 			{ name: universe.name, path: `/${data.slug}` },
@@ -126,32 +124,37 @@
 		<Icon name="back" size={20} />{m.universe_title()}
 	</Button.Root>
 
-	<div class="mt-5 flex items-start gap-4">
-		{#if work.cover}
-			<div class="shrink-0">
-				<img
-					src={work.cover}
-					alt=""
-					class="h-28 w-[76px] rounded-lg object-cover ring-1 ring-hairline"
-				/>
-				<ImageCredit text={work.coverCredit} />
-			</div>
+	<div class="mt-5">
+		<p
+			class="text-[12px] font-semibold tracking-[0.18em] uppercase"
+			style:color={toneVar(saga.tone)}
+		>
+			{saga.name} · {year(work)}
+		</p>
+		<h1 class="mt-1.5 text-[34px] leading-[1.02] font-bold tracking-tight">{work.title}</h1>
+		<p class="mt-3 flex items-center gap-2 text-[14px] text-muted">
+			<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={16} />
+			{work.kind === 'film' ? m.kind_film() : m.kind_series()} ·
+			{work.unit === 'Min.' ? `${work.range[1]} Min.` : `${work.range[1]} Folgen`} ·
+			{work.required ? m.required() : m.optional()}
+		</p>
+
+		{#if seasons.length}
+			<ul class="mt-4 flex flex-col gap-1.5">
+				{#each seasons as season (season.id)}
+					<li
+						class="flex items-center justify-between gap-3 rounded-xl bg-surface px-3.5 py-2 text-[13px] ring-1 ring-hairline"
+					>
+						<span class="font-semibold text-ink">{season.label}</span>
+						<span class="text-muted">{season.loreDate}</span>
+						<span class="text-muted tabular-nums">
+							{season.range[1] - season.range[0] + 1}
+							{work.unit === 'Min.' ? 'Min.' : 'Folgen'}
+						</span>
+					</li>
+				{/each}
+			</ul>
 		{/if}
-		<div>
-			<p
-				class="text-[12px] font-semibold tracking-[0.18em] uppercase"
-				style:color={toneVar(saga.tone)}
-			>
-				{saga.name} · {year(work)}
-			</p>
-			<h1 class="mt-1.5 text-[34px] leading-[1.02] font-bold tracking-tight">{work.title}</h1>
-			<p class="mt-3 flex items-center gap-2 text-[14px] text-muted">
-				<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={16} />
-				{work.kind === 'film' ? m.kind_film() : m.kind_series()} ·
-				{work.unit === 'Min.' ? `${work.range[1]} Min.` : `${work.range[1]} Folgen`} ·
-				{work.required ? m.required() : m.optional()}
-			</p>
-		</div>
 	</div>
 </header>
 

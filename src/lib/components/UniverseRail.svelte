@@ -5,8 +5,17 @@
 	import { Tooltip } from 'bits-ui';
 	import Icon from './Icon.svelte';
 	import { layoutRail, type RailMode, type RailNode } from '$lib/universe/rail-layout';
-	import { toneVar, year } from '$lib/universe/derive';
-	import type { Tone, Universe, Work } from '$lib/universe/types';
+	import {
+		placementLoreDate,
+		placementNowPlaying,
+		placementReleased,
+		placementShort,
+		placementsFor,
+		placementTitle,
+		type Placement
+	} from '$lib/universe/placements';
+	import { toneVar } from '$lib/universe/derive';
+	import type { Tone, Universe } from '$lib/universe/types';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
@@ -23,12 +32,13 @@
 
 	const layout = $derived(layoutRail(universe, mode, width));
 	const nodeBySlug = $derived(new Map(layout.nodes.map((n) => [n.slug, n])));
-	const workBySlug = $derived(new Map(universe.works.map((w) => [w.slug, w])));
+	const placementBySlug = $derived(new Map(placementsFor(universe).map((p) => [p.slug, p])));
 	const link = linkVertical();
 
 	const edgeColor = (tone: Tone) => (tone === 'neutral' ? 'var(--color-neutral)' : toneVar(tone));
 	/** Chronology-Modus zeigt das Datum der Handlung, sonst das Erscheinungsjahr. */
-	const dateLabel = (work: Work) => (mode === 'chronology' ? work.loreDate : year(work));
+	const dateLabel = (p: Placement) =>
+		mode === 'chronology' ? placementLoreDate(p) : placementReleased(p).slice(0, 4);
 	/** Svelte-Transitions respektieren reduced motion nicht von selbst. */
 	function motion<T extends { duration: number; delay?: number }>(params: T): T {
 		return reducedMotion() ? { ...params, duration: 0, delay: 0 } : params;
@@ -286,7 +296,8 @@
 	{/each}
 
 	{#each layout.nodes as node (node.slug)}
-		{@const work = workBySlug.get(node.slug)!}
+		{@const placement = placementBySlug.get(node.slug)!}
+		{@const work = placement.work}
 		{@const p = at(node)}
 		<!-- `data-node` findet neu dazugekommene Knoten für den Einblend-Pop. -->
 		<div
@@ -296,7 +307,7 @@
 			style:top="{p.y}px"
 			out:scale={motion({ duration: 260, start: 0.4 })}
 		>
-			{#if work.nowPlaying}
+			{#if placementNowPlaying(placement)}
 				<span
 					data-pulse
 					class="pointer-events-none absolute rounded-full border-2"
@@ -325,43 +336,21 @@
 							{...props}
 							data-node-body
 							href={href(`/${slug}/werk/${work.slug}`)}
-							aria-label={work.title}
+							aria-label={placementTitle(placement)}
 							class="absolute grid place-items-center overflow-hidden rounded-full transition-[scale] duration-200 hover:scale-110 focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-ground focus-visible:outline-none"
 							class:border-2={node.optional}
 							class:border-dashed={node.optional}
-							class:bg-ground={node.optional && !work.cover}
+							class:bg-ground={node.optional}
 							class:text-white={!node.optional}
 							style:width="{node.r * 2}px"
 							style:height="{node.r * 2}px"
 							style:left="{-node.r}px"
 							style:top="{-node.r}px"
-							style:background-color={node.optional || work.cover ? undefined : toneVar(node.tone)}
+							style:background-color={node.optional ? undefined : toneVar(node.tone)}
 							style:border-color={node.optional ? toneVar(node.tone) : undefined}
 							style:color={node.optional ? toneVar(node.tone) : undefined}
 						>
-							{#if work.cover}
-								<img
-									src={work.cover}
-									alt=""
-									class="h-full w-full object-cover"
-									class:opacity-60={node.optional}
-									loading="lazy"
-								/>
-								<span
-									class="pointer-events-none absolute right-0 bottom-0 grid place-items-center rounded-full ring-2 ring-ground"
-									style:width="{Math.max(node.r * 0.62, 14)}px"
-									style:height="{Math.max(node.r * 0.62, 14)}px"
-									style:background-color={toneVar(node.tone)}
-									style:color="white"
-								>
-									<Icon
-										name={work.kind === 'film' ? 'film' : 'tv'}
-										size={Math.max(node.r * 0.34, 9)}
-									/>
-								</span>
-							{:else}
-								<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={node.optional ? 13 : 20} />
-							{/if}
+							<Icon name={work.kind === 'film' ? 'film' : 'tv'} size={node.optional ? 13 : 20} />
 						</a>
 					{/snippet}
 				</Tooltip.Trigger>
@@ -370,9 +359,9 @@
 						sideOffset={10}
 						class="z-50 max-w-60 rounded-2xl bg-raised px-3.5 py-2.5 text-[13px] text-ink shadow-xl ring-1 ring-hairline"
 					>
-						<p class="font-semibold">{work.title}</p>
+						<p class="font-semibold">{placementTitle(placement)}</p>
 						<p class="mt-0.5 text-muted">
-							{dateLabel(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()} ·
+							{dateLabel(placement)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()} ·
 							{work.required ? m.required() : m.optional()}
 						</p>
 					</Tooltip.Content>
@@ -397,14 +386,15 @@
 					in:fade={motion({ duration: 220, delay: 180 })}
 				>
 					{#if node.optional}
-						<span class="block text-[12px] font-medium text-ink">{work.short}</span>
+						<span class="block text-[12px] font-medium text-ink">{placementShort(placement)}</span>
 						<span class="block text-[10.5px] text-muted">
-							{dateLabel(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
+							{dateLabel(placement)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
 						</span>
 					{:else}
-						<span class="block text-[14px] font-semibold text-ink">{work.short}</span>
+						<span class="block text-[14px] font-semibold text-ink">{placementShort(placement)}</span
+						>
 						<span class="block text-[11.5px] text-muted">
-							{dateLabel(work)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
+							{dateLabel(placement)} · {work.kind === 'film' ? m.kind_film() : m.kind_series()}
 						</span>
 					{/if}
 				</span>

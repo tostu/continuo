@@ -9,7 +9,16 @@
 import { asc, eq } from 'drizzle-orm';
 import { getDb } from './db';
 import * as t from './db/schema';
-import type { Arc, Character, PlotPoint, Saga, Tone, Universe, Work } from '$lib/universe/types';
+import type {
+	Arc,
+	Character,
+	PlotPoint,
+	Saga,
+	Season,
+	Tone,
+	Universe,
+	Work
+} from '$lib/universe/types';
 
 export interface UniverseEntry {
 	/** URL-Segment: /[universum]/werk/… */
@@ -33,38 +42,46 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 	const universe = await db.select().from(t.universes).where(eq(t.universes.slug, slug)).get();
 	if (!universe) return undefined;
 
-	const [sagaRows, workRows, arcRows, characterRows, plotPointRows] = await Promise.all([
-		db
-			.select()
-			.from(t.sagas)
-			.where(eq(t.sagas.universeSlug, slug))
-			.orderBy(asc(t.sagas.sortOrder))
-			.all(),
-		db
-			.select()
-			.from(t.works)
-			.where(eq(t.works.universeSlug, slug))
-			.orderBy(asc(t.works.sortOrder))
-			.all(),
-		db
-			.select()
-			.from(t.arcs)
-			.where(eq(t.arcs.universeSlug, slug))
-			.orderBy(asc(t.arcs.sortOrder))
-			.all(),
-		db
-			.select()
-			.from(t.characters)
-			.where(eq(t.characters.universeSlug, slug))
-			.orderBy(asc(t.characters.sortOrder))
-			.all(),
-		db
-			.select()
-			.from(t.plotPoints)
-			.where(eq(t.plotPoints.universeSlug, slug))
-			.orderBy(asc(t.plotPoints.at))
-			.all()
-	]);
+	const [sagaRows, workRows, seasonRows, arcRows, characterRows, plotPointRows] = await Promise.all(
+		[
+			db
+				.select()
+				.from(t.sagas)
+				.where(eq(t.sagas.universeSlug, slug))
+				.orderBy(asc(t.sagas.sortOrder))
+				.all(),
+			db
+				.select()
+				.from(t.works)
+				.where(eq(t.works.universeSlug, slug))
+				.orderBy(asc(t.works.sortOrder))
+				.all(),
+			db
+				.select()
+				.from(t.seasons)
+				.where(eq(t.seasons.universeSlug, slug))
+				.orderBy(asc(t.seasons.sortOrder))
+				.all(),
+			db
+				.select()
+				.from(t.arcs)
+				.where(eq(t.arcs.universeSlug, slug))
+				.orderBy(asc(t.arcs.sortOrder))
+				.all(),
+			db
+				.select()
+				.from(t.characters)
+				.where(eq(t.characters.universeSlug, slug))
+				.orderBy(asc(t.characters.sortOrder))
+				.all(),
+			db
+				.select()
+				.from(t.plotPoints)
+				.where(eq(t.plotPoints.universeSlug, slug))
+				.orderBy(asc(t.plotPoints.at))
+				.all()
+		]
+	);
 
 	const sagas: Saga[] = sagaRows.map((s) => ({ id: s.id, name: s.name, tone: s.tone as Tone }));
 
@@ -80,11 +97,20 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		required: w.required,
 		unit: w.unit as Work['unit'],
 		range: [w.rangeStart, w.rangeEnd],
-		// Die JSON-Felder waren optional – `undefined` statt `null`, damit `{#if}` und
-		// `src={w.cover}` sich verhalten wie vorher.
-		...(w.nowPlaying ? { nowPlaying: true } : {}),
-		...(w.cover ? { cover: w.cover } : {}),
-		...(w.coverCredit ? { coverCredit: w.coverCredit } : {})
+		// Das JSON-Feld war optional – `undefined` statt `null`, damit `{#if}` sich
+		// verhält wie vorher.
+		...(w.nowPlaying ? { nowPlaying: true } : {})
+	}));
+
+	const seasons: Season[] = seasonRows.map((s) => ({
+		id: s.id,
+		workSlug: s.workSlug,
+		seasonNumber: s.seasonNumber,
+		label: s.label,
+		released: s.released,
+		chronology: s.chronology,
+		loreDate: s.loreDate,
+		range: [s.rangeStart, s.rangeEnd]
 	}));
 
 	const arcs: Arc[] = arcRows.map((a) => ({
@@ -112,7 +138,7 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		text: p.text
 	}));
 
-	return { name: universe.name, sagas, works, arcs, characters, plotPoints };
+	return { name: universe.name, sagas, works, seasons, arcs, characters, plotPoints };
 }
 
 /** Alle Universen – für Startseite und `EntryGenerator`s. */

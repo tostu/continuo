@@ -8,16 +8,31 @@ import {
 	workBySlug,
 	year
 } from '$lib/universe/derive';
+import {
+	placementReleased,
+	placementRequired,
+	placementSagaId,
+	placementsFor
+} from '$lib/universe/placements';
 import type { Universe, ZoomModel } from '$lib/universe/types';
 import type { PageServerLoad } from './$types';
 
 /** Kennzahlen und Mini-Chronologie für die Zeile eines Universums. */
 function summarize(slug: string, u: Universe) {
 	const works = [...u.works].sort((a, b) => a.released.localeCompare(b.released));
-	const first = Date.parse(works[0]?.released ?? '');
-	const span = Math.max(Date.parse(works.at(-1)?.released ?? '') - first, 1);
 	const toneOf = new Map(u.sagas.map((s) => [s.id, s.tone]));
 	const nowPlaying = works.find((w) => w.nowPlaying);
+
+	// Ein Dot pro Platzierung (Staffel oder Werk), nicht pro Werk – eine mehrstaffelige
+	// Serie zeigt so mehrere Punkte, zwischen die ein Film zeitlich fallen kann.
+	const placements = [...placementsFor(u)].sort((a, b) =>
+		placementReleased(a).localeCompare(placementReleased(b))
+	);
+	const first = Date.parse(placements[0] ? placementReleased(placements[0]) : '');
+	const span = Math.max(
+		Date.parse(placements.at(-1) ? placementReleased(placements.at(-1)!) : '') - first,
+		1
+	);
 
 	return {
 		slug,
@@ -31,11 +46,11 @@ function summarize(slug: string, u: Universe) {
 		plotPoints: u.plotPoints.length,
 		nowPlaying,
 		nowPlayingTone: toneOf.get(nowPlaying?.sagaId ?? '') ?? 'arc-1',
-		dots: works.map((w) => ({
-			slug: w.slug,
-			x: (Date.parse(w.released) - first) / span,
-			tone: toneOf.get(w.sagaId) ?? 'neutral',
-			required: w.required
+		dots: placements.map((p) => ({
+			slug: p.slug,
+			x: (Date.parse(placementReleased(p)) - first) / span,
+			tone: toneOf.get(placementSagaId(p)) ?? 'neutral',
+			required: placementRequired(p)
 		}))
 	};
 }

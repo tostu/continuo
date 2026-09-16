@@ -25,10 +25,22 @@ export interface Work {
 	unit: 'Min.' | 'Folge';
 	range: [number, number];
 	nowPlaying?: boolean;
-	/** Poster- bzw. Cover-Bild für Teaser und Zeitstrahl. */
-	cover?: string;
-	/** Quellenangabe fürs Cover, z. B. für die Zitatrecht-Attribution. */
-	coverCredit?: string;
+}
+
+/**
+ * Eine Staffel eines Werks mit eigener Chronologie-Position, damit ein Film zeitlich
+ * zwischen zwei Staffeln derselben Serie einsortiert werden kann. `range` ist ein
+ * Teilbereich der werkinternen Achse (`Work.range`), nicht eine eigene Achse.
+ */
+export interface Season {
+	id: string;
+	workSlug: string;
+	seasonNumber: number;
+	label: string;
+	released: string;
+	chronology: number;
+	loreDate: string;
+	range: [number, number];
 }
 
 /** Handlungsstrang innerhalb eines Werks. */
@@ -64,6 +76,7 @@ export interface Universe {
 	name: string;
 	sagas: Saga[];
 	works: Work[];
+	seasons: Season[];
 	arcs: Arc[];
 	characters: Character[];
 	plotPoints: PlotPoint[];
