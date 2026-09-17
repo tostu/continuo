@@ -7,7 +7,6 @@ export const GET: RequestHandler = async () => {
 	const body = [
 		'# allow crawling everything by default',
 		'User-agent: *',
-		'Disallow: /demo',
 		'Allow: /',
 		'',
 		// Ohne konfigurierte Domain bringt eine relative Sitemap-Zeile nichts – dann weglassen.

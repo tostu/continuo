@@ -1,2 +1,2 @@
-// Alle Daten liegen als JSON im Repo – die komplette Seite wird beim Build statisch erzeugt.
+// Daten kommen beim Build aus D1 – die komplette Seite wird statisch erzeugt, der Worker liefert nur Assets.
 export const prerender = true;

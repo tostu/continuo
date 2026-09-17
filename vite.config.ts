@@ -17,9 +17,8 @@ export default defineConfig({
 			adapter: adapter(),
 			csp: {
 				// 'auto' → hashes on prerendered pages (this site is 100% prerendered).
-				// The JSON-LD <script> in Seo.svelte is injected via {@html} and thus invisible
-				// to Svelte's own hash collection; hooks.server.ts patches its hash into the
-				// generated CSP meta tag by hand.
+				// JSON-LD <script type="application/ld+json"> is a data block, not executed, so
+				// script-src doesn't apply to it and it needs no hash.
 				mode: 'auto',
 				directives: {
 					'default-src': ['self'],
