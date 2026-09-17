@@ -8,7 +8,7 @@
 	import Seo from '$lib/components/Seo.svelte';
 	import ImageCredit from '$lib/components/ImageCredit.svelte';
 	import FigureTrace from '$lib/components/FigureTrace.svelte';
-	import { arcShares, arcsFor, dominantArc, plotPointsFor, toneVar } from '$lib/universe/derive';
+	import { arcShares, dominantArc, toneVar } from '$lib/universe/derive';
 	import { appearancesOf } from '$lib/universe/figure-trace';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
@@ -17,11 +17,12 @@
 
 	let { data } = $props();
 
-	const universe = $derived(data.universe);
+	/** Zugeschnitten auf die Auftritte dieser Figur – reicht für Spur und Farbring. */
+	const universe = $derived(data.trace);
 	const work = $derived(data.work);
 	const character = $derived(data.character);
-	const arcs = $derived(arcsFor(universe, work.slug));
-	const points = $derived(plotPointsFor(universe, work.slug, character.id));
+	const arcs = $derived(data.arcs);
+	const points = $derived(data.points);
 	const shares = $derived(arcShares(universe, work.slug, character.id));
 	const lead = $derived(dominantArc(shares));
 	const arcById = $derived(new Map(arcs.map((a) => [a.id, a])));

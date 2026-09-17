@@ -6,16 +6,7 @@
 	import SearchField from '$lib/components/SearchField.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
-	import {
-		arcShares,
-		arcsFor,
-		charactersFor,
-		plotPointsFor,
-		sagaOf,
-		seasonsFor,
-		toneVar,
-		year
-	} from '$lib/universe/derive';
+	import { toneVar, year } from '$lib/universe/derive';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
@@ -23,19 +14,12 @@
 
 	let { data } = $props();
 
-	const universe = $derived(data.universe);
+	const universe = $derived({ name: data.universeName });
 	const work = $derived(data.work);
-	const saga = $derived(sagaOf(universe, work));
-	const arcs = $derived(arcsFor(universe, work.slug));
-	const seasons = $derived(seasonsFor(universe, work.slug));
-	const characters = $derived(
-		charactersFor(universe, work.slug).map((character) => ({
-			character,
-			photoUrl: character.photo,
-			shares: arcShares(universe, work.slug, character.id),
-			count: plotPointsFor(universe, work.slug, character.id).length
-		}))
-	);
+	const saga = $derived(data.saga);
+	const arcs = $derived(data.arcs);
+	const seasons = $derived(data.seasons);
+	const characters = $derived(data.characters.map((c) => ({ ...c, photoUrl: c.character.photo })));
 
 	let query = $state('');
 	let selected = $state<string[]>([]);

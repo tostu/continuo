@@ -73,7 +73,12 @@ export function watchOrderSchema(
 
 const episodeCount = (range: [number, number]) => range[1] - range[0] + 1;
 
-export function workSchema(work: Work, universe: Universe, path: string, seasons: Season[] = []) {
+export function workSchema(
+	work: Work,
+	universe: Pick<Universe, 'name'>,
+	path: string,
+	seasons: Season[] = []
+) {
 	if (!SITE_URL) return [];
 	return [
 		{

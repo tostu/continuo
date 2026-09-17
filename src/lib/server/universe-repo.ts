@@ -6,6 +6,7 @@
  * Läuft ausschließlich zur Build-Zeit: die Seite ist vorgerendert (`prerender = true`),
  * der deployte Worker fragt D1 nie an.
  */
+import { building } from '$app/environment';
 import { asc, eq } from 'drizzle-orm';
 import { getDb } from './db';
 import * as t from './db/schema';
@@ -27,7 +28,36 @@ export interface UniverseEntry {
 	universe: Universe;
 }
 
-export async function listUniverseSlugs(): Promise<string[]> {
+/**
+ * Beim Prerendern ruft jede Seite das Universum erneut ab (Layout, Seite, `entries`) –
+ * über die D1-REST-API sind das schnell über 10.000 Requests und damit weit über dem
+ * globalen API-Limit von Cloudflare. Im Build ändern sich die Daten nicht, also wird
+ * pro Prozess nur einmal gelesen. Im Dev-Server bleibt es ungecacht, damit geänderte
+ * Daten sofort sichtbar sind.
+ */
+const cache = new Map<string, Promise<unknown>>();
+
+function cached<T>(key: string, read: () => Promise<T>): Promise<T> {
+	if (!building) return read();
+	let hit = cache.get(key) as Promise<T> | undefined;
+	if (!hit) {
+		hit = read();
+		// Fehlgeschlagene Abfragen nicht festhalten, sonst scheitert jeder weitere Versuch.
+		hit.catch(() => cache.delete(key));
+		cache.set(key, hit);
+	}
+	return hit;
+}
+
+export function listUniverseSlugs(): Promise<string[]> {
+	return cached('slugs', readUniverseSlugs);
+}
+
+export function loadUniverse(slug: string): Promise<Universe | undefined> {
+	return cached(`universe:${slug}`, () => readUniverse(slug));
+}
+
+async function readUniverseSlugs(): Promise<string[]> {
 	const db = await getDb();
 	const rows = await db
 		.select({ slug: t.universes.slug })
@@ -37,7 +67,7 @@ export async function listUniverseSlugs(): Promise<string[]> {
 	return rows.map((r) => r.slug);
 }
 
-export async function loadUniverse(slug: string): Promise<Universe | undefined> {
+async function readUniverse(slug: string): Promise<Universe | undefined> {
 	const db = await getDb();
 
 	const universe = await db.select().from(t.universes).where(eq(t.universes.slug, slug)).get();

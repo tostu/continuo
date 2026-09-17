@@ -24,8 +24,11 @@
 		universe,
 		slug,
 		mode
-	}: { universe: Universe; /** URL-Segment des Universums. */ slug: string; mode: RailMode } =
-		$props();
+	}: {
+		universe: Pick<Universe, 'works' | 'seasons' | 'sagas'>;
+		/** URL-Segment des Universums. */ slug: string;
+		mode: RailMode;
+	} = $props();
 
 	let width = $state(335);
 	let root: HTMLDivElement;
