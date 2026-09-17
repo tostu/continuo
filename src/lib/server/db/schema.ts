@@ -123,12 +123,32 @@ export const arcs = sqliteTable(
 	]
 );
 
+/**
+ * Eine Figur über alle Werke hinweg. `characters` sind ihre Auftritte: dort stehen Name und
+ * Foto so, wie sie im jeweiligen Werk heißen und aussehen („Darth Vader“ gehört zu Anakin).
+ * `id` ist der Slug des kanonischen Namens.
+ */
+export const figures = sqliteTable(
+	'figures',
+	{
+		universeSlug: text('universe_slug')
+			.notNull()
+			.references(() => universes.slug, { onDelete: 'cascade' }),
+		id: text('id').notNull(),
+		name: text('name').notNull(),
+		initials: text('initials').notNull(),
+		sortOrder: integer('sort_order').notNull()
+	},
+	(t) => [primaryKey({ columns: [t.universeSlug, t.id] })]
+);
+
 export const characters = sqliteTable(
 	'characters',
 	{
 		universeSlug: text('universe_slug').notNull(),
 		workSlug: text('work_slug').notNull(),
 		id: text('id').notNull(),
+		figureId: text('figure_id').notNull(),
 		name: text('name').notNull(),
 		initials: text('initials').notNull(),
 		photo: text('photo'),
@@ -141,6 +161,10 @@ export const characters = sqliteTable(
 		foreignKey({
 			columns: [t.universeSlug, t.workSlug],
 			foreignColumns: [works.universeSlug, works.slug]
+		}),
+		foreignKey({
+			columns: [t.universeSlug, t.figureId],
+			foreignColumns: [figures.universeSlug, figures.id]
 		})
 	]
 );

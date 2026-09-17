@@ -7,7 +7,9 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import Seo from '$lib/components/Seo.svelte';
 	import ImageCredit from '$lib/components/ImageCredit.svelte';
+	import FigureTrace from '$lib/components/FigureTrace.svelte';
 	import { arcShares, arcsFor, dominantArc, plotPointsFor, toneVar } from '$lib/universe/derive';
+	import { appearancesOf } from '$lib/universe/figure-trace';
 	import { reducedMotion, useGsap } from '$lib/motion/gsap';
 	import { href } from '$lib/nav';
 	import { m } from '$lib/paraglide/messages.js';
@@ -23,6 +25,7 @@
 	const shares = $derived(arcShares(universe, work.slug, character.id));
 	const lead = $derived(dominantArc(shares));
 	const arcById = $derived(new Map(arcs.map((a) => [a.id, a])));
+	const appearances = $derived(appearancesOf(universe, character.figureId).length);
 
 	let list: HTMLOListElement;
 	/** Hochzählende Kennzahl; null = Endwert (SSR, reduzierte Bewegung). */
@@ -87,6 +90,15 @@
 		transitionName="avatar-{character.id}"
 	/>
 	<ImageCredit text={character.photoCredit} />
+	{#if appearances > 1}
+		<a
+			href="#spur"
+			class="mt-5 inline-flex h-9 items-center gap-1.5 rounded-full bg-surface pr-3.5 pl-2.5 text-[13px] font-semibold text-ink ring-1 ring-hairline transition-colors hover:bg-raised focus-visible:ring-2 focus-visible:ring-ink focus-visible:outline-none"
+		>
+			<Icon name="arrow-down" size={16} />
+			{m.trace_chip({ count: appearances, total: universe.works.length })}
+		</a>
+	{/if}
 </div>
 
 <p class="mt-10 flex items-end gap-4">
@@ -112,3 +124,5 @@
 		</li>
 	{/each}
 </ol>
+
+<FigureTrace {universe} slug={data.slug} {character} />

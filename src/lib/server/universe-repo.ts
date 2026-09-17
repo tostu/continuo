@@ -12,6 +12,7 @@ import * as t from './db/schema';
 import type {
 	Arc,
 	Character,
+	Figure,
 	PlotPoint,
 	Saga,
 	Season,
@@ -42,8 +43,8 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 	const universe = await db.select().from(t.universes).where(eq(t.universes.slug, slug)).get();
 	if (!universe) return undefined;
 
-	const [sagaRows, workRows, seasonRows, arcRows, characterRows, plotPointRows] = await Promise.all(
-		[
+	const [sagaRows, workRows, seasonRows, arcRows, figureRows, characterRows, plotPointRows] =
+		await Promise.all([
 			db
 				.select()
 				.from(t.sagas)
@@ -70,6 +71,12 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 				.all(),
 			db
 				.select()
+				.from(t.figures)
+				.where(eq(t.figures.universeSlug, slug))
+				.orderBy(asc(t.figures.sortOrder))
+				.all(),
+			db
+				.select()
 				.from(t.characters)
 				.where(eq(t.characters.universeSlug, slug))
 				.orderBy(asc(t.characters.sortOrder))
@@ -80,8 +87,7 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 				.where(eq(t.plotPoints.universeSlug, slug))
 				.orderBy(asc(t.plotPoints.at))
 				.all()
-		]
-	);
+		]);
 
 	const sagas: Saga[] = sagaRows.map((s) => ({ id: s.id, name: s.name, tone: s.tone as Tone }));
 
@@ -121,9 +127,16 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		tone: a.tone as Tone
 	}));
 
+	const figures: Figure[] = figureRows.map((f) => ({
+		id: f.id,
+		name: f.name,
+		initials: f.initials
+	}));
+
 	const characters: Character[] = characterRows.map((c) => ({
 		id: c.id,
 		workSlug: c.workSlug,
+		figureId: c.figureId,
 		name: c.name,
 		initials: c.initials,
 		...(c.photo ? { photo: c.photo } : {}),
@@ -139,7 +152,7 @@ export async function loadUniverse(slug: string): Promise<Universe | undefined> 
 		text: p.text
 	}));
 
-	return { name: universe.name, sagas, works, seasons, arcs, characters, plotPoints };
+	return { name: universe.name, sagas, works, seasons, arcs, figures, characters, plotPoints };
 }
 
 /** Alle Universen – für Startseite und `EntryGenerator`s. */

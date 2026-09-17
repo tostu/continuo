@@ -59,6 +59,13 @@ Sagas, Werke, Handlungsstränge, Figuren und Plot Points liegen in der D1-Datenb
 `continuo-db`. Schema, Migrationen und Seed gehören zu **diesem** Repo – das frühere
 continuo-data ist abgelöst und wird nicht mehr gebraucht.
 
+Figuren gibt es auf zwei Ebenen: `figures` ist die Figur über alle Werke hinweg,
+`characters` sind ihre Auftritte je Werk (verknüpft über `figure_id`). Name und Foto eines
+Auftritts dürfen abweichen – „Darth Vader“ ist ein Auftritt von Anakin Skywalker.
+
+Migrationen, die Tabellen neu anlegen, leeren die betroffenen Daten; `seed.sql` ist die
+Quelle. Nach `db:migrate:*` deshalb immer direkt `db:seed:*` ausführen.
+
 Die Seite ist vollständig vorgerendert (`prerender = true` im Root-Layout). Die
 `+page.server.ts`-Loads laufen also **beim Build in Node**, nicht im Worker – dort gibt es
 kein D1-Binding. Der Zugriff geht deshalb über die D1-REST-API:

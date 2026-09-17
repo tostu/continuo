@@ -62,5 +62,18 @@
 	"seo_character_description": "Every plot point for {character} in {work} ({universe}) — with its moment in the work and its storyline.",
 	"seo_status_required": "essential viewing",
 	"seo_status_optional": "optional",
-	"image_credit": "Source: {source}"
+	"image_credit": "Source: {source}",
+	"trace_heading": "Trail through the universe",
+	"trace_summary": "{figure} appears in {count} of {total} works from {universe}.",
+	"trace_chip": "in {count} of {total} works",
+	"trace_works": "works",
+	"trace_points": "plot points in total",
+	"trace_span": "span",
+	"trace_alias": "as {name}",
+	"trace_gap_named": "in between: {titles}",
+	"trace_gap_one": "1 work in between",
+	"trace_gap_other": "{count} works in between",
+	"trace_here": "You are here",
+	"trace_only_here": "So far only seen in {work}.",
+	"trace_barcode_label": "{universe} timeline: {figure} is present in {count} of {total} sections."
 }

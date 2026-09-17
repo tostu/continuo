@@ -3,7 +3,7 @@ import { listUniverses } from './universe-repo';
 
 /**
  * Prüft die Daten in D1 gegen das, was die Fremdschlüssel nicht abdecken können.
- * Referenzen (sagaId, workSlug, characterId, arcId) erzwingt das Schema selbst –
+ * Referenzen (sagaId, workSlug, figureId, characterId, arcId) erzwingt das Schema selbst –
  * hier bleiben Eindeutigkeit über Universen hinweg und der Wertebereich von `at`.
  *
  * Läuft gegen die lokale D1: `D1_LOCAL=true bun run test:unit`. Ohne lokale Datenbank
@@ -34,6 +34,11 @@ describe.skipIf(!registry)('Universums-Daten', () => {
 					.map((p) => `${p.id}: at ${p.at} außerhalb ${works.get(p.workSlug)!.range.join('–')}`);
 
 				expect(outside).toEqual([]);
+			});
+
+			it('hat keine Figur ohne Auftritt', () => {
+				const appearing = new Set(u.characters.map((c) => c.figureId));
+				expect(u.figures.filter((f) => !appearing.has(f.id)).map((f) => f.id)).toEqual([]);
 			});
 		}
 	);

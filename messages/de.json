@@ -62,5 +62,18 @@
 	"seo_character_description": "Jeder Plot Point von {character} in {work} ({universe}) – mit Zeitpunkt im Werk und Handlungsstrang.",
 	"seo_status_required": "Pflicht für die Handlung",
 	"seo_status_optional": "optional",
-	"image_credit": "Quelle: {source}"
+	"image_credit": "Quelle: {source}",
+	"trace_heading": "Spur durchs Universum",
+	"trace_summary": "{figure} taucht in {count} von {total} Werken aus {universe} auf.",
+	"trace_chip": "in {count} von {total} Werken",
+	"trace_works": "Werke",
+	"trace_points": "Plot Points gesamt",
+	"trace_span": "Zeitraum",
+	"trace_alias": "als {name}",
+	"trace_gap_named": "dazwischen: {titles}",
+	"trace_gap_one": "1 Werk dazwischen",
+	"trace_gap_other": "{count} Werke dazwischen",
+	"trace_here": "Du bist hier",
+	"trace_only_here": "Bisher nur in {work} zu sehen.",
+	"trace_barcode_label": "Zeitstrahl von {universe}: {figure} ist in {count} von {total} Abschnitten zu sehen."
 }

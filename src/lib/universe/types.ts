@@ -53,9 +53,20 @@ export interface Arc {
 	tone: Tone;
 }
 
+/** Eine Figur über alle Werke hinweg; ihre Auftritte sind die `Character`s mit derselben `figureId`. */
+export interface Figure {
+	id: string;
+	/** Kanonischer Name – ein Auftritt kann anders heißen („Darth Vader“). */
+	name: string;
+	initials: string;
+}
+
+/** Auftritt einer Figur in einem Werk. */
 export interface Character {
 	id: string;
 	workSlug: string;
+	figureId: string;
+	/** Name, wie ihn das Werk verwendet. */
 	name: string;
 	initials: string;
 	/** Foto der Figur (manuell kuratiert). */
@@ -80,6 +91,7 @@ export interface Universe {
 	works: Work[];
 	seasons: Season[];
 	arcs: Arc[];
+	figures: Figure[];
 	characters: Character[];
 	plotPoints: PlotPoint[];
 }

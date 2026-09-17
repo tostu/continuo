@@ -9,6 +9,13 @@
 			"autoPort": true
 		},
 		{
+			"name": "continuo-dev-local",
+			"runtimeExecutable": "bun",
+			"runtimeArgs": ["run", "dev:local", "--port", "5175", "--strictPort"],
+			"port": 5175,
+			"autoPort": true
+		},
+		{
 			"name": "continuo-preview",
 			"runtimeExecutable": "bun",
 			"runtimeArgs": ["run", "preview"],
