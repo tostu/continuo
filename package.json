@@ -25,7 +25,7 @@
 		"db:studio:local": "drizzle-kit studio --config drizzle.config.local.ts",
 		"dev:local": "D1_LOCAL=true vite dev",
 		"build:local": "D1_LOCAL=true vite build",
-		"db:export": "node scripts/export-universe.mjs"
+		"db:export": "node scripts/export-universe.mjs --out universe-export"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",

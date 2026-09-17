@@ -41,8 +41,18 @@ bun run dev:local     # Dev-Server gegen die lokale D1
 ## Einrichtung
 
 `.env` aus `.env.example` befüllen: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_DATABASE_ID` und
-ein API-Token mit `D1: Edit`. Ohne diese Werte bricht jeder Load ab, der `getDb()` benutzt;
+`CLOUDFLARE_D1_TOKEN`. Ohne diese Werte bricht jeder Load ab, der `getDb()` benutzt;
 Builds ohne D1-Zugriff laufen weiterhin durch (die Instanz wird lazy erzeugt).
+
+Zwei getrennte API-Tokens:
+
+| Wofür | Token | Berechtigung |
+|---|---|---|
+| Build, `dev`, `db:export`, `db:studio` | `CLOUDFLARE_D1_TOKEN` in `.env` | `D1: Read` |
+| `db:migrate:remote`, `db:seed:remote` | `wrangler login` oder `CLOUDFLARE_API_TOKEN` nur für den Aufruf | `D1: Edit` |
+
+Der Build liest nur – ein geleakter Build-Token (z. B. aus CI) kann die Datenbank so nicht
+verändern. Drizzle Studio ist mit dem Lese-Token entsprechend read-only.
 
 Für rein lokale Entwicklung reicht `bun run db:migrate:local && bun run db:seed:local` plus
 `bun run dev:local` – dann wird keine echte Cloudflare-Verbindung gebraucht.

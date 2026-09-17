@@ -13,7 +13,7 @@ const API_BASE = 'https://api.cloudflare.com/client/v4';
 export interface D1HttpCredentials {
 	accountId: string;
 	databaseId: string;
-	/** API-Token mit "D1:Edit" für den Account. */
+	/** API-Token mit "D1: Read" für den Account – der Build liest nur. */
 	token: string;
 }
 
