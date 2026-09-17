@@ -20,9 +20,7 @@
 	const arcs = $derived(zoom.arcs);
 	const railWorks = $derived(zoom.railWorks);
 	const cast = $derived(zoom.cast);
-	const workTone = $derived(
-		railWorks.find((r) => r.work.slug === work.slug)?.tone ?? 'neutral'
-	);
+	const workTone = $derived(railWorks.find((r) => r.work.slug === work.slug)?.tone ?? 'neutral');
 
 	// Ohne Klick steht die erste Figur – deshalb `undefined` statt einer Startkopie aus `zoom`.
 	let picked = $state<string>();
@@ -169,12 +167,7 @@
 								? 'bg-raised ring-1 ring-neutral'
 								: 'hover:bg-raised/60'}"
 						>
-							<Avatar
-								initials={character.initials}
-								photoUrl={character.photo}
-								{shares}
-								size={56}
-							/>
+							<Avatar initials={character.initials} photoUrl={character.photo} {shares} size={56} />
 							<span class="text-[11.5px] leading-tight {isSelected ? 'text-ink' : 'text-muted'}">
 								{character.name}
 							</span>

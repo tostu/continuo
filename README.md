@@ -22,21 +22,21 @@ bun run dev:local     # Dev-Server gegen die lokale D1
 
 ## Scripts
 
-| Befehl | Zweck |
-|---|---|
-| `bun run dev` / `dev:local` | Dev-Server (remote D1 / lokale D1) |
-| `bun run build` / `build:local` | Production-Build (remote D1 / lokale D1) |
-| `bun run preview` | Build lokal über Wrangler ausliefern |
-| `bun run check` | Typprüfung (svelte-check) |
-| `bun run lint` / `format` | Prettier + ESLint prüfen / formatieren |
-| `bun run test:unit` | Vitest |
-| `bun run test:e2e` | Playwright |
-| `bun run test` | Unit- + E2E-Tests |
-| `bun run db:generate` | Migration aus `schema.ts` erzeugen |
-| `bun run db:migrate:local` / `:remote` | Migrationen anwenden |
-| `bun run db:seed:local` / `:remote` | `seed.sql` einspielen |
-| `bun run db:studio` / `:studio:local` | Drizzle Studio (remote / lokal) |
-| `bun run db:export` | Universum-Daten nach `universe-export/` exportieren |
+| Befehl                                 | Zweck                                               |
+| -------------------------------------- | --------------------------------------------------- |
+| `bun run dev` / `dev:local`            | Dev-Server (remote D1 / lokale D1)                  |
+| `bun run build` / `build:local`        | Production-Build (remote D1 / lokale D1)            |
+| `bun run preview`                      | Build lokal über Wrangler ausliefern                |
+| `bun run check`                        | Typprüfung (svelte-check)                           |
+| `bun run lint` / `format`              | Prettier + ESLint prüfen / formatieren              |
+| `bun run test:unit`                    | Vitest                                              |
+| `bun run test:e2e`                     | Playwright                                          |
+| `bun run test`                         | Unit- + E2E-Tests                                   |
+| `bun run db:generate`                  | Migration aus `schema.ts` erzeugen                  |
+| `bun run db:migrate:local` / `:remote` | Migrationen anwenden                                |
+| `bun run db:seed:local` / `:remote`    | `seed.sql` einspielen                               |
+| `bun run db:studio` / `:studio:local`  | Drizzle Studio (remote / lokal)                     |
+| `bun run db:export`                    | Universum-Daten nach `universe-export/` exportieren |
 
 ## Einrichtung
 

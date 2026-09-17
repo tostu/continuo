@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      D1_LOCAL: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      # node:sqlite (lokale D1) braucht Node >= 22.5; vite/vitest laufen unter Node.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Lokale D1 aufsetzen
+        run: bun run db:migrate:local && bun run db:seed:local
+
+      # Erzeugt auch src/lib/paraglide, das svelte-check braucht.
+      - name: Build
+        run: bun run build
+
+      - name: Typecheck
+        run: bun run check
+
+      - name: Playwright-Browser
+        run: bunx playwright install --with-deps chromium
+
+      - name: Unit-Tests
+        run: bunx vitest --run

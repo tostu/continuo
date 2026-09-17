@@ -64,9 +64,9 @@ const jsonSafe = (value: unknown) => (value instanceof Uint8Array ? Array.from(v
  * Bun, wird deshalb auf `bun:sqlite` ausgewichen – beide können positionsbasierte Zeilen.
  */
 async function openDatabase(file: string): Promise<RawQuery> {
-	try {
-		const { DatabaseSync } = await import('node:sqlite');
-		const db = new DatabaseSync(file);
+	const nodeSqlite = await import('node:sqlite').catch(() => undefined);
+	if (nodeSqlite) {
+		const db = new nodeSqlite.DatabaseSync(file);
 
 		return (sql, params, method) => {
 			const statement = db.prepare(sql);
@@ -79,23 +79,23 @@ async function openDatabase(file: string): Promise<RawQuery> {
 			statement.setReturnArrays(true);
 			return statement.all(...(params as never[])) as unknown as unknown[][];
 		};
-	} catch {
-		// @ts-expect-error – 'bun:sqlite' existiert nur zur Laufzeit unter Bun.
-		const { Database } = await import('bun:sqlite');
-		const db = new Database(file);
-
-		return (sql, params, method) => {
-			const statement = db.prepare(sql) as {
-				run: (...p: never[]) => unknown;
-				values: (...p: never[]) => unknown[][];
-			};
-			if (method === 'run') {
-				statement.run(...(params as never[]));
-				return [];
-			}
-			return statement.values(...(params as never[]));
-		};
 	}
+
+	// @ts-expect-error – 'bun:sqlite' existiert nur zur Laufzeit unter Bun.
+	const { Database } = await import('bun:sqlite');
+	const db = new Database(file);
+
+	return (sql, params, method) => {
+		const statement = db.prepare(sql) as {
+			run: (...p: never[]) => unknown;
+			values: (...p: never[]) => unknown[][];
+		};
+		if (method === 'run') {
+			statement.run(...(params as never[]));
+			return [];
+		}
+		return statement.values(...(params as never[]));
+	};
 }
 
 export async function createLocalCallbacks() {

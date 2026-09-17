@@ -128,11 +128,9 @@ export function layoutRail(
 	let cursor = TOP;
 	let pathIndex = 0;
 	let previousOnPath: { node: RailNode; groupId: string } | null = null;
-	let anchor: RailNode | null = null;
 	// Bleibt über eine Gruppengrenze hinweg bestehen, damit ein Seitenast, der am Ende
 	// einer Gruppe offen war, noch an das erste Werk der nächsten Gruppe anschließen kann.
 	let lastBranch: RailNode | null = null;
-	let stack = 0;
 
 	for (const group of groupWorks(u, mode)) {
 		// Release-Modus ist keine Saga-Gruppierung mehr, daher kein Saga-Banner.
@@ -149,8 +147,8 @@ export function layoutRail(
 
 		// Jede Gruppe (Saga-Banner) startet mit einem frischen Anker, damit ihr erstes
 		// Werk immer auf dem Hauptpfad landet statt als Seitenast am alten Anker zu hängen.
-		anchor = null;
-		stack = 0;
+		let anchor: RailNode | null = null;
+		let stack = 0;
 
 		for (const placement of group.placements) {
 			const required = placementRequired(placement);

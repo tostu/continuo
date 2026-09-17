@@ -7,9 +7,11 @@ import { listUniverses } from './universe-repo';
  * hier bleiben Eindeutigkeit über Universen hinweg und der Wertebereich von `at`.
  *
  * Läuft gegen die lokale D1: `D1_LOCAL=true bun run test:unit`. Ohne lokale Datenbank
- * (frischer Checkout) werden die Tests übersprungen statt zu scheitern.
+ * (frischer Checkout) werden die Tests übersprungen statt zu scheitern – außer
+ * `D1_LOCAL=true` ist gesetzt (z. B. in CI), dann ist eine fehlende D1 ein Fehler.
  */
 const registry = await listUniverses().catch((err) => {
+	if (process.env.D1_LOCAL === 'true') throw err;
 	console.warn(`[data.spec] Keine lesbare D1, Tests übersprungen:\n${err.message}`);
 	return undefined;
 });
